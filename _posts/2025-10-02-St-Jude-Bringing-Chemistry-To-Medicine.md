@@ -10,7 +10,7 @@ The finale was an unexpected highlight: a tour of St. Judeâ€™s research labs. â€
 
 I left grateful and motivated. Great science, clear visuals, shared purpose, and a peek into the engine room of discovery. Time to bring that energy back to my own work.
 
-![ST-JUDE-PHOTO](https://github.com/user-attachments/assets/3cbf1c63-0979-4cc7-9b33-574426677be6)
+<img src="https://github.com/user-attachments/assets/3cbf1c63-0979-4cc7-9b33-574426677be6" width="400">
 <br>
 Group photo with labmates (left to right): Dr. Wenli & Urvashi 
 
