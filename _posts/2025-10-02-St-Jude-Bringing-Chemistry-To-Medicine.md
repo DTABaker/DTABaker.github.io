@@ -9,3 +9,8 @@ On a personal note, the conference opened my eyes to corners of biochemistry I h
 The finale was an unexpected highlight: a tour of St. Jude’s research labs. “Packed” doesn’t begin to describe it — each room was dense with instrumentation, purpose‑built for speed and precision. A few instruments were true one‑of‑ones, designed specifically for their use cases. Seeing that ecosystem up close reframed how I think about scale, rigor, and the craft behind scientific workflow.
 
 I left grateful and motivated. Great science, clear visuals, shared purpose, and a peek into the engine room of discovery. Time to bring that energy back to my own work.
+
+![ST-JUDE-PHOTO](https://github.com/user-attachments/assets/3cbf1c63-0979-4cc7-9b33-574426677be6)
+<br>
+Group photo with labmates (left to right): Dr. Wenli & Urvashi 
+
