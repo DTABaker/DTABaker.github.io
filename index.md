@@ -6,4 +6,4 @@
 
 <br>
 
-<pr>Thanks for taking the time to peek into my world!</pr>
+Thanks for taking the time to peek into my world !
