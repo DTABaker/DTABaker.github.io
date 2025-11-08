@@ -8,4 +8,4 @@
 
 <p>We’ve learned a lot already about what works (and what doesn’t) when scaling a hands-on course like this. Every week brings new ideas for how to make the class smoother and more engaging. There’s definitely a learning curve for us as well as the students, but it’s been a great experience watching everything evolve in real time.</p>
 
-<p>And the best part? We’re not stopping here. The plan is to continue offering the high school version of the program this summer, building on what we’ve learned so far. I’m really looking forward to seeing both programs grow side by side—each one helping train the next generation of curious, data-minded researchers.</p>
+<p>And the best part? We’re not stopping here. The plan is to continue offering the high school version of the program this summer, building on what we’ve learned so far. I’m really looking forward to seeing both programs grow side by side — each one helping train the next generation of curious, data-minded researchers.</p>
