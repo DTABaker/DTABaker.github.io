@@ -1,4 +1,4 @@
-## From Summer to Semester: Growing the AI & Big Data in Cancer Research Course
+## From Summer to Semester: Growing the AI and Big Data in Cancer Research Course
 
 This semester, I’ve had the chance to help out again with Dr. Wang’s AI & Big Data in Cancer Research course — this time in its new [Honors Forum version](https://www.memphis.edu/honors/members/courses.php). It’s one of the many specialty courses offered through the University of Memphis Helen Hardin Honors College, giving students a chance to explore unique topics in a smaller, hands-on setting.
 
