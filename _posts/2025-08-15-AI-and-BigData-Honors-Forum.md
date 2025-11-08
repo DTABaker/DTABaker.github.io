@@ -1,8 +1,8 @@
 ## From Summer to Semester: Growing the AI & Big Data in Cancer Research Course
 
-<p>This semester, I’ve had the chance to help out again with Dr. Wang’s AI & Big Data in Cancer Research course—this time in its new Honors Forum version. It’s one of the many specialty courses offered through the University of Memphis Honors College, giving students a chance to explore unique topics in a smaller, hands-on setting.</p>
+<p>This semester, I’ve had the chance to help out again with Dr. Wang’s AI & Big Data in Cancer Research course — this time in its new Honors Forum version. It’s one of the many specialty courses offered through the University of Memphis Honors College, giving students a chance to explore unique topics in a smaller, hands-on setting.</p>
 
-<p>It’s been really cool to see how far this program has come in just a few months. Last summer, we ran it as a small pilot for four high school students, and now we’ve scaled up to fifteen freshman honors students. The course this semester is more academically structured, with deeper discussions and graded projects, but the spirit is still the same—getting students excited about research and data-driven science.</p>
+<p>It’s been really cool to see how far this program has come in just a few months. Last summer, we ran it as a small pilot for four high school students, and now we’ve scaled up to fifteen freshman honors students. The course this semester is more academically structured, with deeper discussions and graded projects, but the spirit is still the same — getting students excited about research and data-driven science.</p>
 
 <p>My main role this semester has been more behind the scenes, handling technical support and helping students troubleshoot code, software setup, and the occasional data hiccup. It’s been fun seeing everyone’s confidence grow as they pick up new programming skills and start connecting them to biological questions.</p>
 
