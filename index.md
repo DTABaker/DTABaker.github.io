@@ -2,6 +2,12 @@
 
 <pr>Hello, My name is Dillon Baker. I am now Chemistry PhD student at the University of Memphis. I obtained my Bachelor's of Science with a double major in Chemistry and Mathematics in May 2025.</pr>
 <br>
+<br>
+<br>
+<img src="https://github.com/user-attachments/assets/89f8a37a-3ec6-458c-b6e6-b5a9cfbd6e8e" width="400" height="360">
+<br>
+Group Lunch 2024
+<br>
 
 <pr>I joined Dr. Yongmei Wang's research group roughly two years ago as an undergraduate. I created this blog then to document my journey learning to code and to outline the various projects I am working on. However, it has transitioned into a time capsule of my transition from undergraduate to graduate studies.</pr>
 <br>
