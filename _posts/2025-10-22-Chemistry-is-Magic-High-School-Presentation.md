@@ -10,3 +10,5 @@ Huge thanks to the Memphis School of Excellence teachers and students for their 
 
 <img width="518" height="613" alt="demo-cropped-highschool" src="https://github.com/user-attachments/assets/d47067b1-b6f2-4ca4-ab09-f0911c2bfd5c" />
 
+Memphis School of Excellence Newsletter Article
+
