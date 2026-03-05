@@ -8,4 +8,5 @@ To make it tangible, I brought along 3D-printed protein models for the students 
 
 Huge thanks to the Memphis School of Excellence teachers and students for their energy and enthusiasm. Nothing beats seeing that spark of curiosity when chemistry comes alive — whether in a test tube or on a computer screen!
 
-<img width="260" height="450" alt="Chemistry-Is-Magic-Demo-Presentation" src="https://github.com/user-attachments/assets/f07a3761-e3ae-47bf-b02d-08a2c8c91c12" />
+<img width="518" height="613" alt="demo-cropped-highschool" src="https://github.com/user-attachments/assets/d47067b1-b6f2-4ca4-ab09-f0911c2bfd5c" />
+
