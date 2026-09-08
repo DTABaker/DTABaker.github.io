@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include head.html %}
+<body class="{{ page.body_class }}">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<a class="brand" href="{{ '/' | relative_url }}" aria-label="Dillon Baker — home"><span class="element-mark" aria-hidden="true"><small>01</small>Db</span><span>DILLON BAKER<small>MY PHD JOURNEY</small></span></a>
+<nav aria-label="Main navigation"><a href="{{ '/' | relative_url }}#journal">Journal</a><a href="{{ '/archive.html' | relative_url }}" {% if page.url == '/archive.html' %}aria-current="page"{% endif %}>Archive</a><a href="{{ '/' | relative_url }}#about">About</a><a class="nav-external" href="{{ site.github_url }}">GitHub <span aria-hidden="true">↗</span></a></nav>
+</header>
+<main id="main">{{ content }}</main>
+<footer class="site-footer">
+  <a class="footer-name" href="{{ '/' | relative_url }}">Dillon Baker<span>Wang Research Group<br>The University of Memphis</span></a>
+  <div class="footer-resources">
+    <nav class="contact-links" aria-label="Contact Dillon Baker"><span class="eyebrow">CONTACT</span>{% include contact-links.html %}</nav>
+    <nav class="footer-research" aria-label="Research websites"><span class="eyebrow">RESEARCH</span>{% include research-links.html %}<a href="{{ '/feed.xml' | relative_url }}">RSS feed <span aria-hidden="true">↗</span></a></nav>
+  </div>
+  <p>© {{ site.time | date: '%Y' }} Dillon Baker <span>Made of chemistry & curiosity.</span></p>
+</footer>
+<script src="{{ '/js/journal.js' | relative_url }}" defer></script>
+</body></html>

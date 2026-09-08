@@ -1,4 +1,13 @@
-## Bringing Chemistry to Medicine: Notes From St. Jude
+---
+layout: "post"
+title: "Bringing Chemistry to Medicine: Notes From St. Jude"
+short_title: "Bringing chemistry to medicine"
+date: "2025-10-02"
+permalink: "/2025/10/02/St-Jude-Bringing-Chemistry-To-Medicine.html"
+topic: "Research"
+tags: ["Research"]
+description: "Ideas and inspiration from a conference at the intersection of chemistry and cancer research."
+---
 
 I just got back from St. Jude’s Bringing Chemistry to Medicine conference, and I’m still buzzing. It was a rare mix of high level research and high signal storytelling — truly a master class in presentation visualizations. Talks came in from across the world, and yet the throughline stayed crisp: use chemistry to push cancer research forward.
 
@@ -12,5 +21,4 @@ I left grateful and motivated. Great science, clear visuals, shared purpose, and
 
 <img src="https://github.com/user-attachments/assets/3cbf1c63-0979-4cc7-9b33-574426677be6" width="400">
 <br>
-Group photo with labmates (left to right): Dr. Wenli & Urvashi 
-
+Group photo with labmates (left to right): Dr. Wenli & Urvashi

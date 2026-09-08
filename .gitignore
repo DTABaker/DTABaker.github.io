@@ -1,1 +1,6 @@
-﻿_site
+_site/
+dist/
+.bundle/
+.jekyll-cache/
+.sass-cache/
+node_modules/

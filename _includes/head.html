@@ -1,24 +1,12 @@
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  {%- seo -%}
-  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
-  {%- feed_meta -%}
-  {%- if jekyll.environment == 'production' and site.google_analytics -%}
-    {%- include google-analytics.html -%}
-  {%- endif -%}
-
-  <!-- highlight.js support -->
-  <link rel="stylesheet" href="/js/highlightjs/styles/github.css">
-  <link rel="stylesheet" href="/js/highlightjs/styles/ssms.css" />
-
-  <script type="text/javascript" src="/js/highlightjs/highlight.min.js"></script>
-
-  <script type="text/javascript" src="/js/highlightjs/languages/plaintext.min.js"></script>
-  <script type="text/javascript" src="/js/highlightjs/languages/powershell.min.js"></script>
-  <script type="text/javascript" src="/js/highlightjs/languages/tsql.min.js"></script>
-
-  <script type="text/javascript"> hljs.highlightAll(); </script>
-  <!-- end highlight.js support -->
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#081217">
+{% capture seo_output %}{% seo %}{% endcapture %}
+{% assign seo_lines = seo_output | replace: 'name="twitter:description" ', '' | newline_to_br | split: '<br />' %}
+{% for meta_line in seo_lines %}{% unless meta_line contains 'twitter:' or meta_line contains 'facebook' %}{{ meta_line }}{% endunless %}{% endfor %}
+{% feed_meta %}
+<link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ '/js/highlightjs/styles/github.css' | relative_url }}"><link rel="stylesheet" href="{{ '/css/override.css' | relative_url }}">
+<script src="{{ '/js/highlightjs/highlight.min.js' | relative_url }}" defer></script><script src="{{ '/js/highlightjs/languages/plaintext.min.js' | relative_url }}" defer></script><script src="{{ '/js/highlightjs/languages/powershell.min.js' | relative_url }}" defer></script><script src="{{ '/js/highlightjs/languages/tsql.min.js' | relative_url }}" defer></script>
 </head>

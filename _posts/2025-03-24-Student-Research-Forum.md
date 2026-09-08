@@ -1,4 +1,14 @@
-## Honored to Receive 1st Place at UofM’s Student Research Forum
+---
+layout: "post"
+title: "Honored to Receive 1st Place at UofM’s Student Research Forum"
+short_title: "A first-place finish at the research forum"
+date: "2025-03-24"
+permalink: "/2025/03/24/Student-Research-Forum.html"
+topic: "Milestones"
+tags: ["PhD life"]
+description: "Celebrating a Physical and Applied Sciences poster award at the University of Memphis."
+---
+
 ![Student-research-forum-picture](https://github.com/user-attachments/assets/e82e86be-1f6a-4e2d-80be-3fe3b5a8a9bf)
 
 I’m thrilled to share that I received 1st Place in the Physical and Applied Sciences Poster Award at the 37th Annual Student Research Forum at the University of Memphis in March 2025. It was an energizing day of conversation and curiosity—presenting my work, fielding sharp questions from judges and peers, and learning from the impressive scholarship happening across campus.

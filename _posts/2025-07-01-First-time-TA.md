@@ -1,4 +1,13 @@
-## Three Weeks, Three Labs a Week: Reflections from My First TA Semester
+---
+layout: "post"
+title: "Three Weeks, Three Labs a Week: Reflections from My First TA Semester"
+short_title: "My first semester on the other side of the lab"
+date: "2025-07-01"
+permalink: "/2025/07/01/First-time-TA.html"
+topic: "Teaching"
+tags: ["Teaching & outreach"]
+description: "Three weeks of General Chemistry Laboratory II, and plenty of learning on both sides of the bench."
+---
 
 This summer I stepped into teaching a little early — as a TA for General Chemistry Laboratory II under the direction of Prof. Bretta King. I only had one section, but we met three times a week for three‑hour experiment blocks over the course of three weeks. The rhythm was fast, focused, and a whole lot of fun.
 

@@ -1,4 +1,13 @@
-## Sparking Curiosity at Memphis School of Excellence—Winchester
+---
+layout: "post"
+title: "Sparking Curiosity at Memphis School of Excellence—Winchester"
+short_title: "Making chemistry come alive"
+date: "2025-10-22"
+permalink: "/2025/10/22/Chemistry-is-Magic-High-School-Presentation.html"
+topic: "Outreach"
+tags: ["Teaching & outreach"]
+description: "Sharing computational chemistry, protein models, and hands-on science with high school students."
+---
 
 We recently spent a morning at Memphis School of Excellence – Winchester with their junior chemistry class, and it was an absolute blast!
 
@@ -11,4 +20,3 @@ Huge thanks to the Memphis School of Excellence teachers and students for their 
 <img width="518" height="613" alt="demo-cropped-highschool" src="https://github.com/user-attachments/assets/d47067b1-b6f2-4ca4-ab09-f0911c2bfd5c" />
 
 Memphis School of Excellence Newsletter Article
-

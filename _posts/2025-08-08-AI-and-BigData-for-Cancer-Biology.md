@@ -1,4 +1,15 @@
-## Teaching Big Data and Cancer Biology — Through a High School Lens
+---
+layout: "post"
+title: "Teaching Big Data and Cancer Biology — Through a High School Lens"
+short_title: "Where code meets cancer biology"
+date: "2025-08-08"
+permalink: "/2025/08/08/AI-and-BigData-for-Cancer-Biology.html"
+topic: "Code & teaching"
+tags: ["Teaching & outreach"]
+description: "Helping high school students turn Python, real biological data, and curiosity into research."
+feature: "coding"
+---
+
 <p>This summer I volunteered as a teaching assistant for Dr. Wang’s “AI and BigData for Cancer Biology” program, the course met once a week for a month where high school students dove into the intersection of coding and cancer research. It was easily one of the most rewarding things I’ve done all year.</p>
 
 <p>The goal of the program was simple: show students that the same Python code they use to make a game or a calculator can also be used to explore real biological data. We mixed in bits of upper-level cancer biology whenever it was needed — just enough to make the coding meaningful.</p>

@@ -1,4 +1,13 @@
-## Honored to Be Named 2025 Outstanding Undergraduate Researcher
+---
+layout: "post"
+title: "Honored to Be Named 2025 Outstanding Undergraduate Researcher"
+short_title: "An unexpected honor"
+date: "2025-04-26"
+permalink: "/2025/04/26/Chemmy's-Award.html"
+topic: "Milestones"
+tags: ["PhD life"]
+description: "Reflections on being named the 2025 Outstanding Undergraduate Researcher in Chemistry."
+---
 
 I’m thrilled to share that I was named the Outstanding Undergraduate Researcher for 2025 in the University of Memphis Department of Chemistry. This is a huge honor especially knowing how much great research is happening across the department every day. Being recognized among such talented peers and mentors is both humbling and energizing.
 

@@ -1,4 +1,14 @@
-## A Week with MSCC: Launching into Quantum Chemistry
+---
+layout: "post"
+title: "A Week with MSCC: Launching into Quantum Chemistry"
+short_title: "A first look into the quantum world"
+date: "2025-08-01"
+permalink: "/2025/08/01/Intro-to-Quantum.html"
+topic: "Quantum chemistry"
+tags: ["Research"]
+description: "A week of molecular models, electronic-structure calculations, and new ways of thinking."
+feature: "quantum"
+---
 
 I spent a week at the MSCC summer workshop hosted by Dr. Nascimento - an accessible introduction to quantum chemistry tailored for new graduate students and undergraduates. Funded by the NSF, the workshop struck a great balance between core concepts and practical skills: from how we model molecules at the quantum level to setting up and interpreting electronic-structure calculations with care and reproducibility in mind.
 
