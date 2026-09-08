@@ -55,7 +55,7 @@ Just as useful are the questions about what the model leaves out. An orbital is 
 The selected orbitals also have no radial nodes. Higher-energy orbitals of the same subshell type can have additional structure that this set does not show. I want those limitations to be part of the lesson: a good model helps us understand something, and understanding the model means knowing where the analogy stops.
 
 ## From design to the tutoring table
-
+[Download the STL files and printing guides on GitHub](https://github.com/DTABaker/3D-Print-Electron-Observatory)
 The printable set contains 25 STL designs, including the sixteen orbital modules, six base sections, a joining dowel, and two mount-fit test pieces. The accompanying teaching and assembly guides explain the geometry, phase convention, and printing setup.
 
 The design has passed digital mesh checks, but a completed slice and physical print still need to be verified. I’ll start with the small fit test before printing the full display. I’m looking forward to bringing it into the CCLC and seeing which shapes—and which questions—students reach for first.
