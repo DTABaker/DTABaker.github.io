@@ -1,5 +1,7 @@
 # Asset provenance
 
+- `assets/nsf-grfp-2026-reviews.png`: original 2559 × 838 NSF GRFP application-ratings screenshot supplied by Dillon for the October 13, 2026 Milestones post, copied without alteration. It shows the 2026 application cycle, a final status of Not Recommended, and Intellectual Merit / Broader Impacts ratings of Good / Good and Excellent / Excellent. The screenshot does not identify reviewer numbers; the reviewer #2 caption is a joke.
+
 - `assets/fall-preview-day-2026.jpg`: original 4080 × 3072 photograph supplied by Dillon for the October 3, 2026 Fall Preview Day outreach post, copied without alteration. Caption identities and their left-to-right order were supplied by Dillon: Dillon Baker, Alok Das, Taylor Moore, Bailee Keys, and Dr. Johnson.
 
 - `assets/wavefunction-to-orbital.html`: reviewed standalone From Wavefunction to Orbital model from the 3D-Prints project, with 16 original real hydrogenic orbitals and three additional radial-node examples. Four linked views connect normalized radial and angular functions to cross-sections and approximate 90%-probability surfaces. SHA-256: `799d79f61e9e544db4ec6668f3680b34c8dfff35035b6b3be040a99469e70849`. Three.js r170 and its MIT notice are embedded; `assets/THREE-LICENSE.txt` is retained. The physical view uses Bohr-radius coordinates with a labeled window that changes between states.
