@@ -30,18 +30,18 @@ The model scrolls within the frame. For more room, especially on a phone, use th
 
 ## Follow a point through four views
 
-1. **Distance:** the radial function R(r) shows how amplitude changes with distance from the nucleus. The second graph shows the shell probability density P(r) = r²|R(r)|², including the radial volume weighting.
+1. **Distance:** the radial function R(r) shows how amplitude changes with distance from the nucleus. The second graph shows the shell probability density P(r) = r²&#124;R(r)&#124;², including the radial volume weighting.
 2. **Direction:** the angular function Y(θ, φ) colors a unit sphere. Rotate it or change the angles to explore signs, orientations, and angular nodes.
-3. **Product:** the cross-section shows ψ = RY or the probability density |ψ|². A node in either factor makes the wavefunction zero.
+3. **Product:** the cross-section shows ψ = RY or the probability density &#124;ψ&#124;². A node in either factor makes the wavefunction zero.
 4. **Shape:** the three-dimensional surface shows a region containing approximately 90% of the orbital's probability before cutting. Move the cutting plane to inspect the interior; its position stays linked to the probe and cross-section.
 
-Blue and coral indicate opposite signs of the real spatial wavefunction, not opposite electrical charges. Squaring removes the sign but preserves the nodes. The squared amplitude |ψ|² at a point is a probability density; a probability comes from integrating over a region.
+Blue and coral indicate opposite signs of the real spatial wavefunction, not opposite electrical charges. Squaring removes the sign but preserves the nodes. The squared amplitude &#124;ψ&#124;² at a point is a probability density; a probability comes from integrating over a region.
 
 ## Try these experiments
 
 - Select **1s** and compare the radial function with the shell probability graph. Why is the most probable radial distance away from the nucleus even though the density is greatest at the nucleus?
 - Use **2s** to find a radial node, then **2p_z** to find an angular node. Try **3p_z** to see both in one state.
-- Change the azimuth of **2p_x** or **3d_xy**. Follow a sign change in Y into ψ, then switch to |ψ|².
+- Change the azimuth of **2p_x** or **3d_xy**. Follow a sign change in Y into ψ, then switch to &#124;ψ&#124;².
 - Choose **4f_xyz** and inspect its three nodal planes. A central coordinate slice can lie entirely on a node; move the cut to reveal the surrounding lobes.
 
 The guided-example buttons set up these investigations. The equation panel displays the selected normalized functions and evaluates them at the shared probe.
