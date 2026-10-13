@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Practice General Chemistry II lab calculations with generated problems, answer feedback, and worked solutions.">
+  <title>Gen Chem II · Lab Practice</title>
+  <link rel="stylesheet" href="./styles.css?v=1.0.1">
+  <script defer src="./core.js?v=1.0.1"></script>
+  <script defer src="./generators-colligative.js?v=1.0.1"></script>
+  <script defer src="./generators-solubility.js?v=1.0.1"></script>
+  <script defer src="./generators-concepts.js?v=1.0.1"></script>
+  <script defer src="./app.js?v=1.0.1"></script>
+</head>
+<body>
+  <a class="skip-link" href="#problem-heading">Skip to problem</a>
+  <header class="site-header">
+    <a class="brand" href="./index.html" aria-label="Lab Practice home"><span class="brand-mark" aria-hidden="true">C<span>II</span></span><span>GEN CHEM II<span class="brand-sub">The lab practice room</span></span></a>
+    <nav aria-label="Page"><button class="text-button" id="reference-toggle" aria-expanded="false" aria-controls="reference">Formula guide</button><a class="text-link" href="./instructor.html">About this tool ↗</a></nav>
+  </header>
+  <main>
+    <div id="load-status" class="load-status" role="alert"><p id="load-message">Loading the study tool. If this message remains, check your connection and reload the page.</p><button id="retry-load" class="secondary-button" onclick="location.reload()">Reload study tool</button></div>
+    <section class="intro" aria-labelledby="page-heading">
+      <div><p class="eyebrow">GENERAL CHEMISTRY II / LAB FINAL</p><h1 id="page-heading">A little practice.<br><em>A clearer understanding.</em></h1><p class="intro-copy">Choose a topic, work through a fresh problem, and check your reasoning one step at a time.</p></div>
+      <div class="session-summary" aria-label="Practice progress"><span class="summary-label">YOUR PRACTICE</span><div><strong id="total-practiced">0</strong><span>problems attempted</span></div><div class="summary-bottom"><span id="first-try">0 correct on first try</span><button id="reset-progress" class="text-button">Reset</button><button id="cancel-reset" class="text-button" hidden>Cancel</button></div><small id="storage-note">Saved only in this browser.</small></div>
+    </section>
+    <section id="reference" class="reference" hidden aria-labelledby="reference-heading"><div class="section-top"><h2 id="reference-heading">Keep the relationships in view</h2><button class="text-button" id="reference-close">Close guide</button></div><div class="formula-grid"><div><h3>Concentration</h3><p>M = n / V<sub>solution, L</sub></p><p>m = n / mass<sub>solvent, kg</sub></p><small>Molarity uses solution volume. Molality uses solvent mass.</small></div><div><h3>Freezing point</h3><p>ΔT<sub>f</sub> = iK<sub>f</sub>m</p><p>T<sub>f</sub> = T<sub>f</sub>° − ΔT<sub>f</sub></p><small>ΔT<sub>f</sub> is a positive decrease. Use the given ideal van’t Hoff factor.</small></div><div><h3>Solubility</h3><p>A<sub>a</sub>B<sub>b</sub>(s) ⇌ aA + bB</p><p>K<sub>sp</sub> ≈ ([A]/c°)<sup>a</sup>([B]/c°)<sup>b</sup></p><small>At saturation; c° = 1 mol/L. Omit the pure solid.</small></div><div><h3>Titration</h3><p>n = MV, with V in L</p><p>n<sub>analyte</sub>/ν<sub>analyte</sub> = n<sub>titrant</sub>/ν<sub>titrant</sub></p><small>ν is a coefficient in the balanced reaction. Use the mole ratio at equivalence.</small></div></div></section>
+    <div class="workspace" id="practice-workspace" hidden>
+      <aside class="topic-sidebar" aria-label="Problem selection"><div class="section-top"><h2>Choose your focus</h2><span id="topic-count" class="count"></span></div><button id="mixed-mode" class="mixed-button"><span aria-hidden="true">↝</span><span>Mixed review<small>A mix, with extra practice where needed</small></span></button><div id="topic-list"></div></aside>
+      <div class="practice-area">
+        <section class="problem-card" aria-labelledby="problem-heading">
+          <div class="problem-top"><span class="eyebrow" id="topic-group"></span><button id="share-problem" class="text-button">Copy problem link</button></div>
+          <div class="problem-heading-row"><h2 id="problem-heading" tabindex="-1"></h2><span class="problem-seed" id="problem-code"></span></div>
+          <div id="problem-prompt" class="problem-prompt"></div>
+          <details class="model-note" id="model-details"><summary>Assumptions for this problem</summary><div id="model-content"></div></details>
+          <div class="answer-area"><div class="section-top"><h3>Your answer</h3><button id="hint-button" class="text-button" aria-expanded="false" aria-controls="hint-content">Need a hint?</button></div><div id="hint-content" class="hint" hidden></div>
+            <form id="answer-form" novalidate><div id="answer-fields" class="answer-fields"></div><p class="answer-help" id="answer-help">Enter numbers in the units shown. Scientific notation such as <code>2.46e-3</code> or <code>2.46 × 10^-3</code> works. Aim for 3 significant figures in calculations; calculated answers allow 1% rounding tolerance. Electron and lone-pair counts must be exact. Significant figures are not graded separately.</p><div class="actions"><button class="primary-button" type="submit">Check my answer <span aria-hidden="true">→</span></button><button class="secondary-button" id="new-problem" type="button">New problem</button></div></form>
+            <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+          </div>
+          <details class="scratchpad"><summary>Make space for your working</summary><label for="working">Notes, equations, or your plan (cleared for each new problem)</label><textarea id="working" rows="4" placeholder="What is given? What do I need to find?"></textarea><small>Your working stays on this page. It is not automatically graded.</small></details>
+          <div class="solution-bar"><div><strong>See how it comes together</strong><p id="solution-instruction">Submit an answer attempt to unlock the worked solution.</p></div><button id="reveal-next" class="secondary-button" disabled>Show first step</button></div>
+          <section id="solution" class="solution" hidden aria-labelledby="solution-heading"><div class="section-top"><h3 id="solution-heading">Worked solution</h3><button id="reveal-all" class="text-button">Show all steps</button></div><ol id="solution-steps"></ol><button id="reveal-next-bottom" class="secondary-button" hidden>Continue to next step</button><div id="solution-finish" hidden><div id="answer-summary" class="answer-summary"></div><button id="another-like" class="primary-button">Practice another like this <span aria-hidden="true">→</span></button></div></section>
+        </section>
+        <div class="practice-note"><span aria-hidden="true">✦</span><p>Use the solution to check your method, then try fresh values. A correct answer is a useful checkpoint; explaining each step is the goal.</p></div>
+      </div>
+    </div>
+  </main>
+  <footer><span>Gen Chem II · Lab Practice</span><span>Practice at your own pace. No account needed.</span><a href="./instructor.html">Coverage &amp; teaching notes</a></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <noscript><p class="no-script">This study tool needs JavaScript to generate and check problems. Enable JavaScript in your browser.</p></noscript>
+</body>
+</html>
