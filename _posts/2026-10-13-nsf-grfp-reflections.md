@@ -26,6 +26,6 @@ That time was not in vain. Working through those questions gave me a clearer sen
   <figcaption>It’s always reviewer #2… except I’m pretty proud of both of these reviews. Select the image to view the ratings at full size.</figcaption>
 </figure>
 
-And yes, I’m proud of my **Good | Good** and **Excellent | Excellent** ratings for Intellectual Merit and Broader Impacts, regardless of the final outcome. There’s encouragement in that feedback, and plenty of motivation to keep going.
+And yes, I’m proud of my **Good &#124; Good** and **Excellent &#124; Excellent** ratings for Intellectual Merit and Broader Impacts, regardless of the final outcome. There’s encouragement in that feedback, and plenty of motivation to keep going.
 
 Thank you to everyone who supported me through the application. I’m grateful for your time, your guidance, and your belief in me—and I’m looking forward to putting what I learned to work.
