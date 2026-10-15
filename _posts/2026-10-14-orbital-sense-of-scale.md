@@ -60,6 +60,6 @@ Each displayed surface approximates the boundary of an orbital-specific isodensi
 
 Every panel uses the same orthographic viewing width and physical coordinate system. The small nucleus marker and axes are annotations, not physical-size models of a nucleus. The meshes are finite-resolution approximations; the underlying analytic regions and coordinate conversions have independent numerical checks. These hydrogenic shapes do not provide quantitative sizes for orbitals in neutral many-electron atoms.
 
-[Download the model, editable source, and validation reports]({{ '/assets/orbital-scale-blog-package.zip' | relative_url }}). The package includes the scientific review, reproducible checks, and software notices. The model needs JavaScript and WebGL; browser checks covered Chromium at desktop and mobile widths, rather than every browser or physical device.
+The model needs JavaScript and WebGL; browser checks covered Chromium at desktop and mobile widths, rather than every browser or physical device.
 
 For the mathematical background, see [Oregon State University's hydrogen radial functions and spherical harmonics](https://books.physics.oregonstate.edu/GMM/hydroform.html) and Richard Fitzpatrick's [Hydrogen Atom](https://farside.ph.utexas.edu/teaching/qmech/lectures/node82.html). The Bohr-radius conversion uses [NIST's physical constants](https://physics.nist.gov/cuu/Constants/Table/allascii.txt). The bundled Three.js renderer retains its [MIT license]({{ '/assets/THREE-LICENSE.txt' | relative_url }}).
