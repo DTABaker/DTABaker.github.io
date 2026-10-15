@@ -20,6 +20,8 @@ I developed the design with help from AI, using mathematically generated orbital
 
 ## Explore the orbitals in 3D
 
+To compare physical extent with one shared ruler, visit [Orbital Observatory: A Sense of Scale]({{ '/orbital-scale/' | relative_url }}). Its sixteen hydrogenic orbitals retain their relative sizes, and a nuclear-charge control explores one-electron H, He⁺, Li²⁺, and Be³⁺.
+
 For the mathematics behind the shapes, explore [From Wavefunction to Orbital]({{ '/wavefunction-to-orbital/' | relative_url }}): four linked views of radial functions, angular functions, cross-sections, and probability surfaces, including all sixteen Observatory orbitals and three radial-node examples.
 
 Drag to rotate the display, then use **Inspect** to look at one orbital at a time. You can scroll or use the zoom buttons to move closer. With the viewer focused, the arrow keys rotate and the + and − keys zoom.

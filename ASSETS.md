@@ -1,5 +1,8 @@
 # Asset provenance
 
+- `assets/orbitals-to-scale.html`: Orbital Observatory: A Sense of Scale, reviewed in the Orbital - Education project on 2026-10-14. Sixteen hydrogenic states use one common physical scale with 1/Z contraction for one-electron ions. The preserved 488,520-triangle dataset, radial functions, unit conversions, controls, and responsive rendering have independent checks. Standalone SHA-256: `dd52891fe66106e5ef7285c3f24ce595be382a766ff54be4b3a84336de4822d0`. Three.js r170 and its MIT notice are embedded; `assets/THREE-LICENSE.txt` is retained.
+- `assets/orbital-scale-blog-package.zip`: portable model, editable source, minimum mathematical inputs, validation scripts/reports, and licenses. SHA-256: `6bda7994bf3e35ebf47f610b0a4998dd80eb942170d48e52ac89e34b11d7dc44`.
+
 - `assets/nsf-grfp-2026-reviews.png`: original 2559 × 838 NSF GRFP application-ratings screenshot supplied by Dillon for the October 13, 2026 Milestones post, copied without alteration. It shows the 2026 application cycle, a final status of Not Recommended, and Intellectual Merit / Broader Impacts ratings of Good / Good and Excellent / Excellent. The screenshot does not identify reviewer numbers; the reviewer #2 caption is a joke.
 
 - `assets/fall-preview-day-2026.jpg`: original 4080 × 3072 photograph supplied by Dillon for the October 3, 2026 Fall Preview Day outreach post, copied without alteration. Caption identities and their left-to-right order were supplied by Dillon: Dillon Baker, Alok Das, Taylor Moore, Bailee Keys, and Dr. Johnson.

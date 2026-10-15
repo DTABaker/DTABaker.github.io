@@ -13,6 +13,8 @@ How does a wavefunction become the orbital shapes we draw in chemistry? This com
 
 The model includes all **16 Observatory orbitals**—1s, three 2p, five 3d, and seven 4f—plus **2s, 3s, and 3p_z** to explore radial nodes. These 19 states form a selected teaching set, rather than every orbital through n = 4.
 
+For a direct size comparison, open [Orbital Observatory: A Sense of Scale]({{ '/orbital-scale/' | relative_url }}). It puts the original sixteen orbitals on one common physical ruler and explains why increasing nuclear charge contracts a one-electron orbital.
+
 <p><a href="{{ '/assets/wavefunction-to-orbital.html' | relative_url }}" target="_blank" rel="noopener">Open From Wavefunction to Orbital in a full window ↗</a></p>
 
 <iframe
