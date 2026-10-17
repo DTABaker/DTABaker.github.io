@@ -6,12 +6,12 @@ date: 2026-10-17 12:00:00 -0500
 permalink: /hybrid-orbitals/
 topic: "Chemistry & teaching"
 tags: ["Teaching & outreach"]
-description: "Change s and p character, compare wavefunctions with probability densities, and explore complete sp, sp², and sp³ orbital sets."
+description: "Compare wavefunctions and densities, change s/p character, and explore complete sp, sp², sp³, dsp², sp³d, and sp³d² constructions."
 ---
 
 What changes when we mix an s orbital with a p orbital? The answer depends on what we add. Adding **wavefunctions** allows constructive and destructive interference. Adding their **probability densities** leaves out that interference and gives a different distribution.
 
-The **Hybrid Orbital Lab** makes that distinction interactive. Move the s-character slider, reverse the relative sign, and compare three linked views of the same mathematical ingredients. Then explore how one hybrid fits into a complete sp, sp², or sp³ set.
+The **Hybrid Orbital Lab** makes that distinction interactive. Move the s-character slider, reverse the relative sign, and compare three linked views of the same mathematical ingredients. Then explore how one hybrid fits into a complete sp, sp², or sp³ set. A further section brings d orbitals into the basis through square-planar dsp², trigonal-bipyramidal sp³d, and octahedral sp³d² constructions, with each orbital's s, p, and d character shown separately.
 
 This continues the [Orbital Observatory]({{ '/2026/09/07/orbital-observatory.html' | relative_url }}) series, alongside [From Wavefunction to Orbital]({{ '/wavefunction-to-orbital/' | relative_url }}) and [A Sense of Scale]({{ '/orbital-scale/' | relative_url }}).
 
@@ -20,17 +20,17 @@ This continues the [Orbital Observatory]({{ '/2026/09/07/orbital-observatory.htm
 <iframe
   id="hybrid-orbital-embed"
   src="{{ '/assets/hybrid-orbital-lab.html' | relative_url }}"
-  title="Hybrid Orbital Lab: s and p character, interference, and complete hybrid sets"
+  title="Hybrid Orbital Lab: s/p character, interference, and complete s/p/d hybrid constructions"
   width="100%" height="1600"
   style="display:block; width:100%; border:1px solid #d8dfdf; border-radius:10px;"
   loading="lazy">
 </iframe>
 
-Scroll within the model to reach the complete sets and model notes. The full-window link gives the comparisons more room, particularly on a phone.
+Scroll within the model to reach the complete s/p sets, the section including d orbitals, and the model notes. The full-window link gives the comparisons more room, particularly on a phone.
 
 ## Character is a squared coefficient
 
-For the normalized, orthogonal s and p basis functions used here, one hybrid is
+For the normalized, orthogonal 2s and 2p basis functions in the slider section, one hybrid is
 
 <p><strong>h = √f φ<sub>s</sub> + σ√(1 − f) φ<sub>p</sub>.</strong></p>
 
@@ -49,17 +49,35 @@ The last term is the interference term. It can increase or decrease the density 
 3. **Visit both endpoints.** At pure s or pure p, one coefficient is zero. There is no interference between s and p, so the two density views agree everywhere.
 4. **Build the whole set.** The sp construction contains two hybrids and two unused p orbitals; sp² has three hybrids and one unused p orbital; sp³ has four hybrids. Select individual orbitals when their surfaces overlap.
 
-The equivalent hybrids have 50%, 33⅓%, and 25% s character, respectively. Their direction vectors form the familiar 180°, 120°, and approximately 109.47° angles. These are ideal orbital constructions, not predictions of every molecular bond angle. A single orbital with 33⅓% s character does not by itself specify a trigonal arrangement.
+The equivalent sp, sp², and sp³ hybrids have 50%, 33⅓%, and 25% s character, respectively. Their direction vectors form the familiar 180°, 120°, and approximately 109.47° angles. These are ideal orbital constructions, not predictions of every molecular bond angle. A single orbital with 33⅓% s character does not by itself specify a trigonal arrangement.
 
 The complete four-orbital bases remain orthonormal. Summing all four orbital densities, including unused p functions, gives the same unweighted sum as the original 2s/2p basis. That identity does not specify a molecule's occupied orbitals or electron density.
 
+## Bringing d orbitals into the basis
+
+The new section uses nine normalized hydrogenic functions: **3s, three 3p functions, and five real 3d functions**, all at Z = 1. Choose a construction, inspect one orbital at a time, or overlay the set. Switching between wavefunction sign and probability-density coloring preserves the boundary geometry. Adding the unused orbitals to an overlay shows separate functions, not their summed wavefunction or a molecular electron density.
+
+| Construction | Character of each hybrid: s / p / d | Unused functions in the nine-function basis |
+| --- | --- | --- |
+| dsp²: four square-planar hybrids | 25% / 50% / 25% | Five: p<sub>z</sub>, d<sub>xy</sub>, d<sub>xz</sub>, d<sub>yz</sub>, d<sub>z²</sub> |
+| sp³d: three equatorial and two axial hybrids | Equatorial: 33⅓% / 66⅔% / 0%<br>Axial: 0% / 50% / 50% | Four: d<sub>xy</sub>, d<sub>xz</sub>, d<sub>yz</sub>, d<sub>x²−y²</sub> |
+| sp³d²: six octahedral hybrids | 16⅔% / 50% / 33⅓% | Three: d<sub>xy</sub>, d<sub>xz</sub>, d<sub>yz</sub> |
+
+The sp³d set is particularly instructive: **its five orbitals are not equivalent**. In the orthonormal convention used here, the three equatorial functions are sp² combinations, while the axial pair mixes p<sub>z</sub> with d<sub>z²</sub>. The set name counts the input functions; it does not mean every member contains every orbital type. The 20% s / 60% p / 20% d composition is the average across all five, not the composition of each one. The coefficient convention follows [Wannier90's explicit hybrid table](https://wannier90.readthedocs.io/en/latest/user_guide/wannier90/projections/#hybrids); the display uses hydrogenic n = 3 radial functions rather than calculating Wannier functions.
+
+Character remains a sum of squared coefficients. For example, an octahedral hybrid can contain both d<sub>z²</sub> and d<sub>x²−y²</sub>; their squared coefficients add to its total d character. Including all unused functions completes an orthonormal nine-function basis, and its unweighted sum of orbital densities equals that of the original nine functions. This does not assign nine electrons to the basis.
+
+These constructions illustrate symmetry and interference. **A molecular shape does not establish substantial d hybridization.** The historical sp³d and sp³d² descriptions of main-group molecules such as PF₅ and SF₆ should not be taken as their bonding mechanism; ab initio studies support much smaller d-orbital contributions and descriptions involving polar or multicenter bonding. See [Noury, Silvi, and Gillespie's study of hypervalent bonding](https://doi.org/10.1021/ic011003v). In transition-metal compounds, the metal–ligand interactions, orbital energies, and occupations must be considered together, for example in [molecular-orbital and ligand-field treatments](https://doi.org/10.1103/PhysRevB.85.165113).
+
+The n = 3 basis also retains radial structure: 3s has two radial nodes, 3p has one at r = 6a₀, and 3d has none. Direction labels describe the symmetry of the coefficient construction; radial phase changes mean they need not identify the largest lobe at every radius. This section has its own scale bar and lower density cutoffs. It does not model a transition metal's 3d/4s/4p shell ordering, ligand orbitals, or spin state.
+
 ## What this model represents
 
-The functions are normalized hydrogenic **2s, 2pₓ, 2pᵧ, and 2p<sub>z</sub> at Z = 1**, in a fixed-nucleus, nonrelativistic one-electron model. The slider scans coefficients; it is not a movie of an atom forming a bond, an excitation, or a chemical reaction. The display illustrates the mathematics of hybridization and does not calculate carbon bonding orbitals, molecular energies, or bond strengths.
+The slider and first complete-set section use normalized hydrogenic **2s, 2pₓ, 2pᵧ, and 2p<sub>z</sub> at Z = 1**; the d-containing section uses the separate n = 3 basis described above. Both use a fixed-nucleus, nonrelativistic one-electron model. Functions within a given n shell are degenerate in this model, which does not establish equal orbital energies in a many-electron atom or molecule. The slider scans coefficients; it is not a movie of an atom forming a bond, an excitation, or a chemical reaction. The display illustrates the mathematics of hybridization and does not calculate carbon bonding orbitals, molecular energies, or bond strengths.
 
-The 2s basis function has a radial node at 2a₀, where a₀ is the Bohr radius. A hybrid's nodes change through interference and need not retain that spherical node. This radial structure is one reason these surfaces can look different from simplified textbook hybrid lobes. A cutaway and the analytic slices help reveal the interior structure.
+The 2s basis function has a radial node at 2a₀, where a₀ is the Bohr radius. A hybrid's nodes change through interference and need not retain that spherical node. This radial structure is one reason these surfaces can look different from simplified textbook hybrid lobes. A cutaway and the analytic slices in the s/p comparison help reveal the interior structure.
 
-Colors in the wavefunction view indicate positive and negative amplitude, not electrical charge. The wavefunction and hybrid-density panels use **the same boundary geometry**, colored differently. All three comparison panels share one physical scale. The complete-set panel has its own scale bar.
+Colors in the wavefunction view indicate positive and negative amplitude, not electrical charge. The wavefunction and hybrid-density panels use **the same boundary geometry**, colored differently. All three s/p comparison panels share one physical scale. The complete-set views have their own scale bars.
 
 Surfaces are drawn at a selected fixed probability-density cutoff in a₀⁻³. They do **not** enclose a specified percentage of probability, and they are not hard orbital edges. Small features near a cutoff may be unresolved by the finite mesh. In From Wavefunction to Orbital and A Sense of Scale, each orbital uses its own cutoff chosen for approximately 90% probability. Here, the comparison uses one selected density cutoff without fixing the enclosed probability.
 

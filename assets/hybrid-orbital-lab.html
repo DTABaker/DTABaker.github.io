@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="An interactive laboratory for hybrid orbital character, interference, and complete orthonormal sp, sp2, and sp3 sets.">
+  <meta name="description" content="An interactive laboratory for hybrid orbital character, interference, and complete orthonormal sp, sp2, sp3, dsp2, sp3d, and sp3d2 sets.">
   <title>Orbital Observatory · Hybrid orbital lab</title>
   <style>
 @charset "UTF-8";
@@ -16,6 +16,13 @@
 @media(max-width:370px){main,.masthead,footer{padding-left:16px;padding-right:16px}.local-badge{font-size:8px}.control-deck{padding:15px}.probe-panel{padding:15px}.probe-values output{font-size:10px}.card-tag{display:none}.intro-note .mini-formula{font-size:11px}.set-stats{gap:12px}.composition{font-size:12px}}
 [hidden]{display:none!important}.webgl-fallback{padding:25px;font-size:13px;color:#5e4641;line-height:1.6}.set-detail-grid>div{min-width:0}.table-scroll{max-width:100%}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* Separate n=3/d-containing constructions. */
+.d-intro{max-width:940px;font-size:14px;color:var(--muted)}
+.d-context{background:#edf1ee;border-left:3px solid var(--accent);padding:17px 22px;margin:22px 0;font-size:13px;border-radius:0 8px 8px 0}.d-context p{margin:6px 0 0;color:var(--muted)}
+.d-workspace{grid-template-columns:310px minmax(0,1fr)}.d-sidebar{min-width:0}.d-tabs button{font-size:17px;padding:9px}.d-sidebar h3{font-size:26px}.d-character{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:22px;padding:16px 0}.d-character>span{font-size:11px;color:var(--muted)}.d-character-bar{display:flex;height:8px;border-radius:5px;overflow:hidden;margin-top:12px;background:#e9eeec}.d-character-bar i{display:block}#d-s-bar{background:var(--teal)}#d-p-bar{background:var(--density)}#d-d-bar{background:var(--amber)}.d-character dl{display:flex;justify-content:space-between;margin:11px 0 0}.d-character dl>div{display:flex;gap:6px;align-items:baseline}.d-character dt{font-size:12px;color:var(--muted)}.d-character dd{margin:0;font-size:17px;font-weight:600}.d-toolbar{display:flex;flex-wrap:wrap;gap:12px 18px;padding:18px 20px;align-items:end}.d-toolbar>div{min-width:0}.d-toolbar label:not(.check){display:block;font-size:10px;margin-bottom:6px}.d-toolbar select{font-size:11px;max-width:100%}.d-toolbar .check{font-size:11px;min-height:38px}.d-toolbar button{min-height:38px}.d-viewport{height:460px}.d-explanation-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:28px 0}.d-explanation-grid>div{min-width:0}.d-construction-note{padding:24px 0}.d-construction-note h3{font-size:24px}.d-explanation-grid p{font-size:13px;color:var(--muted)}.d-explanation-grid .helper{font-size:11px}.d-coefficients,.d-model{border-top:1px solid var(--line);padding:18px 0;font-size:13px}.d-coefficients p,.d-model p{font-size:12px;color:var(--muted);max-width:1000px}.d-coefficients table{min-width:870px;margin-top:16px}.d-coefficients tbody th{font-weight:500;font-size:11px;white-space:nowrap}.d-model{border-bottom:1px solid var(--line)}.d-sidebar input:disabled{cursor:default;opacity:.5}
+@media(max-width:1000px){.d-workspace{grid-template-columns:265px minmax(0,1fr)}.d-sidebar{padding:21px}.d-toolbar{gap:10px;padding:16px}.d-viewport{height:420px}}
+@media(max-width:750px){.d-workspace{grid-template-columns:1fr}.d-sidebar{border-right:0;border-bottom:1px solid var(--line)}.d-explanation-grid{grid-template-columns:1fr;gap:0}.d-construction-note{padding:10px 0 25px}.d-viewport{height:360px}.d-context{padding:15px 17px}.d-toolbar{gap:10px}.d-coefficients,.d-model{font-size:12px}}
 
 </style>
 <script id="three-license" type="text/plain">
@@ -47,12 +54,12 @@ THE SOFTWARE.
   <a class="skip" href="#mix">Skip to the orbital controls</a>
   <header class="masthead">
     <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">◈</span><span>ORBITAL<br><strong>OBSERVATORY</strong></span></a>
-    <nav aria-label="On this page"><a href="#mix">01 / Mix & compare</a><a href="#sets">02 / Complete sets</a><a href="#model">03 / The model</a></nav>
+    <nav aria-label="On this page"><a href="#mix">01 / Mix & compare</a><a href="#sets">02 / Complete sets</a><a href="#d-hybrids">03 / Add d orbitals</a><a href="#model">04 / The model</a></nav>
     <span class="local-badge"><i aria-hidden="true"></i> INTERACTIVE LAB</span>
   </header>
   <main id="top">
     <section class="intro" aria-labelledby="page-title">
-      <div><p class="eyebrow">A laboratory for orbital character</p><h1 id="page-title">Shape comes<br>from <em>interference.</em></h1><p class="intro-copy">Change the balance of s and p character. See how adding wavefunctions creates directionality—and why adding their densities gives a different picture.</p></div>
+      <div><p class="eyebrow">A laboratory for orbital character</p><h1 id="page-title">Shape comes<br>from <em>interference.</em></h1><p class="intro-copy">Change the balance of s and p character. See how adding wavefunctions creates directionality—and why adding their densities gives a different picture. Then explore a separate 3s/3p/3d basis.</p></div>
       <div class="intro-note"><span class="small-index">THE EXPERIMENT</span><p>One basis.<br>Three ways to look.</p><div class="mini-formula">h = √f · 2s + σ√(1 − f) · 2p</div><span>f is the s fraction; σ is the relative sign.</span></div>
     </section>
 
@@ -130,12 +137,42 @@ THE SOFTWARE.
       <div class="set-detail-grid"><div><h3>The coefficients</h3><p>Each row is one normalized orbital in the basis (2s, 2pₓ, 2pᵧ, 2p_z). Values below are rounded for display.</p><div class="table-scroll"><table id="coefficient-table"><thead><tr><th scope="col">Orbital</th><th scope="col">2s</th><th scope="col">2pₓ</th><th scope="col">2pᵧ</th><th scope="col">2p_z</th></tr></thead><tbody></tbody></table></div></div><div class="set-invariant"><span class="eyebrow">WHAT STAYS THE SAME?</span><h3>A new basis.<br>The same space.</h3><p>The four orbitals remain orthonormal. At every position, summing their squared amplitudes gives the same result as summing the original four basis densities:</p><p class="invariant-equation">Σᵢ |hᵢ|² = |2s|² + |2pₓ|² + |2pᵧ|² + |2p_z|²</p><p class="helper">Here hᵢ includes any unused p orbitals. This unweighted identity is not a calculation of a molecule’s electron density; electron occupations and a molecular wavefunction would also be needed.</p><output id="orthogonality">Checking coefficients…</output></div></div>
     </section>
 
+    <section id="d-hybrids" class="lab-section d-section" aria-labelledby="d-heading" data-ready="pending">
+      <div class="section-heading"><div><span class="section-number">03</span><h2 id="d-heading">Bring d orbitals into the basis</h2></div><p>Idealized constructions, with the full basis accounted for.</p></div>
+      <p class="d-intro">Explore square-planar, trigonal-bipyramidal, and octahedral coefficient sets. This section uses a separate, normalized <strong>3s / 3p / 3d hydrogenic basis</strong> at Z = 1. Its ruler and density cutoffs differ from the 2s/2p views above.</p>
+      <div class="d-context"><strong>A construction is not a bonding diagnosis.</strong><p>These combinations illustrate basis changes. A molecular geometry alone does not establish d-orbital participation. In particular, sp³d and sp³d² labels are not evidence that main-group molecules such as PF₅ or SF₆ bond through substantial d hybridization. For real transition-metal compounds, metal–ligand interactions, orbital energies, and occupations must be considered, for example with molecular-orbital or ligand-field models.</p></div>
+      <div class="set-workspace d-workspace">
+        <div class="set-sidebar d-sidebar">
+          <p class="eyebrow">Choose a construction</p>
+          <div class="set-tabs d-tabs" aria-label="d-containing hybrid sets"><button data-d-set="dsp2" class="active" aria-pressed="true">dsp²</button><button data-d-set="sp3d" aria-pressed="false">sp³d</button><button data-d-set="sp3d2" aria-pressed="false">sp³d²</button></div>
+          <h3 id="d-set-title">Square planar</h3><p id="d-set-description">Four hybrids and five unused basis orbitals.</p>
+          <label for="d-selection">Inspect a d-section orbital</label><select id="d-selection"><option value="0">Preparing orbitals…</option></select>
+          <label class="check set-unused"><input type="checkbox" id="d-unused">Include unused orbitals in overlay</label>
+          <div class="d-character"><span id="d-character-label">Selected orbital character</span><div class="d-character-bar" aria-hidden="true"><i id="d-s-bar"></i><i id="d-p-bar"></i><i id="d-d-bar"></i></div><dl><div><dt>s</dt><dd id="d-s-percent">25%</dd></div><div><dt>p</dt><dd id="d-p-percent">50%</dd></div><div><dt>d</dt><dd id="d-d-percent">25%</dd></div></dl></div>
+          <p id="d-selected-description" class="helper"></p><p class="helper">Select one orbital to see its lobes clearly. An overlay shows separate orbitals; it does not add their wavefunctions or represent molecular electron density.</p>
+        </div>
+        <div class="set-main d-main">
+          <div class="d-toolbar"><div><label for="d-mode">Surface coloring</label><select id="d-mode"><option value="phase">Wavefunction sign</option><option value="density">Probability density</option></select></div><div><label for="d-threshold">d-section density cutoff</label><select id="d-threshold"><option value="0.00001">0.000010 a₀⁻³</option><option value="0.000025" selected>0.000025 a₀⁻³</option><option value="0.00005">0.000050 a₀⁻³</option></select></div><label class="check"><input type="checkbox" id="d-cutaway">d-section cutaway</label><button id="d-reset" class="quiet">Reset linked camera</button></div>
+          <div id="d-view" class="viewport d-viewport"></div>
+          <div class="legend" id="d-legend"><span><i class="positive"></i>Positive amplitude</span><span><i class="negative"></i>Negative amplitude</span></div>
+          <p id="d-render-status" class="helper" role="status" aria-live="polite">Preparing the d-containing orbital view.</p>
+          <p class="helper">Rotate with drag or arrow keys; + / − zoom. This view has its own 5 a₀ scale bar. The cutoff is a density level, not an enclosed-probability percentage.</p>
+        </div>
+      </div>
+      <div class="d-explanation-grid">
+        <div class="d-construction-note"><span class="eyebrow">READ THE CONSTRUCTION</span><h3 id="d-note-title">Four equivalent hybrids</h3><p id="d-note-body"></p><p id="d-angle-text"></p><p class="helper">Directions describe the symmetry of the coefficient construction. They are not predicted bond angles or guaranteed lobe maxima at every radius: the 3s and 3p radial factors change sign.</p></div>
+        <div class="set-invariant"><span class="eyebrow">KEEP THE WHOLE SPACE</span><h3>Nine in. Nine out.</h3><p id="d-count-note"></p><p>Including all unused orbitals gives an orthonormal nine-function basis. Its unweighted sum of squared amplitudes equals that of the original 3s, three 3p, and five 3d functions.</p><output id="d-orthogonality">Checking coefficients…</output><p class="helper">This identity describes a basis transformation, not nine electrons or a molecule’s occupied orbitals.</p></div>
+      </div>
+      <details class="d-coefficients"><summary>Inspect all nine coefficient rows</summary><p>Columns use normalized 3s, 3p, and real 3d functions. Character is the sum of squared coefficients within each s, p, or d group. Values here are rounded; calculations retain full precision.</p><div class="table-scroll"><table id="d-coefficient-table"><thead><tr><th scope="col">Orbital</th><th scope="col">3s</th><th scope="col">3pₓ</th><th scope="col">3pᵧ</th><th scope="col">3p_z</th><th scope="col">3dₓᵧ</th><th scope="col">3dₓz</th><th scope="col">3dᵧz</th><th scope="col">3dₓ²₋ᵧ²</th><th scope="col">3d_z²</th></tr></thead><tbody></tbody></table></div></details>
+      <details class="d-model"><summary>Model, radial nodes, and chemical interpretation</summary><p>The nine functions are real hydrogenic n = 3 states at Z = 1 in the nonrelativistic, fixed-nucleus model. They are mathematically degenerate in this model; that does not establish equal orbital energies in a many-electron atom or molecule. This section does not model the 3d/4s/4p shell ordering of a transition metal or distinguish inner- and outer-orbital bonding schemes.</p><p>The 3s basis function has two radial nodes, 3p has one at r = 6 a₀, and 3d has none. These radial factors are retained, so the full surfaces can differ markedly from textbook angular-lobe cartoons. Hybrid nodes change by interference. The finite triangle mesh can miss very small features near a node or cutoff.</p><p>The sp³d and sp³d² coefficients follow the constructions tabulated in <a href="https://wannier90.readthedocs.io/en/latest/user_guide/wannier90/projections/#hybrids" target="_blank" rel="noopener">Wannier90’s official documentation</a>. The display combines those coefficients with the hydrogenic n = 3 radial functions; it is not a Wannier-function calculation. The square-planar dsp² rows use the orthonormal combination of s, pₓ, pᵧ, and dₓ²₋ᵧ².</p><p>For the distinction between hypercoordination and d-hybrid bonding, see <a href="https://doi.org/10.1021/ic011003v" target="_blank" rel="noopener">Noury, Silvi, and Gillespie, “Chemical Bonding in Hypervalent Molecules: Is the Octet Rule Relevant?”</a>. Adding d-type basis functions in a calculation is also not, by itself, evidence for substantial occupied atomic d-orbital participation.</p></details>
+    </section>
+
     <section id="model" class="model-notes" aria-labelledby="model-heading">
-      <div><span class="eyebrow">03 / MODEL & LIMITS</span><h2 id="model-heading">Know what you’re looking at.</h2><p>These are mathematical combinations of normalized hydrogenic orbitals. They illustrate character and interference, not a computed bonding orbital of carbon or a reaction trajectory.</p></div>
-      <div class="model-details"><details open><summary>Basis functions and units</summary><p>Fixed nucleus, one electron, Z = 1; nonrelativistic Coulomb model. In coordinates measured in a₀, with r = √(x² + y² + z²) and C = 1/(4√(2π)):</p><p class="math-line">φ₂ₛ = C(2 − r)e<sup>−r/2</sup><br>φ₂ₚₓ = Cxe<sup>−r/2</sup>, and likewise for y and z.</p><p>Wavefunctions have units a₀<sup>−3/2</sup>; densities have units a₀<sup>−3</sup>. The pure 2s radial node is at r = 2 a₀. Hybridization changes the zero set through interference.</p></details><details><summary>What the surfaces and colors mean</summary><p>The 3D surfaces use the selected density cutoff. They do not enclose a prescribed percentage of probability and are not hard orbital edges. The three comparison panels use the same cutoff and spatial scale. The larger complete-set view has its own visible scale bar. In A, the same boundary is split by positive and negative wavefunction sign. B and C show nonnegative densities. The finite triangle mesh approximates curved boundaries and can miss very small features. The slices and probe evaluate the analytic functions independently of the mesh.</p><p>Slice density colors use √ρ on one fixed scale. The signed-amplitude slice uses a fixed diverging scale. The cutaway affects only the 3D rendering, not the orbital or the full cross-sections.</p></details><details><summary>Single-orbital composition and complete sets</summary><p>The continuous slider changes one orbital’s coefficients. The complete-set presets construct orthonormal bases with fixed compositions. Four equivalent orthogonal s/p hybrids have 25% s character each; varying all four equally at fixed tetrahedral directions would generally break orthogonality.</p><p>The label sp² describes a hybrid constructed within an s-plus-two-p subspace. Its p component can be expressed as a single oriented p function. A single sp²-character orbital alone does not specify a trigonal set.</p></details><details><summary>Sources and browser use</summary><ul><li><a href="https://books.physics.oregonstate.edu/GMM/hydroform.html" target="_blank" rel="noopener">Oregon State: hydrogen radial functions and spherical harmonics</a></li><li><a href="https://www.pci.tu-bs.de/aggericke/PC4e/Kap_II/Hybride/Konstruktion.htm" target="_blank" rel="noopener">TU Braunschweig: normalized hybrid-orbital constructions</a></li><li><a href="https://www.falstad.com/qmatom/directions.html" target="_blank" rel="noopener">Related prior art: Falstad’s orbital viewer</a></li><li><a href="https://doi.org/10.1021/acs.jchemed.0c00847" target="_blank" rel="noopener">Related prior art: The Hybridization Explorer</a></li></ul><p>This display runs in your browser with bundled code. It sends no measurements, has no analytics, and does not save your settings. External reference links open only when selected. Three.js is distributed under its included MIT license.</p></details></div>
+      <div><span class="eyebrow">04 / MODEL & LIMITS</span><h2 id="model-heading">Know what you’re looking at.</h2><p>These are mathematical combinations of normalized hydrogenic orbitals. They illustrate character and interference, not a computed bonding orbital of carbon or a reaction trajectory.</p></div>
+      <div class="model-details"><details open><summary>2s/2p basis functions and units</summary><p>Fixed nucleus, one electron, Z = 1; nonrelativistic Coulomb model. In coordinates measured in a₀, with r = √(x² + y² + z²) and C = 1/(4√(2π)):</p><p class="math-line">φ₂ₛ = C(2 − r)e<sup>−r/2</sup><br>φ₂ₚₓ = Cxe<sup>−r/2</sup>, and likewise for y and z.</p><p>Wavefunctions have units a₀<sup>−3/2</sup>; densities have units a₀<sup>−3</sup>. The pure 2s radial node is at r = 2 a₀. Hybridization changes the zero set through interference.</p></details><details><summary>What the surfaces and colors mean</summary><p>The 3D surfaces use the selected density cutoff. They do not enclose a prescribed percentage of probability and are not hard orbital edges. The three comparison panels use the same cutoff and spatial scale. The larger complete-set view has its own visible scale bar. In A, the same boundary is split by positive and negative wavefunction sign. B and C show nonnegative densities. The finite triangle mesh approximates curved boundaries and can miss very small features. The slices and probe evaluate the analytic functions independently of the mesh.</p><p>Slice density colors use √ρ on one fixed scale. The signed-amplitude slice uses a fixed diverging scale. The cutaway affects only the 3D rendering, not the orbital or the full cross-sections.</p></details><details><summary>Single-orbital composition and complete sets</summary><p>The continuous slider changes one orbital’s coefficients. The complete-set presets construct orthonormal bases with fixed compositions. Four equivalent orthogonal s/p hybrids have 25% s character each; varying all four equally at fixed tetrahedral directions would generally break orthogonality.</p><p>The label sp² describes a hybrid constructed within an s-plus-two-p subspace. Its p component can be expressed as a single oriented p function. A single sp²-character orbital alone does not specify a trigonal set.</p></details><details><summary>Sources and browser use</summary><ul><li><a href="https://books.physics.oregonstate.edu/GMM/hydroform.html" target="_blank" rel="noopener">Oregon State: hydrogen radial functions and spherical harmonics</a></li><li><a href="https://www.pci.tu-bs.de/aggericke/PC4e/Kap_II/Hybride/Konstruktion.htm" target="_blank" rel="noopener">TU Braunschweig: normalized hybrid-orbital constructions</a></li><li><a href="https://www.falstad.com/qmatom/directions.html" target="_blank" rel="noopener">Related prior art: Falstad’s orbital viewer</a></li><li><a href="https://doi.org/10.1021/acs.jchemed.0c00847" target="_blank" rel="noopener">Related prior art: The Hybridization Explorer</a></li></ul><p>This display runs in your browser with bundled code. It sends no measurements, has no analytics, and does not save your settings. External reference links open only when selected. Three.js is distributed under its included MIT license.</p></details></div>
     </section>
   </main>
-  <footer><span>ORBITAL OBSERVATORY <b>/</b> HYBRID ORBITAL LAB</span><span>v1.0.1 · Idealized 2s/2p model</span></footer>
+  <footer><span>ORBITAL OBSERVATORY <b>/</b> HYBRID ORBITAL LAB</span><span>v1.1.0 · Idealized 2s/2p and 3s/3p/3d models</span></footer>
   <div id="status" class="sr-only" role="status" aria-live="polite">Preparing the orbital views.</div>
   <noscript><p class="noscript">JavaScript is required to operate this display. Enable it and reload.</p></noscript>
   <script>
@@ -478,8 +515,9 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
     static instances=new Set();
     static view={yaw:0.55,pitch:-1.05,zoom:1};
     static pending=false;
-    constructor(element,{label='Three-dimensional orbital surface',mode='phase'}={}) {
+    constructor(element,{label='Three-dimensional orbital surface',mode='phase',meshProvider=meshFor,coefficientCount=4,halfSpan=11.5,axisExtent=8.5,gridExtent=12,scaleLength=2}={}) {
       this.element=element;this.label=label;this.mode=mode;this.records=[];this.failed=false;
+      this.meshProvider=meshProvider;this.coefficientCount=coefficientCount;this.halfSpan=halfSpan;this.axisExtent=axisExtent;this.gridExtent=gridExtent;this.scaleLength=scaleLength;
       HybridRenderer.instances.add(this);
       const T=root.THREE;
       if(!T){this.fail('The local 3D library could not be loaded.');return;}
@@ -489,7 +527,7 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
       this.renderer.setPixelRatio(Math.min(root.devicePixelRatio||1,2));
       this.renderer.setClearColor(0xf5f8fc,1);this.renderer.localClippingEnabled=true;
       this.scene=new T.Scene();
-      this.camera=new T.OrthographicCamera(-12,12,12,-12,0.1,200);
+      this.camera=new T.OrthographicCamera(-gridExtent,gridExtent,gridExtent,-gridExtent,0.1,Math.max(200,gridExtent*16));
       this.orbitals=new T.Group();this.scene.add(this.orbitals);
       this.scene.add(new T.AmbientLight(0xffffff,1.3));
       const key=new T.DirectionalLight(0xffffff,2.1);key.position.set(12,16,20);this.scene.add(key);
@@ -502,7 +540,7 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
       element.appendChild(canvas);
       this.scale=root.document.createElement('div');this.scale.className='orbital-scale';
       this.scale.style.cssText='position:absolute;bottom:9px;left:12px;color:#64748b;font:10px system-ui,sans-serif;pointer-events:none;line-height:1.4;text-align:center;';
-      this.scale.innerHTML='<div style="border-bottom:1.5px solid #64748b;border-left:1.5px solid #64748b;border-right:1.5px solid #64748b;height:4px"></div><span>2 a₀</span>';
+      this.scale.innerHTML='<div style="border-bottom:1.5px solid #64748b;border-left:1.5px solid #64748b;border-right:1.5px solid #64748b;height:4px"></div><span>'+scaleLength+' a₀</span>';
       element.appendChild(this.scale);
       this.notice=root.document.createElement('div');this.notice.className='orbital-render-notice';
       this.notice.style.cssText='position:absolute;top:8px;left:9px;right:9px;color:#64748b;font:10px system-ui,sans-serif;pointer-events:none;';element.appendChild(this.notice);
@@ -524,13 +562,15 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
     }
     addAxes(T) {
       const axisMaterial=new T.LineBasicMaterial({color:0xb0becd,transparent:true,opacity:0.6});
-      const axisPoints=[new T.Vector3(-8.5,0,0),new T.Vector3(8.5,0,0),new T.Vector3(0,-8.5,0),new T.Vector3(0,8.5,0),new T.Vector3(0,0,-8.5),new T.Vector3(0,0,8.5)];
+      const e=this.axisExtent;
+      const axisPoints=[new T.Vector3(-e,0,0),new T.Vector3(e,0,0),new T.Vector3(0,-e,0),new T.Vector3(0,e,0),new T.Vector3(0,0,-e),new T.Vector3(0,0,e)];
       this.scene.add(new T.LineSegments(new T.BufferGeometry().setFromPoints(axisPoints),axisMaterial));
       ['x','y','z'].forEach((label,i)=>{
         const canvas=root.document.createElement('canvas');canvas.width=64;canvas.height=64;
         const ctx=canvas.getContext('2d');ctx.font='500 40px system-ui';ctx.fillStyle='#6f8297';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(label,32,32);
         const texture=new T.CanvasTexture(canvas),sprite=new T.Sprite(new T.SpriteMaterial({map:texture,transparent:true,depthTest:false}));
-        sprite.position.set(i===0?9.1:0,i===1?9.1:0,i===2?9.1:0);sprite.scale.set(0.8,0.8,1);this.scene.add(sprite);
+        const labelPosition=e+0.6,scale=this.halfSpan/11.5;
+        sprite.position.set(i===0?labelPosition:0,i===1?labelPosition:0,i===2?labelPosition:0);sprite.scale.set(0.8*scale,0.8*scale,1);this.scene.add(sprite);
       });
       const nucleus=new T.Mesh(new T.SphereGeometry(0.12,16,12),new T.MeshStandardMaterial({color:0x2d3d54,roughness:0.5}));
       this.scene.add(nucleus);
@@ -573,13 +613,13 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
       if(!['phase','density','mixture'].includes(mode))throw new Error('Unknown orbital surface mode: '+mode);
       if(!Number.isFinite(threshold)||threshold<=0)throw new Error('The density isovalue must be positive and finite.');
       if(!Array.isArray(items)||!items.length)throw new Error('At least one orbital must be supplied.');
-      items.forEach(item=>{if(!Array.isArray(item.coefficients)||item.coefficients.length!==4||!item.coefficients.every(Number.isFinite))throw new Error('An orbital needs four finite coefficients in the order 2s, 2px, 2py, 2pz.');});
+      items.forEach(item=>{if(!Array.isArray(item.coefficients)||item.coefficients.length!==this.coefficientCount||!item.coefficients.every(Number.isFinite))throw new Error('An orbital needs '+this.coefficientCount+' finite coefficients in its configured basis order.');});
       const start=now(),T=root.THREE;
       while(this.orbitals.children.length){const mesh=this.orbitals.children[0];this.orbitals.remove(mesh);mesh.geometry.dispose();mesh.material.dispose();}
       this.mode=mode;this.records=[];this.threshold=threshold;this.cutaway=cutaway;
       const plane=cutaway?[new T.Plane(new T.Vector3(0,0,-1),0)]:[];
       for(const item of items) for(const sign of (mode==='phase'?[1,-1]:[1])) {
-        const result=meshFor(item.coefficients,mode,sign,threshold);
+        const result=this.meshProvider(item.coefficients,mode,sign,threshold);
         this.records.push({...result.diagnostics,label:item.label||'orbital',coefficients:item.coefficients.slice(),mode,sign});
         if(!result.positions.length)continue;
         const geometry=new T.BufferGeometry();geometry.setAttribute('position',new T.BufferAttribute(result.positions,3));geometry.setAttribute('normal',new T.BufferAttribute(result.normals,3));geometry.computeBoundingSphere();
@@ -590,7 +630,7 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
       const any=this.records.some(d=>d.vertices), clipped=this.records.some(d=>d.boundaryAbove);
       const pieces=[];
       if(!any)pieces.push('No surface at this density isovalue. Choose a lower value.');
-      if(clipped)pieces.push('Surface reaches the ±12 a₀ computation boundary.');
+      if(clipped)pieces.push('Surface reaches the ±'+this.gridExtent+' a₀ computation boundary.');
       if(cutaway)pieces.push('Cutaway: z ≤ 0; cut surfaces are open.');
       this.surfaceNotice=pieces.join(' ');this.surfaceNoticeColor=(!any||clipped)?'#9d451e':'#64748b';
       if(!this.contextLost){this.notice.textContent=this.surfaceNotice;this.notice.style.color=this.surfaceNoticeColor;}
@@ -600,13 +640,14 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
     }
     draw() {
       if(this.failed||this.contextLost)return;
-      const v=HybridRenderer.view,aspect=this.width/this.height,half=11.5;
+      const v=HybridRenderer.view,aspect=this.width/this.height,half=this.halfSpan;
       this.camera.left=-half*Math.max(1,aspect);this.camera.right=-this.camera.left;
       this.camera.top=half*Math.max(1,1/aspect);this.camera.bottom=-this.camera.top;
       this.camera.zoom=v.zoom;this.camera.updateProjectionMatrix();
-      this.camera.position.set(45*Math.cos(v.pitch)*Math.sin(v.yaw),45*Math.sin(v.pitch),45*Math.cos(v.pitch)*Math.cos(v.yaw));
+      const cameraDistance=45*this.halfSpan/11.5;
+      this.camera.position.set(cameraDistance*Math.cos(v.pitch)*Math.sin(v.yaw),cameraDistance*Math.sin(v.pitch),cameraDistance*Math.cos(v.pitch)*Math.cos(v.yaw));
       this.camera.up.set(0,Math.abs(Math.cos(v.pitch))<1e-6?0:1,Math.abs(Math.cos(v.pitch))<1e-6?1:0);this.camera.lookAt(0,0,0);
-      this.scale.style.width=(this.width*2/(this.camera.right-this.camera.left)*v.zoom)+'px';
+      this.scale.style.width=(this.width*this.scaleLength/(this.camera.right-this.camera.left)*v.zoom)+'px';
       this.renderer.render(this.scene,this.camera);
     }
     getDiagnostics(){return {label:this.label,failed:this.failed,contextLost:!!this.contextLost,available:!this.failed&&!this.contextLost,error:this.error||null,mode:this.mode,threshold:this.threshold,cutaway:this.cutaway,buildMs:this.lastBuildMs,surfaces:this.records,view:{...HybridRenderer.view}};}
@@ -619,6 +660,328 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
   root.HybridRenderer=HybridRenderer;
   root.HybridIsosurface={basisAt,fieldAt,outwardNormal,polygonize,meshFor,constants:{C,extent:EXTENT,samples:SAMPLES,step:STEP}};
   if(typeof module!=='undefined'&&module.exports)module.exports=root.HybridIsosurface;
+})(typeof window!=='undefined'?window:globalThis);
+
+</script><script>
+/*
+ * Idealized real hydrogenic n=3, Z=1 functions, infinite nuclear mass.
+ * Coordinates in a0; amplitudes in a0^(-3/2); densities in a0^(-3).
+ * Basis order: 3s, 3px, 3py, 3pz, 3dxy, 3dxz, 3dyz, 3dx2-y2, 3dz2.
+ * Radial normalization: NIST DLMF 18.39.35--37. Real angular phases:
+ * Wannier90 Projections / Orbital Definitions. This is a basis illustration,
+ * not a calculation of metal complexes or an explanation of PF5/SF6 bonding.
+ */
+(function(root, factory) {
+  'use strict';
+  var api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  if (root) root.HybridDPhysics = api;
+}(typeof globalThis !== 'undefined' ? globalThis : this, function() {
+  'use strict';
+  var CS = 1 / (81 * Math.sqrt(3 * Math.PI));
+  var CP = Math.SQRT2 / (81 * Math.sqrt(Math.PI));
+  var INV_SQRT3 = 1 / Math.sqrt(3);
+  var labels = Object.freeze(['3s', '3pₓ', '3pᵧ', '3p_z', '3dₓᵧ', '3dₓz', '3dᵧz', '3dₓ²₋ᵧ²', '3d_z²']);
+
+  function vector(c) {
+    if ((!Array.isArray(c) && !ArrayBuffer.isView(c)) || c.length !== 9) throw new TypeError('Expected nine real coefficients.');
+    for (var i = 0; i < 9; i++) if (!Number.isFinite(c[i])) throw new TypeError('Coefficients must be finite real numbers.');
+    return c;
+  }
+
+  function basis(x, y, z, output) {
+    if (!Number.isFinite(x) || !Number.isFinite(y) || !Number.isFinite(z)) throw new TypeError('Coordinates must be finite.');
+    var out = output || new Array(9);
+    var r = Math.hypot(x, y, z), e = Math.exp(-r / 3);
+    if (e === 0) { for (var i = 0; i < 9; i++) out[i] = 0; return out; }
+    out[0] = CS * (27 - 18 * r + 2 * r * r) * e;
+    var p = CP * (6 - r) * e, d = CP * e;
+    out[1] = p * x; out[2] = p * y; out[3] = p * z;
+    out[4] = d * x * y; out[5] = d * x * z; out[6] = d * y * z;
+    out[7] = d * (x * x - y * y) / 2;
+    out[8] = d * (2 * z * z - x * x - y * y) / (2 * Math.sqrt(3));
+    return out;
+  }
+
+  // Hot path: caller supplies a validated coefficient vector and finite position.
+  // No temporary arrays are created for the sampling and edge-root loops.
+  function fieldAt(x, y, z, c, mode, sign) {
+    if (mode === undefined) mode = 'phase';
+    if (sign === undefined) sign = 1;
+    var r = Math.hypot(x, y, z), e = Math.exp(-r / 3);
+    if (e === 0) return 0;
+    var s = c[0] * CS * (27 - 18 * r + 2 * r * r);
+    var p = CP * (6 - r);
+    var px = c[1] * p * x, py = c[2] * p * y, pz = c[3] * p * z;
+    var xy = c[4] * CP * x * y, xz = c[5] * CP * x * z, yz = c[6] * CP * y * z;
+    var xx = c[7] * CP * (x * x - y * y) / 2;
+    var zz = c[8] * CP * (2 * z * z - x * x - y * y) * INV_SQRT3 / 2;
+    if (mode === 'mixture') return e * e * (s*s + px*px + py*py + pz*pz + xy*xy + xz*xz + yz*yz + xx*xx + zz*zz);
+    var psi = e * (s + px + py + pz + xy + xz + yz + xx + zz);
+    if (mode === 'density') return psi * psi;
+    if (mode === 'phase' || mode === 'psi') return sign * psi;
+    throw new RangeError('Field mode must be phase, psi, density, or mixture.');
+  }
+
+  function evaluate(c, x, y, z) {
+    vector(c);
+    var b = basis(x, y, z), contributions = new Array(9), psi = 0, mixture = 0;
+    for (var i = 0; i < 9; i++) { var value = c[i] * b[i]; contributions[i] = value; psi += value; mixture += value * value; }
+    return {psi: psi, density: psi * psi, mixture: mixture, interference: psi * psi - mixture, contributions: contributions};
+  }
+
+  function unitNormal(gx, gy, gz) {
+    var norm = Math.hypot(gx, gy, gz);
+    // The analytic normal is undefined at critical points. This finite fallback
+    // affects lighting only, never field values or surface positions.
+    return norm > 1e-30 ? [-gx/norm, -gy/norm, -gz/norm] : [0, 1, 0];
+  }
+
+  function outwardNormal(x, y, z, c, mode, sign) {
+    if (mode === undefined) mode = 'phase';
+    if (sign === undefined) sign = 1;
+    var r = Math.hypot(x, y, z), ir = r > 0 ? 1 / r : 0;
+    var ux = x * ir, uy = y * ir, uz = z * ir;
+    var s = c[0] * CS * (27 - 18*r + 2*r*r);
+    var sr = c[0] * CS * (-18 + 4*r);
+    var px = c[1] * CP, py = c[2] * CP, pz = c[3] * CP;
+    var lp = px*x + py*y + pz*z, p = (6-r) * lp;
+    var a = c[4]*CP, b = c[5]*CP, d = c[6]*CP, q = c[7]*CP/2, t = c[8]*CP*INV_SQRT3/2;
+    var xy=a*x*y, xz=b*x*z, yz=d*y*z, xx=q*(x*x-y*y), zz=t*(2*z*z-x*x-y*y);
+    var gx, gy, gz;
+    if (mode === 'mixture') {
+      var vx=px*x*(6-r), vy=py*y*(6-r), vz=pz*z*(6-r);
+      var sum=s*s+vx*vx+vy*vy+vz*vz+xy*xy+xz*xz+yz*yz+xx*xx+zz*zz;
+      var radial = s*sr - vx*px*x - vy*py*y - vz*pz*z - sum/3;
+      gx = radial*ux + vx*px*(6-r) + xy*a*y + xz*b*z + xx*2*q*x - zz*2*t*x;
+      gy = radial*uy + vy*py*(6-r) + xy*a*x + yz*d*z - xx*2*q*y - zz*2*t*y;
+      gz = radial*uz + vz*pz*(6-r) + xz*b*x + yz*d*y + zz*4*t*z;
+      // Positive 2 exp(-2r/3) cancels under normalization.
+    } else {
+      var total = s+p+xy+xz+yz+xx+zz;
+      var radial = sr-lp-total/3;
+      var factor = mode === 'density' ? total : sign;
+      if (mode !== 'density' && mode !== 'phase' && mode !== 'psi') throw new RangeError('Invalid field mode.');
+      gx = factor*(radial*ux + (6-r)*px + a*y + b*z + 2*q*x - 2*t*x);
+      gy = factor*(radial*uy + (6-r)*py + a*x + d*z - 2*q*y - 2*t*y);
+      gz = factor*(radial*uz + (6-r)*pz + b*x + d*y + 4*t*z);
+      // Positive exp(-r/3), or 2 exp(-2r/3), cancels here.
+    }
+    return unitNormal(gx, gy, gz);
+  }
+
+  function innerProduct(left, right) {
+    vector(left); vector(right);
+    var result=0; for (var i=0;i<9;i++) result += left[i]*right[i]; return result;
+  }
+  function character(c) {
+    vector(c); var p=0,d=0;
+    for(var i=1;i<4;i++) p+=c[i]*c[i];
+    for(var j=4;j<9;j++) d+=c[j]*c[j];
+    return {s:c[0]*c[0],p:p,d:d};
+  }
+  function orbital(label, coefficients, direction, group) {
+    return {label:label,coefficients:coefficients,direction:direction || null,group:group,character:character(coefficients)};
+  }
+  function row(entries) { var c=[0,0,0,0,0,0,0,0,0]; Object.keys(entries).forEach(function(i){c[Number(i)]=entries[i];});return c; }
+  function sets(type) {
+    var hybrids=[], unused=[], label, geometry, used;
+    var s2=Math.SQRT1_2, s3=1/Math.sqrt(3), s6=1/Math.sqrt(6);
+    if(type==='dsp2') {
+      label='dsp²';geometry='Square planar';used=[0,1,2,7];
+      hybrids=[
+        orbital('h₁ (+x)',row({0:.5,1:s2,7:.5}),[1,0,0],'planar'),
+        orbital('h₂ (−x)',row({0:.5,1:-s2,7:.5}),[-1,0,0],'planar'),
+        orbital('h₃ (+y)',row({0:.5,2:s2,7:-.5}),[0,1,0],'planar'),
+        orbital('h₄ (−y)',row({0:.5,2:-s2,7:-.5}),[0,-1,0],'planar')
+      ];
+    } else if(type==='sp3d') {
+      label='sp³d';geometry='Trigonal bipyramidal';used=[0,1,2,3,8];
+      hybrids=[
+        orbital('h₁ (equatorial)',row({0:s3,1:Math.sqrt(2/3)}),[1,0,0],'equatorial'),
+        orbital('h₂ (equatorial)',row({0:s3,1:-s6,2:s2}),[-.5,Math.sqrt(3)/2,0],'equatorial'),
+        orbital('h₃ (equatorial)',row({0:s3,1:-s6,2:-s2}),[-.5,-Math.sqrt(3)/2,0],'equatorial'),
+        orbital('h₄ (+z axial)',row({3:s2,8:s2}),[0,0,1],'axial'),
+        orbital('h₅ (−z axial)',row({3:-s2,8:s2}),[0,0,-1],'axial')
+      ];
+    } else if(type==='sp3d2') {
+      label='sp³d²';geometry='Octahedral';used=[0,1,2,3,7,8];
+      hybrids=[
+        orbital('h₁ (+x)',row({0:s6,1:s2,7:.5,8:-s3/2}),[1,0,0],'equivalent'),
+        orbital('h₂ (−x)',row({0:s6,1:-s2,7:.5,8:-s3/2}),[-1,0,0],'equivalent'),
+        orbital('h₃ (+y)',row({0:s6,2:s2,7:-.5,8:-s3/2}),[0,1,0],'equivalent'),
+        orbital('h₄ (−y)',row({0:s6,2:-s2,7:-.5,8:-s3/2}),[0,-1,0],'equivalent'),
+        orbital('h₅ (+z)',row({0:s6,3:s2,8:s3}),[0,0,1],'equivalent'),
+        orbital('h₆ (−z)',row({0:s6,3:-s2,8:s3}),[0,0,-1],'equivalent')
+      ];
+    } else throw new RangeError('Set type must be dsp2, sp3d, or sp3d2.');
+    for(var i=0;i<9;i++) if(used.indexOf(i)<0) {var c=row({});c[i]=1;unused.push(orbital(labels[i],c,null,'unused'));}
+    var orbitals=hybrids.concat(unused);
+    return {type:type,label:label,geometry:geometry,hybrids:hybrids,unused:unused,orbitals:orbitals,all:orbitals.map(function(o){return o.coefficients.slice();}),usedBasisIndices:used};
+  }
+  function sumDensities(vectors,x,y,z) {
+    if(!Array.isArray(vectors)) throw new TypeError('Expected coefficient vectors.');
+    var sum=0;for(var i=0;i<vectors.length;i++){vector(vectors[i]);sum+=fieldAt(x,y,z,vectors[i],'density');}return sum;
+  }
+  return Object.freeze({
+    version:'1.0.0',basisLabels:labels,
+    model:Object.freeze({name:'Normalized real hydrogenic n=3 basis, Z=1',n:3,Z:1,basisOrder:Object.freeze(['3s','3p_x','3p_y','3p_z','3d_xy','3d_xz','3d_yz','3d_x2-y2','3d_z2']),coordinateUnit:'a0',amplitudeUnit:'a0^(-3/2)',densityUnit:'a0^(-3)',energyHartree:-1/18,interpretation:'Idealized orthonormal coefficient sets; not a metal-complex calculation or evidence for d-hybridization in PF5 or SF6.',directionConvention:'Reference directions of the positive-p angular combinations. Radial nodes can reverse phase and dominant-lobe direction with radius.',mixtureConvention:'Sum of squared contributions in the original real nine-function Cartesian basis.',radialNodesA0:Object.freeze({s:Object.freeze([(9-3*Math.sqrt(3))/2,(9+3*Math.sqrt(3))/2]),p:Object.freeze([6]),d:Object.freeze([])})}),
+    basis:basis,basisAt:basis,fieldAt:fieldAt,outwardNormal:outwardNormal,evaluate:evaluate,innerProduct:innerProduct,character:character,sets:sets,sumDensities:sumDensities
+  });
+}));
+
+</script><script>
+/* Separate normalized hydrogenic n=3 (Z=1) orbital surfaces.
+ * Grid coordinates: a0. Density isovalues: a0^-3, not enclosed probabilities.
+ * Reuses the original conforming tetrahedra and analytic edge-root algorithm;
+ * the n=2 scalar fields, mesh constants, and default renderer are unchanged.
+ */
+(function(root){
+  'use strict';
+  const P=root.HybridDPhysics||(typeof require==='function'?require('./d-physics.js'):null);
+  const M=root.HybridIsosurface||(typeof require==='function'?require('./render3d.js'):null);
+  if(!P||!M)throw new Error('The local d-orbital physics and isosurface modules must load first.');
+  const EXTENT=24,SAMPLES=65,PARAMETER_STEP=2*EXTENT/(SAMPLES-1);
+  // A rectilinear grid concentrates samples around the small inner radial
+  // structure. Each cell map is affine, so tetrahedral edges remain straight
+  // physical edges. This is NOT a coordinate deformation of the orbital.
+  const coordinates=Array.from({length:SAMPLES},(_,i)=>{const u=-1+2*i/(SAMPLES-1);return Math.sign(u)*EXTENT*u*u;});
+  const minSpacing=coordinates[SAMPLES/2+.5]-coordinates[SAMPLES/2-.5];
+  const maxSpacing=coordinates[1]-coordinates[0];
+  function mapCoordinate(u){
+    const index=Math.max(0,Math.min(SAMPLES-2,Math.floor((u+EXTENT)/PARAMETER_STEP)));
+    return coordinates[index]+((u+EXTENT)/PARAMETER_STEP-index)*(coordinates[index+1]-coordinates[index]);
+  }
+  function coordinateSlope(u){
+    const index=Math.max(0,Math.min(SAMPLES-2,Math.floor((u+EXTENT)/PARAMETER_STEP)));
+    return (coordinates[index+1]-coordinates[index])/PARAMETER_STEP;
+  }
+  const CUTOFFS=Object.freeze([0.00001,0.000025,0.00005]);
+  const CACHE_BYTES=96*1024*1024;
+  const cache=new Map();
+  let preferredCacheKeys=null;
+  const cacheBytes=()=>[...cache.values()].reduce((sum,mesh)=>sum+mesh.positions.byteLength+mesh.normals.byteLength,0);
+  const cacheKey=(coefficients,mode,sign,threshold)=>[...coefficients.map(v=>v.toPrecision(16)),mode,sign,threshold].join('|');
+  function remember(key,result){
+    cache.set(key,result);
+    while(cache.size>48||(cache.size>1&&cacheBytes()>CACHE_BYTES)){
+      const expendable=preferredCacheKeys?[...cache.keys()].find(candidate=>!preferredCacheKeys.has(candidate)):undefined;
+      cache.delete(expendable===undefined?cache.keys().next().value:expendable);
+    }
+    return result;
+  }
+  let basisGrid;
+  function validate(coefficients,mode,sign,threshold){
+    if(!Array.isArray(coefficients)||coefficients.length!==9||!coefficients.every(Number.isFinite))throw new Error('A d-containing orbital needs nine finite coefficients.');
+    if(!['phase','density','mixture'].includes(mode))throw new Error('Unknown d-orbital surface mode.');
+    if(sign!==1&&sign!==-1)throw new Error('The wavefunction sign must be +1 or -1.');
+    if(!Number.isFinite(threshold)||threshold<=0)throw new Error('The density isovalue must be finite and positive.');
+  }
+  function getBasisGrid(){
+    if(basisGrid)return basisGrid;
+    basisGrid=Array.from({length:9},()=>new Float64Array(SAMPLES**3));
+    let index=0;
+    for(let k=0;k<SAMPLES;k++)for(let j=0;j<SAMPLES;j++)for(let i=0;i<SAMPLES;i++){
+      const b=P.basis(coordinates[i],coordinates[j],coordinates[k]);
+      for(let q=0;q<9;q++)basisGrid[q][index]=b[q];
+      index++;
+    }
+    return basisGrid;
+  }
+  function sampleField(coefficients,mode,sign){
+    const grid=getBasisGrid(),out=new Float64Array(SAMPLES**3);
+    const active=coefficients.map((c,i)=>({c,b:grid[i]})).filter(({c})=>c!==0);
+    if(mode==='mixture'){
+      for(const {c,b}of active){const c2=c*c;for(let i=0;i<out.length;i++)out[i]+=c2*b[i]*b[i];}
+    }else{
+      for(const {c,b}of active)for(let i=0;i<out.length;i++)out[i]+=c*b[i];
+      if(mode==='density')for(let i=0;i<out.length;i++)out[i]*=out[i];
+      else if(sign===-1)for(let i=0;i<out.length;i++)out[i]=-out[i];
+    }
+    return out;
+  }
+  function densityUnion(parts,threshold){
+      // This shared geometry makes rho=tau and psi=+/-sqrt(tau) identical,
+      // even though planar triangles only approximate the analytic surface.
+      const positions=new Float32Array(parts.reduce((n,p)=>n+p.positions.length,0));
+      const normals=new Float32Array(positions.length);let offset=0;
+      for(const part of parts){positions.set(part.positions,offset);normals.set(part.normals,offset);offset+=part.positions.length;}
+      const present=parts.filter(p=>p.diagnostics.bounds);
+      return {positions,normals,diagnostics:{
+        vertices:positions.length/3,triangles:positions.length/9,
+        boundaryAbove:parts.reduce((n,p)=>n+p.diagnostics.boundaryAbove,0),
+        bounds:present.length?{min:[0,1,2].map(k=>Math.min(...present.map(p=>p.diagnostics.bounds.min[k]))),max:[0,1,2].map(k=>Math.max(...present.map(p=>p.diagnostics.bounds.max[k])))}:null,
+        degenerateTriangles:parts.reduce((n,p)=>n+p.diagnostics.degenerateTriangles,0),
+        buildMs:parts.reduce((n,p)=>n+p.diagnostics.buildMs,0),samples:SAMPLES,minSpacing,maxSpacing,extent:EXTENT,isovalue:threshold,
+        method:'exact union of the displayed positive and negative wavefunction meshes'
+      }};
+  }
+  function meshFor(coefficients,mode='phase',sign=1,threshold=0.000025){
+    validate(coefficients,mode,sign,threshold);
+    const key=cacheKey(coefficients,mode,sign,threshold);
+    if(cache.has(key)){const result=cache.get(key);cache.delete(key);cache.set(key,result);return result;}
+    let result;
+    if(mode==='density'){
+      result=densityUnion([meshFor(coefficients,'phase',1,threshold),meshFor(coefficients,'phase',-1,threshold)],threshold);
+    }else if(mode==='mixture'&&coefficients.filter(c=>c!==0).length===1){
+      result=meshFor(coefficients,'density',1,threshold);
+    }else{
+      const isovalue=mode==='phase'?Math.sqrt(threshold):threshold;
+      const begin=typeof performance!=='undefined'?performance.now():Date.now();
+      result=M.polygonize(sampleField(coefficients,mode,sign),SAMPLES,EXTENT,isovalue,
+        (x,y,z)=>{
+          // The gradient in grid coordinates orients the triangles correctly;
+          // physical normals are calculated below after transforming vertices.
+          const normal=P.outwardNormal(mapCoordinate(x),mapCoordinate(y),mapCoordinate(z),coefficients,mode,sign);
+          return [normal[0]*coordinateSlope(x),normal[1]*coordinateSlope(y),normal[2]*coordinateSlope(z)];
+        },
+        (x,y,z)=>P.fieldAt(mapCoordinate(x),mapCoordinate(y),mapCoordinate(z),coefficients,mode,sign));
+      const bounds={min:[Infinity,Infinity,Infinity],max:[-Infinity,-Infinity,-Infinity]};
+      for(let i=0;i<result.positions.length;i+=3){
+        for(let axis=0;axis<3;axis++){
+          const value=mapCoordinate(result.positions[i+axis]);result.positions[i+axis]=value;
+          bounds.min[axis]=Math.min(bounds.min[axis],value);bounds.max[axis]=Math.max(bounds.max[axis],value);
+        }
+        result.normals.set(P.outwardNormal(result.positions[i],result.positions[i+1],result.positions[i+2],coefficients,mode,sign),i);
+      }
+      Object.assign(result.diagnostics,{bounds:result.positions.length?bounds:null,minSpacing,maxSpacing,grid:'center-refined rectilinear squared-coordinate grid',buildMs:Math.round(((typeof performance!=='undefined'?performance.now():Date.now())-begin)*10)/10});
+      delete result.diagnostics.spacing;
+    }
+    return remember(key,result);
+  }
+  const yieldFrame=()=>new Promise(resolve=>{
+    if(typeof root.requestAnimationFrame==='function')root.requestAnimationFrame(()=>setTimeout(resolve,0));
+    else setTimeout(resolve,0);
+  });
+  async function prepare(items,mode='phase',threshold=0.000025,{isCurrent=()=>true,onProgress=()=>{}}={}){
+    if(!Array.isArray(items)||!items.length)throw new Error('At least one orbital must be prepared.');
+    for(const item of items)validate(item.coefficients,mode,1,threshold);
+    const requested=new Set(items.flatMap(item=>(mode==='phase'?[1,-1]:[1]).map(sign=>cacheKey(item.coefficients,mode,sign,threshold))));
+    let completed=0;const total=items.length*(mode==='mixture'?1:2);
+    const start=typeof performance!=='undefined'?performance.now():Date.now();
+    const status=complete=>({completed:complete,surfacesPrepared:completed,total,elapsedMs:(typeof performance!=='undefined'?performance.now():Date.now())-start});
+    for(const item of items){
+      const parts=[];
+      const readyDensity=mode==='density'?cache.get(cacheKey(item.coefficients,'density',1,threshold)):null;
+      for(const sign of (mode==='mixture'?[1]:[1,-1])){
+        await yieldFrame();if(!isCurrent())return status(false);
+        const previous=preferredCacheKeys;preferredCacheKeys=requested;
+        try{if(!readyDensity)parts.push(meshFor(item.coefficients,mode==='mixture'?'mixture':'phase',sign,threshold));}
+        finally{preferredCacheKeys=previous;}
+        completed++;onProgress({completed,total});
+      }
+      if(mode==='density'){
+        if(!isCurrent())return status(false);
+        const previous=preferredCacheKeys;preferredCacheKeys=requested;
+        try{remember(cacheKey(item.coefficients,'density',1,threshold),readyDensity||densityUnion(parts,threshold));}
+        finally{preferredCacheKeys=previous;}
+      }
+    }
+    return status(true);
+  }
+  root.HybridDIsosurface={meshFor,prepare,sampleField,constants:Object.freeze({extent:EXTENT,samples:SAMPLES,minSpacing,maxSpacing,grid:'center-refined rectilinear squared-coordinate grid',cutoffs:CUTOFFS,defaultCutoff:CUTOFFS[1]}),
+    getDiagnostics:()=>({cacheEntries:cache.size,cacheBytes:cacheBytes(),cacheByteLimit:CACHE_BYTES,basisGridReady:!!basisGrid,extent:EXTENT,samples:SAMPLES,minSpacing,maxSpacing})};
+  if(typeof module!=='undefined'&&module.exports)module.exports=root.HybridDIsosurface;
 })(typeof window!=='undefined'?window:globalThis);
 
 </script><script>
@@ -755,6 +1118,84 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
     window.HybridLab=Object.freeze({version:'1.0.0',getState:()=>({...state,probe:state.probe.slice(),coefficients:coeff(),revision,busy,pending:meshTimer!==null}),getDiagnostics:()=>R.getDiagnostics(),getProbe:()=>({coordinates:coords(...state.probe),...P.evaluate(coeff(),...coords(...state.probe))})});
   }
   try{initialize();}catch(error){fatal(error);}
+})();
+
+</script><script>
+/* Independent controls for the nine-function hydrogenic n=3 illustration. */
+(function(){
+  'use strict';
+  const P=window.HybridDPhysics, $=id=>document.getElementById(id);
+  const section=$('d-hybrids');
+  const state={type:'dsp2',selection:'0',unused:false,mode:'phase',threshold:0.000025,cutaway:false};
+  const notes={
+    dsp2:{title:'Four equivalent hybrids',body:'Each hybrid contains 25% s, 50% p, and 25% d character. The construction mixes s, pₓ, pᵧ, and dₓ²₋ᵧ²; the other five basis functions remain unused.',angles:'Reference directions: ±x and ±y in the xy plane. Adjacent directions are 90° apart; opposite directions are 180° apart.'},
+    sp3d:{title:'Two kinds of hybrid in one set',body:'In this orthonormal convention, each equatorial hybrid has 33⅓% s, 66⅔% p, and 0% d character. Each axial hybrid has 0% s, 50% p, and 50% d character. The 20% s / 60% p / 20% d composition is only the average over all five hybrids.',angles:'Reference directions: three in the xy plane, 120° apart, and two along ±z. Axial–equatorial angles are 90°; the two axial directions are 180° apart.'},
+    sp3d2:{title:'Six equivalent hybrids',body:'Each hybrid contains 16⅔% s, 50% p, and 33⅓% d character. The construction uses s, all three p functions, dₓ²₋ᵧ², and d_z². The dₓᵧ, dₓz, and dᵧz functions remain unused.',angles:'Reference directions: ±x, ±y, and ±z. Adjacent directions are 90° apart; opposite directions are 180° apart.'}
+  };
+  let renderer,revision=0;
+  const percent=value=>(100*value).toFixed(1).replace(/\.0$/,'')+'%';
+  const coefficient=value=>Math.abs(value)<1e-12?'0':value.toFixed(4).replace('-','−');
+  function displayed(set){return state.selection==='all'?(state.unused?set.orbitals:set.hybrids):[set.orbitals[Number(state.selection)]];}
+  function describe(){
+    const set=P.sets(state.type),note=notes[state.type],items=displayed(set);
+    $('d-set-title').textContent=set.geometry;
+    $('d-set-description').textContent=set.hybrids.length+' hybrids and '+set.unused.length+' unused basis orbitals.';
+    $('d-unused').disabled=state.selection!=='all';
+    $('d-character-label').textContent=state.selection==='all'?'Mean character of displayed orbitals':'Selected orbital character';
+    const fractions={s:0,p:0,d:0};
+    for(const item of items)for(const key of ['s','p','d'])fractions[key]+=item.character[key]/items.length;
+    for(const key of ['s','p','d']){$('d-'+key+'-percent').textContent=percent(fractions[key]);$('d-'+key+'-bar').style.width=(100*fractions[key])+'%';}
+    $('d-selected-description').textContent=state.selection==='all'?'Arithmetic mean over '+items.length+' separate orbitals; individual rows can have different compositions.':items[0].label+' · '+(items[0].group==='unused'?'unused original basis function':items[0].group+' hybrid')+'.';
+    $('d-note-title').textContent=note.title;$('d-note-body').textContent=note.body;$('d-angle-text').textContent=note.angles;
+    $('d-count-note').textContent=set.hybrids.length+' hybrids + '+set.unused.length+' unused orbitals = all nine dimensions of this n = 3 basis.';
+    let error=0;for(let i=0;i<9;i++)for(let j=0;j<9;j++)error=Math.max(error,Math.abs(P.innerProduct(set.all[i],set.all[j])-(i===j?1:0)));
+    $('d-orthogonality').textContent='Largest coefficient overlap error: '+error.toExponential(1)+' (dimensionless).';
+    const body=$('d-coefficient-table').tBodies[0];body.replaceChildren();
+    set.orbitals.forEach((item,index)=>{
+      const row=document.createElement('tr');
+      if(item.group==='unused')row.classList.add('unused-row');
+      if(state.selection===String(index))row.classList.add('selected-row');
+      const label=document.createElement('th');label.scope='row';label.textContent=item.label+(item.group==='unused'?' · unused':'');row.append(label);
+      item.coefficients.forEach(value=>{const cell=document.createElement('td');cell.textContent=coefficient(value);row.append(cell);});body.append(row);
+    });
+    $('d-legend').innerHTML=state.mode==='phase'?'<span><i class="positive"></i>Positive amplitude</span><span><i class="negative"></i>Negative amplitude</span>':'<span><i class="density"></i>Nonnegative probability density</span>';
+    if(state.selection==='all'&&state.unused){const key=document.createElement('span');key.textContent='Unused orbitals: wireframe';$('d-legend').append(key);}
+    document.querySelectorAll('[data-d-set]').forEach(button=>{const active=button.dataset.dSet===state.type;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});
+    return {set,items};
+  }
+  function choices(){
+    const set=P.sets(state.type),select=$('d-selection');select.replaceChildren();
+    for(const [value,label]of [['all','Overlay all '+set.hybrids.length+' hybrids'],...set.orbitals.map((o,i)=>[String(i),o.label+(o.group==='unused'?' · unused':'')])]){const option=document.createElement('option');option.value=value;option.textContent=label;select.append(option);}
+    select.value=state.selection;
+  }
+  function update(){
+    const {set,items}=describe(),current=++revision;
+    section.dataset.ready='rendering';$('d-render-status').textContent='Drawing '+set.label+' surfaces…';
+    // Let the status paint before generating new meshes; discard superseded jobs.
+    requestAnimationFrame(()=>setTimeout(async()=>{
+      if(current!==revision)return;
+      try{
+        const prepared=await window.HybridDIsosurface.prepare(items,state.mode,state.threshold,{isCurrent:()=>current===revision,onProgress:({completed,total})=>{if(current===revision)$('d-render-status').textContent='Drawing '+set.label+' surfaces · '+completed+' / '+total+' ready…';}});
+        if(!prepared.completed||current!==revision)return;
+        renderer.setOrbitals(items.map(item=>({coefficients:item.coefficients,label:item.label,unused:state.selection==='all'&&item.group==='unused'})),{threshold:state.threshold,mode:state.mode,cutaway:state.cutaway});
+        if(renderer.failed)throw new Error('WebGL is unavailable.');
+        section.dataset.ready='true';
+        $('d-render-status').textContent=items.length+' orbital'+(items.length===1?'':'s')+' displayed · '+(state.mode==='phase'?'ψ = ±√τ':'ρ = τ')+' · τ = '+state.threshold.toFixed(6)+' a₀⁻³.';
+      }catch(error){if(current!==revision)return;section.dataset.ready='error';$('d-render-status').textContent='The 3D view could not be drawn. Coefficients and character remain available. '+error.message;console.error(error);}
+    },0));
+  }
+  try{
+    renderer=new window.HybridRenderer($('d-view'),{label:'d-containing hydrogenic orbital',mode:'phase',meshProvider:window.HybridDIsosurface.meshFor,coefficientCount:9,halfSpan:24,axisExtent:21,gridExtent:24,scaleLength:5});
+    choices();
+    document.querySelectorAll('[data-d-set]').forEach(button=>button.addEventListener('click',()=>{state.type=button.dataset.dSet;state.selection='0';choices();update();}));
+    $('d-selection').addEventListener('change',event=>{state.selection=event.target.value;update();});
+    $('d-unused').addEventListener('change',event=>{state.unused=event.target.checked;update();});
+    $('d-mode').addEventListener('change',event=>{state.mode=event.target.value;update();});
+    $('d-threshold').addEventListener('change',event=>{state.threshold=Number(event.target.value);update();});
+    $('d-cutaway').addEventListener('change',event=>{state.cutaway=event.target.checked;update();});
+    $('d-reset').addEventListener('click',()=>window.HybridRenderer.resetView());
+    update();
+  }catch(error){section.dataset.ready='error';$('d-render-status').textContent='Unable to initialize the d-orbital view: '+error.message;console.error(error);}
 })();
 
 </script>
