@@ -28,9 +28,11 @@
 .d-mixer{padding:24px 28px;background:white;border:1px solid var(--line);border-radius:var(--radius);margin:0 0 22px}.d-mixer-heading{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:20px}.d-mixer-heading .eyebrow{margin-bottom:7px;font-size:9px}.d-mixer-heading h3{margin:0;font-size:23px}.d-mix-badge{padding:7px 10px;border:1px solid var(--line);border-radius:5px;font-size:11px;color:var(--accent);white-space:nowrap}.d-mix-badge.custom{background:#e7f1ed;border-color:#aecfc1}.d-mix-sliders{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}.d-mix-sliders label{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600;margin-bottom:12px}.d-mix-sliders output{font-size:23px;font-weight:500;font-variant-numeric:tabular-nums}.d-mix-sliders .range-ends{margin-bottom:4px}#d-p-character{accent-color:var(--density)}#d-d-character{accent-color:var(--amber)}.d-mix-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:14px;font-size:11px}.d-mix-actions>span:first-child{font-weight:650;color:var(--accent)}#d-mix-state{color:var(--muted)}.d-mix-details{margin-top:15px;padding-top:14px;border-top:1px solid var(--line);font-size:12px}.d-mix-details p{font-size:12px;color:var(--muted)}.d-mix-details .math-line{font-family:Cambria,Georgia,serif;font-size:16px;color:var(--ink)}.d-mix-sliders input:disabled{opacity:.45;cursor:default}button:disabled{cursor:default;opacity:.5}.d-coefficients tbody tr.custom-row{background:#d8ece1;color:var(--ink)}
 @media(max-width:650px){.d-mixer{padding:20px}.d-mixer-heading{align-items:start;gap:12px}.d-mixer-heading h3{font-size:21px}.d-mix-badge{font-size:9px;padding:6px}.d-mix-sliders{grid-template-columns:1fr;gap:14px}.d-mix-sliders label{margin-bottom:6px}.d-mix-sliders output{font-size:21px}.d-mix-actions{gap:10px}}
 
-/* Keep the character sliders beside the 3D view on a wide screen. */
-.d-sidebar .d-mixer{padding:0;border:0;border-radius:0;margin:22px 0 0}.d-sidebar .d-mixer-heading{display:block;margin-bottom:15px}.d-sidebar .d-mixer-heading .eyebrow{display:none}.d-sidebar .d-mixer-heading h3{font-size:18px;letter-spacing:-.3px;margin-bottom:9px}.d-sidebar .d-mix-badge{display:inline-block;padding:4px 7px;font-size:10px}.d-sidebar .d-mix-sliders{grid-template-columns:1fr;gap:10px}.d-sidebar .d-mix-sliders label{font-size:11px;margin-bottom:5px}.d-sidebar .d-mix-sliders output{font-size:19px}.d-sidebar .d-mix-sliders .range-ends{margin:0;font-size:9px}.d-sidebar .d-mix-actions{gap:8px;margin-top:12px}.d-sidebar .d-mix-actions #d-mix-state{display:block;width:100%;font-size:10px}.d-sidebar .d-mix-details{font-size:11px}.d-sidebar .d-mix-details p{font-size:11px;overflow-wrap:anywhere}.d-sidebar .d-mix-details .math-line{font-size:14px}.d-section[data-selection="single"] .d-character{display:none}.d-main .d-viewport{height:600px}
-@media(max-width:750px){.d-main .d-viewport{height:380px}.d-sidebar .d-mix-sliders{gap:13px}.d-sidebar .d-mixer-heading{display:flex;align-items:center}.d-sidebar .d-mixer-heading h3{margin:0}.d-sidebar .d-mix-badge{white-space:normal}.d-sidebar .d-mix-actions #d-mix-state{width:auto}}
+/* Give the three n=3 panels a shared full-width comparison row. */
+.d-workspace{display:block}.d-sidebar{display:grid;grid-template-columns:280px minmax(0,1fr);gap:32px;border-right:0;border-bottom:1px solid var(--line)}.d-selection-controls{min-width:0}.d-selection-controls>label:not(.check){display:block;font-size:11px;font-weight:600;margin-bottom:8px}.d-selection-controls>p:not(.eyebrow){font-size:12px;color:var(--muted)}.d-selection-controls .d-tabs{margin-bottom:18px}.d-sidebar .d-mixer{padding:0 0 0 30px;border:0;border-left:1px solid var(--line);border-radius:0;margin:0;min-width:0}.d-sidebar .d-mixer-heading h3{font-size:23px;letter-spacing:-.5px}.d-sidebar .d-mix-details p{overflow-wrap:anywhere}.d-section[data-selection="single"] .d-character{display:none}.d-comparison-grid{padding:0 20px;gap:14px}.d-comparison-grid .card-heading{min-height:82px;flex-wrap:wrap;gap:7px}.d-comparison-grid .card-heading>div{min-width:0}.d-comparison-grid .card-heading h3,.d-comparison-grid .card-heading p{white-space:normal}.d-comparison-grid .card-tag{display:none}.d-main .d-viewport{height:330px}.d-comparison-grid .card-description{min-height:100px}.d-comparison-note{display:grid;grid-template-columns:1.5fr 1fr;gap:35px;padding:26px 28px;background:#eaf0eb;border:1px solid #cbd9d2;border-radius:var(--radius);margin-top:20px}.d-comparison-note .eyebrow{margin-bottom:9px}.d-comparison-note h3{font-size:22px;margin-bottom:12px}.d-comparison-note p{font-size:12px;color:var(--muted);margin-bottom:10px}.d-comparison-note .math-line{font-family:Cambria,Georgia,serif;font-size:17px;color:var(--ink);line-height:1.6}.d-try{border-left:1px solid #c4d4ca;padding-left:28px}.d-try .small-index{margin-bottom:12px}
+@media(max-width:1000px){.d-sidebar{grid-template-columns:240px minmax(0,1fr);gap:24px}.d-sidebar .d-mixer{padding-left:24px}.d-mix-sliders{gap:16px}.d-mixer-heading{align-items:start}.d-mixer-heading h3{font-size:20px}.d-mix-badge{white-space:normal}.d-mix-sliders label{display:block}.d-mix-sliders output{display:block;margin-top:5px}.d-main .d-viewport{height:280px}.d-comparison-grid{padding:0 16px;gap:10px}}
+@media(max-width:750px){.d-sidebar{grid-template-columns:1fr;gap:22px}.d-sidebar .d-mixer{border-left:0;border-top:1px solid var(--line);padding:22px 0 0}.d-mix-sliders label{display:flex}.d-mix-sliders output{margin:0}.d-comparison-note{grid-template-columns:1fr;gap:12px;padding:20px}.d-try{border-left:0;border-top:1px solid #c4d4ca;padding:18px 0 0}.d-comparison-note .math-line{font-size:15px}}
+@media(max-width:650px){.d-main .d-viewport{height:310px}.d-comparison-grid .card-heading{min-height:0;padding:17px 14px 12px}.d-comparison-grid .card-description{min-height:0}.d-sidebar .d-mixer-heading h3{font-size:21px}.d-toolbar .cutoff-note{line-height:1.5}.d-comparison-grid .card-heading h3{font-size:16px}.d-comparison-grid .card-heading p{font-size:13px}}
 
 </style>
 <script id="three-license" type="text/plain">
@@ -151,11 +153,15 @@ THE SOFTWARE.
       <div class="d-context"><strong>A construction is not a bonding diagnosis.</strong><p>These combinations illustrate basis changes. A molecular geometry alone does not establish d-orbital participation. In particular, sp³d and sp³d² labels are not evidence that main-group molecules such as PF₅ or SF₆ bond through substantial d hybridization. For real transition-metal compounds, metal–ligand interactions, orbital energies, and occupations must be considered, for example with molecular-orbital or ligand-field models.</p></div>
       <div class="set-workspace d-workspace">
         <div class="set-sidebar d-sidebar">
+          <div class="d-selection-controls">
           <p class="eyebrow">Choose a construction</p>
           <div class="set-tabs d-tabs" aria-label="d-containing hybrid sets"><button data-d-set="dsp2" class="active" aria-pressed="true">dsp²</button><button data-d-set="sp3d" aria-pressed="false">sp³d</button><button data-d-set="sp3d2" aria-pressed="false">sp³d²</button></div>
           <h3 id="d-set-title">Square planar</h3><p id="d-set-description">Four hybrids and five unused basis orbitals.</p>
           <label for="d-selection">Inspect a d-section orbital</label><select id="d-selection"><option value="0">Preparing orbitals…</option></select>
           <label class="check set-unused"><input type="checkbox" id="d-unused">Include unused orbitals in overlay</label>
+          <div class="d-character"><span id="d-character-label">Selected orbital character</span><div class="d-character-bar" aria-hidden="true"><i id="d-s-bar"></i><i id="d-p-bar"></i><i id="d-d-bar"></i></div><dl><div><dt>s</dt><dd id="d-s-percent">25%</dd></div><div><dt>p</dt><dd id="d-p-percent">50%</dd></div><div><dt>d</dt><dd id="d-d-percent">25%</dd></div></dl></div>
+          <p id="d-selected-description" class="helper"></p><p class="helper">Select one orbital to see its lobes clearly. An overlay shows separate orbitals; it does not add their wavefunctions or represent molecular electron density.</p>
+          </div>
       <div class="d-mixer" aria-labelledby="d-mixer-heading">
         <div class="d-mixer-heading"><div><span class="eyebrow">CHANGE ONE ORBITAL</span><h3 id="d-mixer-heading">Vary the s, p, and d character</h3></div><span id="d-mix-badge" class="d-mix-badge">Preset orbital</span></div>
         <div class="d-mix-sliders">
@@ -163,21 +169,39 @@ THE SOFTWARE.
           <div><label for="d-p-character">p character <output id="d-p-control-value" for="d-p-character">50%</output></label><input id="d-p-character" type="range" min="0" max="100" step="0.1" value="50" aria-describedby="d-mix-help"><div class="range-ends"><span>0%</span><span>100%</span></div></div>
           <div><label for="d-d-character">d character <output id="d-d-control-value" for="d-d-character">25%</output></label><input id="d-d-character" type="range" min="0" max="100" step="0.1" value="25" aria-describedby="d-mix-help"><div class="range-ends"><span>0%</span><span>100%</span></div></div>
         </div>
-        <div class="d-mix-actions"><span id="d-mix-total">Total: 100%</span><button id="d-restore" class="quiet" disabled>Restore selected orbital</button><span id="d-mix-state">Choose an orbital below, then move a slider.</span></div>
+        <div class="d-mix-actions"><span id="d-mix-total">Total: 100%</span><button id="d-restore" class="quiet" disabled>Restore selected orbital</button><span id="d-mix-state">Choose an orbital, then move a slider.</span></div>
         <p id="d-mix-help" class="helper">The three percentages total 100%. Moving one rescales the other two proportionally; if both are zero, they share the remainder equally. Sliders vary one normalized orbital, not an entire orthonormal set. Displayed percentages are rounded.</p>
         <details class="d-mix-details"><summary>Which s, p, and d components am I mixing?</summary><p id="d-component-source"></p><p id="d-component-formula" class="math-line"></p><p id="d-component-definitions"></p><p id="d-component-fallback"></p><p>The normalized component shapes and their signs stay fixed as character changes, even when a component reaches zero. The weights multiplying S, P, and D are square roots of their character fractions. This is a coefficient scan, not a time evolution or a molecular bonding calculation.</p></details>
       </div>
-          <div class="d-character"><span id="d-character-label">Selected orbital character</span><div class="d-character-bar" aria-hidden="true"><i id="d-s-bar"></i><i id="d-p-bar"></i><i id="d-d-bar"></i></div><dl><div><dt>s</dt><dd id="d-s-percent">25%</dd></div><div><dt>p</dt><dd id="d-p-percent">50%</dd></div><div><dt>d</dt><dd id="d-d-percent">25%</dd></div></dl></div>
-          <p id="d-selected-description" class="helper"></p><p class="helper">Select one orbital to see its lobes clearly. An overlay shows separate orbitals; it does not add their wavefunctions or represent molecular electron density.</p>
         </div>
         <div class="set-main d-main">
-          <div class="d-toolbar"><div><label for="d-mode">Surface coloring</label><select id="d-mode"><option value="phase">Wavefunction sign</option><option value="density">Probability density</option></select></div><div><label for="d-threshold">d-section density cutoff</label><select id="d-threshold"><option value="0.00001">0.000010 a₀⁻³</option><option value="0.000025" selected>0.000025 a₀⁻³</option><option value="0.00005">0.000050 a₀⁻³</option></select></div><label class="check"><input type="checkbox" id="d-cutaway">d-section cutaway</label><button id="d-reset" class="quiet">Reset linked camera</button></div>
-          <div id="d-view" class="viewport d-viewport"></div>
-          <div class="legend" id="d-legend"><span><i class="positive"></i>Positive amplitude</span><span><i class="negative"></i>Negative amplitude</span></div>
-          <p id="d-render-status" class="helper" role="status" aria-live="polite">Preparing the d-containing orbital view.</p>
-          <p class="helper">Rotate with drag or arrow keys; + / − zoom. This view has its own 5 a₀ scale bar. The cutoff is a density level, not an enclosed-probability percentage.</p>
+          <div class="d-toolbar"><div><label for="d-threshold">Shared d-section density cutoff</label><select id="d-threshold"><option value="0.00001">0.000010 a₀⁻³</option><option value="0.000025" selected>0.000025 a₀⁻³</option><option value="0.00005">0.000050 a₀⁻³</option></select></div><label class="check"><input type="checkbox" id="d-cutaway">d-section cutaway</label><button id="d-reset" class="quiet">Reset linked camera</button><span class="cutoff-note">One spatial scale and cutoff across A, B, and C.</span></div>
+          <div class="comparison-grid d-comparison-grid">
+            <article class="orbital-card">
+              <div class="card-heading"><span class="card-index">A</span><div><h3>Wavefunction</h3><p>h = √fₛ S + √fₚ P + √f<sub>d</sub> D</p></div><span class="card-tag">AMPLITUDE</span></div>
+              <div id="d-wave-view" class="viewport d-viewport"></div>
+              <div class="legend"><span><i class="positive"></i>Positive h</span><span><i class="negative"></i>Negative h</span></div>
+              <p class="card-description">Combine signed amplitudes. Color shows wavefunction sign, not electric charge.</p>
+            </article>
+            <article class="orbital-card">
+              <div class="card-heading"><span class="card-index">B</span><div><h3>Hybrid density</h3><p>ρ = |√fₛ S + √fₚ P + √f<sub>d</sub> D|²</p></div><span class="card-tag">COHERENT</span></div>
+              <div id="d-density-view" class="viewport d-viewport"></div>
+              <div class="legend"><span><i class="density"></i>Nonnegative |h|²</span></div>
+              <p class="card-description">Square the combined wavefunction. Interference changes the density. A and B share exactly the same boundary.</p>
+            </article>
+            <article class="orbital-card mixture-card">
+              <div class="card-heading"><span class="card-index">C</span><div><h3>Density-only mixture</h3><p>ρₘᵢₓ = fₛ|S|² + fₚ|P|² + f<sub>d</sub>|D|²</p></div><span class="card-tag">INCOHERENT</span></div>
+              <div id="d-mixture-view" class="viewport d-viewport"></div>
+              <div class="legend"><span><i class="mixture"></i>Nonnegative ρₘᵢₓ</span></div>
+              <p class="card-description">Add the s-, p-, and d-component densities. Remove interference between these groups; keep the chosen shape within each group.</p>
+            </article>
+          </div>
+          <p id="d-render-status" class="helper" role="status" aria-live="polite">Preparing the three d-section views.</p>
+          <p id="d-overlay-note" class="helper" hidden>Each panel overlays separate orbital surfaces, not their summed density or wavefunction. Unused orbitals appear as wireframes.</p>
+          <p class="helper">Drag any view or use its arrow keys to rotate all views; + / − zoom. Each d-section panel has the same 5 a₀ scale bar. A shows h = ±√τ; B and C show density = τ. This cutoff is not an enclosed-probability percentage.</p>
         </div>
       </div>
+      <div class="d-comparison-note"><div><span class="eyebrow">WHAT IS BEING MIXED?</span><h3>Three components. Three cross terms.</h3><p>S, P, and D are the fixed, normalized components shown in the character controls; fₛ + fₚ + f<sub>d</sub> = 1. The mixture represents an incoherent mixture of these component states. It is not another rendering of the same pure hybrid state.</p><p class="math-line">ρ − ρₘᵢₓ = 2√(fₛfₚ) SP + 2√(fₛf<sub>d</sub>) SD + 2√(fₚf<sub>d</sub>) PD</p><p>The functions here are real. The difference can be positive or negative locally; both densities stay nonnegative and integrate to one for a selected normalized orbital.</p></div><div class="d-try"><span class="small-index">TRY THIS</span><p>Choose an individual orbital and move any character slider to 100%. B and C now agree everywhere. This also holds for a pure p or d component that combines several basis functions.</p><p class="helper">Within P or D, the selected basis functions still interfere. C removes only the interference between s, p, and d components.</p></div></div>
       <div class="d-explanation-grid">
         <div class="d-construction-note"><span class="eyebrow">READ THE CONSTRUCTION</span><h3 id="d-note-title">Four equivalent hybrids</h3><p id="d-note-body"></p><p id="d-angle-text"></p><p class="helper">Directions describe the symmetry of the coefficient construction. They are not predicted bond angles or guaranteed lobe maxima at every radius: the 3s and 3p radial factors change sign.</p></div>
         <div class="set-invariant"><span class="eyebrow">KEEP THE WHOLE SPACE</span><h3 id="d-invariant-heading">Nine in. Nine out.</h3><p id="d-count-note"></p><p id="d-invariant-copy">Including all unused orbitals gives an orthonormal nine-function basis. Its unweighted sum of squared amplitudes equals that of the original 3s, three 3p, and five 3d functions.</p><output id="d-orthogonality">Checking coefficients…</output><p class="helper">This identity describes a basis transformation, not nine electrons or a molecule’s occupied orbitals.</p></div>
@@ -191,7 +215,7 @@ THE SOFTWARE.
       <div class="model-details"><details open><summary>2s/2p basis functions and units</summary><p>Fixed nucleus, one electron, Z = 1; nonrelativistic Coulomb model. In coordinates measured in a₀, with r = √(x² + y² + z²) and C = 1/(4√(2π)):</p><p class="math-line">φ₂ₛ = C(2 − r)e<sup>−r/2</sup><br>φ₂ₚₓ = Cxe<sup>−r/2</sup>, and likewise for y and z.</p><p>Wavefunctions have units a₀<sup>−3/2</sup>; densities have units a₀<sup>−3</sup>. The pure 2s radial node is at r = 2 a₀. Hybridization changes the zero set through interference.</p></details><details><summary>What the surfaces and colors mean</summary><p>The 3D surfaces use the selected density cutoff. They do not enclose a prescribed percentage of probability and are not hard orbital edges. The three comparison panels use the same cutoff and spatial scale. The larger complete-set view has its own visible scale bar. In A, the same boundary is split by positive and negative wavefunction sign. B and C show nonnegative densities. The finite triangle mesh approximates curved boundaries and can miss very small features. The slices and probe evaluate the analytic functions independently of the mesh.</p><p>Slice density colors use √ρ on one fixed scale. The signed-amplitude slice uses a fixed diverging scale. The cutaway affects only the 3D rendering, not the orbital or the full cross-sections.</p></details><details><summary>Single-orbital composition and complete sets</summary><p>The continuous slider changes one orbital’s coefficients. The complete-set presets construct orthonormal bases with fixed compositions. Four equivalent orthogonal s/p hybrids have 25% s character each; varying all four equally at fixed tetrahedral directions would generally break orthogonality.</p><p>The label sp² describes a hybrid constructed within an s-plus-two-p subspace. Its p component can be expressed as a single oriented p function. A single sp²-character orbital alone does not specify a trigonal set.</p></details><details><summary>Sources and browser use</summary><ul><li><a href="https://books.physics.oregonstate.edu/GMM/hydroform.html" target="_blank" rel="noopener">Oregon State: hydrogen radial functions and spherical harmonics</a></li><li><a href="https://www.pci.tu-bs.de/aggericke/PC4e/Kap_II/Hybride/Konstruktion.htm" target="_blank" rel="noopener">TU Braunschweig: normalized hybrid-orbital constructions</a></li><li><a href="https://www.falstad.com/qmatom/directions.html" target="_blank" rel="noopener">Related prior art: Falstad’s orbital viewer</a></li><li><a href="https://doi.org/10.1021/acs.jchemed.0c00847" target="_blank" rel="noopener">Related prior art: The Hybridization Explorer</a></li></ul><p>This display runs in your browser with bundled code. It sends no measurements, has no analytics, and does not save your settings. External reference links open only when selected. Three.js is distributed under its included MIT license.</p></details></div>
     </section>
   </main>
-  <footer><span>ORBITAL OBSERVATORY <b>/</b> HYBRID ORBITAL LAB</span><span>v1.2.0 · Idealized 2s/2p and 3s/3p/3d models</span></footer>
+  <footer><span>ORBITAL OBSERVATORY <b>/</b> HYBRID ORBITAL LAB</span><span>v1.3.0 · Idealized 2s/2p and 3s/3p/3d models</span></footer>
   <div id="status" class="sr-only" role="status" aria-live="polite">Preparing the orbital views.</div>
   <noscript><p class="noscript">JavaScript is required to operate this display. Enable it and reload.</p></noscript>
   <script>
@@ -876,14 +900,21 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
     return (coordinates[index+1]-coordinates[index])/PARAMETER_STEP;
   }
   const CUTOFFS=Object.freeze([0.00001,0.000025,0.00005]);
-  const CACHE_BYTES=96*1024*1024;
+  const CACHE_BYTES=96*1024*1024,COMPARISON_CACHE_BYTES=192*1024*1024;
+  let cacheByteLimit=CACHE_BYTES;
   const cache=new Map();
   let preferredCacheKeys=null;
-  const cacheBytes=()=>[...cache.values()].reduce((sum,mesh)=>sum+mesh.positions.byteLength+mesh.normals.byteLength,0);
+  // Comparison meshes share their signed and unsigned geometry buffers. Count
+  // physical storage once, including pure-group aliases of the density mesh.
+  const cacheBytes=()=>{
+    const buffers=new Set();
+    for(const mesh of cache.values()){buffers.add(mesh.positions.buffer);buffers.add(mesh.normals.buffer);}
+    return [...buffers].reduce((sum,buffer)=>sum+buffer.byteLength,0);
+  };
   const cacheKey=(coefficients,mode,sign,threshold)=>[...coefficients.map(v=>v.toPrecision(16)),mode,sign,threshold].join('|');
   function remember(key,result){
     cache.set(key,result);
-    while(cache.size>48||(cache.size>1&&cacheBytes()>CACHE_BYTES)){
+    while(cache.size>48||(cache.size>1&&cacheBytes()>cacheByteLimit)){
       const expendable=preferredCacheKeys?[...cache.keys()].find(candidate=>!preferredCacheKeys.has(candidate)):undefined;
       cache.delete(expendable===undefined?cache.keys().next().value:expendable);
     }
@@ -892,10 +923,37 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
   let basisGrid;
   function validate(coefficients,mode,sign,threshold){
     if(!Array.isArray(coefficients)||coefficients.length!==9||!coefficients.every(Number.isFinite))throw new Error('A d-containing orbital needs nine finite coefficients.');
-    if(!['phase','density','mixture'].includes(mode))throw new Error('Unknown d-orbital surface mode.');
+    if(!['phase','density','mixture','group-mixture'].includes(mode))throw new Error('Unknown d-orbital surface mode.');
     if(sign!==1&&sign!==-1)throw new Error('The wavefunction sign must be +1 or -1.');
     if(!Number.isFinite(threshold)||threshold<=0)throw new Error('The density isovalue must be finite and positive.');
   }
+  // Incoherence BETWEEN angular-momentum groups, with coherence preserved
+  // INSIDE the selected p and d combinations. This differs intentionally from
+  // d-physics.js's legacy nine-Cartesian-function mode named "mixture".
+  // For h = A_s + A_p + A_d, rho_mix = A_s^2 + A_p^2 + A_d^2.
+  const CS=1/(81*Math.sqrt(3*Math.PI)),CP=Math.SQRT2/(81*Math.sqrt(Math.PI));
+  function groupFieldAt(x,y,z,c){
+    const r=Math.hypot(x,y,z),e=Math.exp(-r/3);
+    const s=c[0]*CS*(27-18*r+2*r*r);
+    const p=CP*(6-r)*(c[1]*x+c[2]*y+c[3]*z);
+    const d=CP*(c[4]*x*y+c[5]*x*z+c[6]*y*z+c[7]*(x*x-y*y)/2+c[8]*(2*z*z-x*x-y*y)/(2*Math.sqrt(3)));
+    return e*e*(s*s+p*p+d*d);
+  }
+  function groupOutwardNormal(x,y,z,c){
+    const r=Math.hypot(x,y,z),ir=r>0?1/r:0;
+    const s=c[0]*CS*(27-18*r+2*r*r),sr=c[0]*CS*(-18+4*r);
+    const px=c[1]*CP,py=c[2]*CP,pz=c[3]*CP,lp=px*x+py*y+pz*z,p=(6-r)*lp;
+    const a=c[4]*CP,b=c[5]*CP,d=c[6]*CP,q=c[7]*CP/2,t=c[8]*CP/(2*Math.sqrt(3));
+    const angular=a*x*y+b*x*z+d*y*z+q*(x*x-y*y)+t*(2*z*z-x*x-y*y);
+    const radial=s*sr-p*lp-(s*s+p*p+angular*angular)/3;
+    // Positive 2 exp(-2r/3) cancels when the gradient is normalized.
+    const gx=radial*x*ir+p*(6-r)*px+angular*(a*y+b*z+2*q*x-2*t*x);
+    const gy=radial*y*ir+p*(6-r)*py+angular*(a*x+d*z-2*q*y-2*t*y);
+    const gz=radial*z*ir+p*(6-r)*pz+angular*(b*x+d*y+4*t*z);
+    const length=Math.hypot(gx,gy,gz);
+    return length>1e-30?[-gx/length,-gy/length,-gz/length]:[0,1,0];
+  }
+  const occupiedGroups=c=>Number(c[0]!==0)+Number(c.slice(1,4).some(v=>v!==0))+Number(c.slice(4).some(v=>v!==0));
   function getBasisGrid(){
     if(basisGrid)return basisGrid;
     basisGrid=Array.from({length:9},()=>new Float64Array(SAMPLES**3));
@@ -909,9 +967,16 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
   }
   function sampleField(coefficients,mode,sign){
     const grid=getBasisGrid(),out=new Float64Array(SAMPLES**3);
-    const active=coefficients.map((c,i)=>({c,b:grid[i]})).filter(({c})=>c!==0);
+    const active=coefficients.map((c,i)=>({c,b:grid[i],group:i===0?0:i<4?1:2})).filter(({c})=>c!==0);
     if(mode==='mixture'){
       for(const {c,b}of active){const c2=c*c;for(let i=0;i<out.length;i++)out[i]+=c2*b[i]*b[i];}
+    }else if(mode==='group-mixture'){
+      const component=new Float64Array(out.length);
+      for(let group=0;group<3;group++){
+        component.fill(0);
+        for(const {c,b,group:g}of active)if(g===group)for(let i=0;i<out.length;i++)component[i]+=c*b[i];
+        for(let i=0;i<out.length;i++)out[i]+=component[i]*component[i];
+      }
     }else{
       for(const {c,b}of active)for(let i=0;i<out.length;i++)out[i]+=c*b[i];
       if(mode==='density')for(let i=0;i<out.length;i++)out[i]*=out[i];
@@ -942,26 +1007,28 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
     let result;
     if(mode==='density'){
       result=densityUnion([meshFor(coefficients,'phase',1,threshold),meshFor(coefficients,'phase',-1,threshold)],threshold);
-    }else if(mode==='mixture'&&coefficients.filter(c=>c!==0).length===1){
+    }else if((mode==='mixture'&&coefficients.filter(c=>c!==0).length===1)||(mode==='group-mixture'&&occupiedGroups(coefficients)<=1)){
       result=meshFor(coefficients,'density',1,threshold);
     }else{
       const isovalue=mode==='phase'?Math.sqrt(threshold):threshold;
+      const normalAt=mode==='group-mixture'?groupOutwardNormal:P.outwardNormal;
+      const fieldAt=mode==='group-mixture'?groupFieldAt:P.fieldAt;
       const begin=typeof performance!=='undefined'?performance.now():Date.now();
       result=M.polygonize(sampleField(coefficients,mode,sign),SAMPLES,EXTENT,isovalue,
         (x,y,z)=>{
           // The gradient in grid coordinates orients the triangles correctly;
           // physical normals are calculated below after transforming vertices.
-          const normal=P.outwardNormal(mapCoordinate(x),mapCoordinate(y),mapCoordinate(z),coefficients,mode,sign);
+          const normal=normalAt(mapCoordinate(x),mapCoordinate(y),mapCoordinate(z),coefficients,mode,sign);
           return [normal[0]*coordinateSlope(x),normal[1]*coordinateSlope(y),normal[2]*coordinateSlope(z)];
         },
-        (x,y,z)=>P.fieldAt(mapCoordinate(x),mapCoordinate(y),mapCoordinate(z),coefficients,mode,sign));
+        (x,y,z)=>fieldAt(mapCoordinate(x),mapCoordinate(y),mapCoordinate(z),coefficients,mode,sign));
       const bounds={min:[Infinity,Infinity,Infinity],max:[-Infinity,-Infinity,-Infinity]};
       for(let i=0;i<result.positions.length;i+=3){
         for(let axis=0;axis<3;axis++){
           const value=mapCoordinate(result.positions[i+axis]);result.positions[i+axis]=value;
           bounds.min[axis]=Math.min(bounds.min[axis],value);bounds.max[axis]=Math.max(bounds.max[axis],value);
         }
-        result.normals.set(P.outwardNormal(result.positions[i],result.positions[i+1],result.positions[i+2],coefficients,mode,sign),i);
+        result.normals.set(normalAt(result.positions[i],result.positions[i+1],result.positions[i+2],coefficients,mode,sign),i);
       }
       Object.assign(result.diagnostics,{bounds:result.positions.length?bounds:null,minSpacing,maxSpacing,grid:'center-refined rectilinear squared-coordinate grid',buildMs:Math.round(((typeof performance!=='undefined'?performance.now():Date.now())-begin)*10)/10});
       delete result.diagnostics.spacing;
@@ -976,16 +1043,18 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
     if(!Array.isArray(items)||!items.length)throw new Error('At least one orbital must be prepared.');
     for(const item of items)validate(item.coefficients,mode,1,threshold);
     const requested=new Set(items.flatMap(item=>(mode==='phase'?[1,-1]:[1]).map(sign=>cacheKey(item.coefficients,mode,sign,threshold))));
-    let completed=0;const total=items.length*(mode==='mixture'?1:2);
+    cacheByteLimit=CACHE_BYTES;
+    const isMixture=mode==='mixture'||mode==='group-mixture';
+    let completed=0;const total=items.length*(isMixture?1:2);
     const start=typeof performance!=='undefined'?performance.now():Date.now();
     const status=complete=>({completed:complete,surfacesPrepared:completed,total,elapsedMs:(typeof performance!=='undefined'?performance.now():Date.now())-start});
     for(const item of items){
       const parts=[];
       const readyDensity=mode==='density'?cache.get(cacheKey(item.coefficients,'density',1,threshold)):null;
-      for(const sign of (mode==='mixture'?[1]:[1,-1])){
+      for(const sign of (isMixture?[1]:[1,-1])){
         await yieldFrame();if(!isCurrent())return status(false);
         const previous=preferredCacheKeys;preferredCacheKeys=requested;
-        try{if(!readyDensity)parts.push(meshFor(item.coefficients,mode==='mixture'?'mixture':'phase',sign,threshold));}
+        try{if(!readyDensity)parts.push(meshFor(item.coefficients,isMixture?mode:'phase',sign,threshold));}
         finally{preferredCacheKeys=previous;}
         completed++;onProgress({completed,total});
       }
@@ -998,8 +1067,53 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
     }
     return status(true);
   }
-  root.HybridDIsosurface={meshFor,prepare,sampleField,constants:Object.freeze({extent:EXTENT,samples:SAMPLES,minSpacing,maxSpacing,grid:'center-refined rectilinear squared-coordinate grid',cutoffs:CUTOFFS,defaultCutoff:CUTOFFS[1]}),
-    getDiagnostics:()=>({cacheEntries:cache.size,cacheBytes:cacheBytes(),cacheByteLimit:CACHE_BYTES,basisGridReady:!!basisGrid,extent:EXTENT,samples:SAMPLES,minSpacing,maxSpacing})};
+  async function prepareComparison(items,threshold=0.000025,{isCurrent=()=>true,onProgress=()=>{}}={}){
+    if(!Array.isArray(items)||!items.length)throw new Error('At least one orbital must be prepared.');
+    for(const item of items)validate(item.coefficients,'group-mixture',1,threshold);
+    cacheByteLimit=COMPARISON_CACHE_BYTES;
+    const requested=new Set(items.flatMap(({coefficients:c})=>[
+      cacheKey(c,'phase',1,threshold),cacheKey(c,'phase',-1,threshold),
+      cacheKey(c,'density',1,threshold),cacheKey(c,'group-mixture',1,threshold)
+    ]));
+    let completed=0;const total=items.length*3;
+    const start=typeof performance!=='undefined'?performance.now():Date.now();
+    const status=complete=>({completed:complete,surfacesPrepared:completed,total,elapsedMs:(typeof performance!=='undefined'?performance.now():Date.now())-start});
+    const protectedWork=work=>{const previous=preferredCacheKeys;preferredCacheKeys=requested;try{return work();}finally{preferredCacheKeys=previous;}};
+    for(const {coefficients:c}of items){
+      const densityKey=cacheKey(c,'density',1,threshold),readyDensity=cache.get(densityKey),parts=[];
+      for(let i=0;i<2;i++){
+        await yieldFrame();if(!isCurrent())return status(false);
+        const sign=i===0?1:-1;
+        parts.push(protectedWork(()=>readyDensity&&readyDensity.signedParts?
+          remember(cacheKey(c,'phase',sign,threshold),readyDensity.signedParts[i]):meshFor(c,'phase',sign,threshold)));
+        completed++;onProgress({completed,total});
+      }
+      if(!isCurrent())return status(false);
+      protectedWork(()=>{
+        if(readyDensity&&readyDensity.signedParts){
+          remember(densityKey,readyDensity);
+          if(occupiedGroups(c)<=1)remember(cacheKey(c,'group-mixture',1,threshold),readyDensity);
+          return;
+        }
+        const density=densityUnion(parts,threshold);let offset=0;
+        // Signed meshes become views of the concatenated density buffers.
+        // Geometry is bit-identical while CPU storage is not duplicated.
+        density.signedParts=parts.map((part,i)=>{
+          const end=offset+part.positions.length;
+          const shared={positions:density.positions.subarray(offset,end),normals:density.normals.subarray(offset,end),diagnostics:part.diagnostics};
+          offset=end;remember(cacheKey(c,'phase',i===0?1:-1,threshold),shared);return shared;
+        });
+        remember(densityKey,density);
+        if(occupiedGroups(c)<=1)remember(cacheKey(c,'group-mixture',1,threshold),density);
+      });
+      await yieldFrame();if(!isCurrent())return status(false);
+      protectedWork(()=>meshFor(c,'group-mixture',1,threshold));
+      completed++;onProgress({completed,total});
+    }
+    return status(isCurrent());
+  }
+  root.HybridDIsosurface={meshFor,prepare,prepareComparison,sampleField,groupFieldAt,groupOutwardNormal,constants:Object.freeze({extent:EXTENT,samples:SAMPLES,minSpacing,maxSpacing,grid:'center-refined rectilinear squared-coordinate grid',cutoffs:CUTOFFS,defaultCutoff:CUTOFFS[1],groupMixtureConvention:'Incoherent sum between s, p, and d groups; coherent within each group.'}),
+    getDiagnostics:()=>({cacheEntries:cache.size,cacheBytes:cacheBytes(),cacheByteLimit,basisGridReady:!!basisGrid,extent:EXTENT,samples:SAMPLES,minSpacing,maxSpacing})};
   if(typeof module!=='undefined'&&module.exports)module.exports=root.HybridDIsosurface;
 })(typeof window!=='undefined'?window:globalThis);
 
@@ -1254,13 +1368,14 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
   'use strict';
   const P=window.HybridDPhysics,C=window.HybridDCharacter, $=id=>document.getElementById(id);
   const section=$('d-hybrids');
-  const state={type:'dsp2',selection:'0',unused:false,mode:'phase',threshold:0.000025,cutaway:false,custom:false,fractions:null};
+  const state={type:'dsp2',selection:'0',unused:false,threshold:0.000025,cutaway:false,custom:false,fractions:null};
   const notes={
     dsp2:{title:'Four equivalent hybrids',body:'Each hybrid contains 25% s, 50% p, and 25% d character. The construction mixes s, pₓ, pᵧ, and dₓ²₋ᵧ²; the other five basis functions remain unused.',angles:'Reference directions: ±x and ±y in the xy plane. Adjacent directions are 90° apart; opposite directions are 180° apart.'},
     sp3d:{title:'Two kinds of hybrid in one set',body:'In this orthonormal convention, each equatorial hybrid has 33⅓% s, 66⅔% p, and 0% d character. Each axial hybrid has 0% s, 50% p, and 50% d character. The 20% s / 60% p / 20% d composition is only the average over all five hybrids.',angles:'Reference directions: three in the xy plane, 120° apart, and two along ±z. Axial–equatorial angles are 90°; the two axial directions are 180° apart.'},
     sp3d2:{title:'Six equivalent hybrids',body:'Each hybrid contains 16⅔% s, 50% p, and 33⅓% d character. The construction uses s, all three p functions, dₓ²₋ᵧ², and d_z². The dₓᵧ, dₓz, and dᵧz functions remain unused.',angles:'Reference directions: ±x, ±y, and ±z. Adjacent directions are 90° apart; opposite directions are 180° apart.'}
   };
-  let renderer,revision=0,renderTimer;
+  const renderers={};
+  let revision=0,renderTimer;
   const percent=value=>(100*value).toFixed(1).replace(/\.0$/,'')+'%';
   const coefficient=value=>Math.abs(value)<1e-12?'0':value.toFixed(4).replace('-','−');
   function displayed(set){
@@ -1285,7 +1400,7 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
     $('d-mix-badge').textContent=overlay?'Overlay mean':state.custom?'Custom orbital':'Preset orbital';
     $('d-mix-badge').classList.toggle('custom',state.custom);
     $('d-restore').disabled=!state.custom;
-    $('d-mix-state').textContent=overlay?'Select one orbital below to enable the sliders.':state.custom?'One normalized orbital; the reference set is unchanged.':'Move a slider to create a custom orbital.';
+    $('d-mix-state').textContent=overlay?'Select one orbital above to enable the sliders.':state.custom?'One normalized orbital; the reference set is unchanged.':'Move a slider to create a custom orbital.';
     document.querySelector('.d-mix-details').hidden=overlay;
     if(overlay)return;
     const reference=set.orbitals[Number(state.selection)],components=C.components(reference.coefficients);
@@ -1324,8 +1439,8 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
       const label=document.createElement('th');label.scope='row';label.textContent=item.label+(item.group==='unused'?' · unused':'');row.append(label);
       item.coefficients.forEach(value=>{const cell=document.createElement('td');cell.textContent=coefficient(value);row.append(cell);});body.append(row);
     });
-    $('d-legend').innerHTML=state.mode==='phase'?'<span><i class="positive"></i>Positive amplitude</span><span><i class="negative"></i>Negative amplitude</span>':'<span><i class="density"></i>Nonnegative probability density</span>';
-    if(state.selection==='all'&&state.unused){const key=document.createElement('span');key.textContent='Unused orbitals: wireframe';$('d-legend').append(key);}
+    $('d-overlay-note').hidden=state.selection!=='all';
+    $('d-overlay-note').textContent='Each panel overlays separate orbital surfaces, not their summed density or wavefunction.'+(state.unused?' Unused orbitals appear as wireframes.':'');
     document.querySelectorAll('[data-d-set]').forEach(button=>{const active=button.dataset.dSet===state.type;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});
     return {set,items};
   }
@@ -1343,17 +1458,24 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
     renderTimer=setTimeout(()=>requestAnimationFrame(async()=>{
       if(current!==revision)return;
       try{
-        const prepared=await window.HybridDIsosurface.prepare(items,state.mode,state.threshold,{isCurrent:()=>current===revision,onProgress:({completed,total})=>{if(current===revision)$('d-render-status').textContent='Drawing '+drawingLabel+' surfaces · '+completed+' / '+total+' ready…';}});
+        const prepared=await window.HybridDIsosurface.prepareComparison(items,state.threshold,{isCurrent:()=>current===revision,onProgress:({completed,total})=>{if(current===revision)$('d-render-status').textContent='Drawing '+drawingLabel+' surfaces · '+completed+' / '+total+' ready…';}});
         if(!prepared.completed||current!==revision)return;
-        renderer.setOrbitals(items.map(item=>({coefficients:item.coefficients,label:item.label,unused:state.selection==='all'&&item.group==='unused'})),{threshold:state.threshold,mode:state.mode,cutaway:state.cutaway});
-        if(renderer.failed)throw new Error('WebGL is unavailable.');
+        const orbitals=items.map(item=>({coefficients:item.coefficients,label:item.label,unused:state.selection==='all'&&item.group==='unused'}));
+        for(const [mode,view] of Object.entries(renderers)){
+          view.setOrbitals(orbitals,{threshold:state.threshold,mode,cutaway:state.cutaway});
+          if(view.failed)throw new Error('WebGL is unavailable.');
+        }
         section.dataset.ready='true';
-        $('d-render-status').textContent=items.length+' orbital'+(items.length===1?'':'s')+' displayed · '+(state.mode==='phase'?'ψ = ±√τ':'ρ = τ')+' · τ = '+state.threshold.toFixed(6)+' a₀⁻³.';
-      }catch(error){if(current!==revision)return;section.dataset.ready='error';$('d-render-status').textContent='The 3D view could not be drawn. Coefficients and character remain available. '+error.message;console.error(error);}
+        $('d-render-status').textContent=items.length+' orbital'+(items.length===1?'':'s')+' displayed · '+'three linked views'+' · τ = '+state.threshold.toFixed(6)+' a₀⁻³.';
+      }catch(error){if(current!==revision)return;section.dataset.ready='error';$('d-render-status').textContent='The 3D comparison could not be drawn. Coefficients and character remain available. '+error.message;console.error(error);}
     }),delay);
   }
   try{
-    renderer=new window.HybridRenderer($('d-view'),{label:'d-containing hydrogenic orbital',mode:'phase',meshProvider:window.HybridDIsosurface.meshFor,coefficientCount:9,halfSpan:24,axisExtent:21,gridExtent:24,scaleLength:5});
+    for(const [mode,id] of [['phase','d-wave-view'],['density','d-density-view'],['mixture','d-mixture-view']]){
+      renderers[mode]=new window.HybridRenderer($(id),{label:({phase:'s/p/d wavefunction',density:'s/p/d hybrid density',mixture:'s/p/d density-only mixture'})[mode],mode,
+        meshProvider:(coefficients,requestedMode,sign,threshold)=>window.HybridDIsosurface.meshFor(coefficients,requestedMode==='mixture'?'group-mixture':requestedMode,sign,threshold),
+        coefficientCount:9,halfSpan:24,axisExtent:21,gridExtent:24,scaleLength:5});
+    }
     choices();
     document.querySelectorAll('[data-d-set]').forEach(button=>button.addEventListener('click',()=>{state.type=button.dataset.dSet;state.selection='0';state.custom=false;state.fractions=null;choices();update();}));
     $('d-selection').addEventListener('change',event=>{state.selection=event.target.value;state.custom=false;state.fractions=null;update();});
@@ -1364,7 +1486,6 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
     });
     $('d-restore').addEventListener('click',()=>{state.custom=false;state.fractions=null;update();});
     $('d-unused').addEventListener('change',event=>{state.unused=event.target.checked;update();});
-    $('d-mode').addEventListener('change',event=>{state.mode=event.target.value;update();});
     $('d-threshold').addEventListener('change',event=>{state.threshold=Number(event.target.value);update();});
     $('d-cutaway').addEventListener('change',event=>{state.cutaway=event.target.checked;update();});
     $('d-reset').addEventListener('click',()=>window.HybridRenderer.resetView());

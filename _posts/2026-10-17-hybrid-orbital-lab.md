@@ -55,7 +55,7 @@ The complete four-orbital bases remain orthonormal. Summing all four orbital den
 
 ## Bringing d orbitals into the basis
 
-The new section uses nine normalized hydrogenic functions: **3s, three 3p functions, and five real 3d functions**, all at Z = 1. Choose a construction, inspect one orbital at a time, or overlay the set. Switching between wavefunction sign and probability-density coloring preserves the boundary geometry. Adding the unused orbitals to an overlay shows separate functions, not their summed wavefunction or a molecular electron density.
+The d-containing section uses nine normalized hydrogenic functions: **3s, three 3p functions, and five real 3d functions**, all at Z = 1. Choose a construction, inspect one orbital at a time, or overlay the set. Three side-by-side panels show its **wavefunction, hybrid density, and density-only mixture**, linked to the character sliders. They share a camera, spatial scale, and density cutoff. The wavefunction and hybrid-density panels share exactly the same boundary geometry. Adding the unused orbitals to an overlay shows separate functions, not their summed wavefunction, summed density, or a molecular electron density.
 
 | Construction | Character of each hybrid: s / p / d | Unused functions in the nine-function basis |
 | --- | --- | --- |
@@ -69,6 +69,12 @@ The three linked character sliders let you change a selected orbital continuousl
 
 During a scan, the selected reference supplies fixed normalized s, p, and d components, including their internal signs. Their weights are the square roots of the character fractions. If a component is absent from the reference, the editor explicitly supplies positive 3s, 3p<sub>z</sub>, or 3d<sub>z²</sub>, as appropriate. A custom orbital remains normalized, but substituting it into the reference set would generally break orthogonality. The original complete sets remain available unchanged.
 
+Calling those normalized components S, P, and D, the displayed hybrid is h = √f<sub>s</sub>S + √f<sub>p</sub>P + √f<sub>d</sub>D, with f<sub>s</sub> + f<sub>p</sub> + f<sub>d</sub> = 1. The density-only mixture is
+
+<p><strong>ρ<sub>mix</sub> = f<sub>s</sub>&#124;S&#124;² + f<sub>p</sub>&#124;P&#124;² + f<sub>d</sub>&#124;D&#124;².</strong></p>
+
+It removes interference **between the s, p, and d components**, while keeping the chosen shape within each group. In particular, P or D may itself combine several p or d basis functions whose internal interference remains. The difference between the hybrid density and this mixture consists of the three cross terms: 2√(f<sub>s</sub>f<sub>p</sub>)SP + 2√(f<sub>s</sub>f<sub>d</sub>)SD + 2√(f<sub>p</sub>f<sub>d</sub>)PD. Both densities are nonnegative and integrate to one for a normalized selected orbital, but they describe different states. Try moving a character slider to 100%: the two density panels agree everywhere, including for an oriented p or d combination.
+
 Character remains a sum of squared coefficients. For example, an octahedral hybrid can contain both d<sub>z²</sub> and d<sub>x²−y²</sub>; their squared coefficients add to its total d character. For each reference preset, including all unused functions completes an orthonormal nine-function basis, and its unweighted sum of orbital densities equals that of the original nine functions. This does not assign nine electrons to the basis.
 
 These constructions illustrate symmetry and interference. **A molecular shape does not establish substantial d hybridization.** The historical sp³d and sp³d² descriptions of main-group molecules such as PF₅ and SF₆ should not be taken as their bonding mechanism; ab initio studies support much smaller d-orbital contributions and descriptions involving polar or multicenter bonding. See [Noury, Silvi, and Gillespie's study of hypervalent bonding](https://doi.org/10.1021/ic011003v). In transition-metal compounds, the metal–ligand interactions, orbital energies, and occupations must be considered together, for example in [molecular-orbital and ligand-field treatments](https://doi.org/10.1103/PhysRevB.85.165113).
@@ -81,7 +87,7 @@ The s/p slider and first complete-set section use normalized hydrogenic **2s, 2p
 
 The 2s basis function has a radial node at 2a₀, where a₀ is the Bohr radius. A hybrid's nodes change through interference and need not retain that spherical node. This radial structure is one reason these surfaces can look different from simplified textbook hybrid lobes. A cutaway and the analytic slices in the s/p comparison help reveal the interior structure.
 
-Colors in the wavefunction view indicate positive and negative amplitude, not electrical charge. The wavefunction and hybrid-density panels use **the same boundary geometry**, colored differently. All three s/p comparison panels share one physical scale. The complete-set views have their own scale bars.
+Colors in the wavefunction view indicate positive and negative amplitude, not electrical charge. The wavefunction and hybrid-density panels use **the same boundary geometry**, colored differently. Each three-panel comparison shares one physical scale internally. The n = 3 comparison has its own 5a₀ scale bars and lower cutoffs, distinct from the n = 2 views.
 
 Surfaces are drawn at a selected fixed probability-density cutoff in a₀⁻³. They do **not** enclose a specified percentage of probability, and they are not hard orbital edges. Small features near a cutoff may be unresolved by the finite mesh. In From Wavefunction to Orbital and A Sense of Scale, each orbital uses its own cutoff chosen for approximately 90% probability. Here, the comparison uses one selected density cutoff without fixing the enclosed probability.
 
