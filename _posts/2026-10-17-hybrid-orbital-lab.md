@@ -6,12 +6,12 @@ date: 2026-10-17 12:00:00 -0500
 permalink: /hybrid-orbitals/
 topic: "Chemistry & teaching"
 tags: ["Teaching & outreach"]
-description: "Compare wavefunctions and densities, change s/p character, and explore complete sp, sp², sp³, dsp², sp³d, and sp³d² constructions."
+description: "Continuously vary s/p/d orbital character, compare wavefunctions and densities, and explore complete sp, sp², sp³, dsp², sp³d, and sp³d² constructions."
 ---
 
 What changes when we mix an s orbital with a p orbital? The answer depends on what we add. Adding **wavefunctions** allows constructive and destructive interference. Adding their **probability densities** leaves out that interference and gives a different distribution.
 
-The **Hybrid Orbital Lab** makes that distinction interactive. Move the s-character slider, reverse the relative sign, and compare three linked views of the same mathematical ingredients. Then explore how one hybrid fits into a complete sp, sp², or sp³ set. A further section brings d orbitals into the basis through square-planar dsp², trigonal-bipyramidal sp³d, and octahedral sp³d² constructions, with each orbital's s, p, and d character shown separately.
+The **Hybrid Orbital Lab** makes that distinction interactive. Move the s-character slider, reverse the relative sign, and compare three linked views of the same mathematical ingredients. Then explore how one hybrid fits into a complete sp, sp², or sp³ set. A further section brings d orbitals into the basis through square-planar dsp², trigonal-bipyramidal sp³d, and octahedral sp³d² constructions, with linked sliders to vary one orbital’s s, p, and d character.
 
 This continues the [Orbital Observatory]({{ '/2026/09/07/orbital-observatory.html' | relative_url }}) series, alongside [From Wavefunction to Orbital]({{ '/wavefunction-to-orbital/' | relative_url }}) and [A Sense of Scale]({{ '/orbital-scale/' | relative_url }}).
 
@@ -65,7 +65,11 @@ The new section uses nine normalized hydrogenic functions: **3s, three 3p functi
 
 The sp³d set is particularly instructive: **its five orbitals are not equivalent**. In the orthonormal convention used here, the three equatorial functions are sp² combinations, while the axial pair mixes p<sub>z</sub> with d<sub>z²</sub>. The set name counts the input functions; it does not mean every member contains every orbital type. The 20% s / 60% p / 20% d composition is the average across all five, not the composition of each one. The coefficient convention follows [Wannier90's explicit hybrid table](https://wannier90.readthedocs.io/en/latest/user_guide/wannier90/projections/#hybrids); the display uses hydrogenic n = 3 radial functions rather than calculating Wannier functions.
 
-Character remains a sum of squared coefficients. For example, an octahedral hybrid can contain both d<sub>z²</sub> and d<sub>x²−y²</sub>; their squared coefficients add to its total d character. Including all unused functions completes an orthonormal nine-function basis, and its unweighted sum of orbital densities equals that of the original nine functions. This does not assign nine electrons to the basis.
+The three linked character sliders let you change a selected orbital continuously while keeping the total at 100%. Moving one proportionally rebalances the other two; if both are zero, they share the remainder equally. **Restore selected orbital** returns to the exact preset. The sliders edit one orbital, so an overlay must first be changed to an individual selection.
+
+During a scan, the selected reference supplies fixed normalized s, p, and d components, including their internal signs. Their weights are the square roots of the character fractions. If a component is absent from the reference, the editor explicitly supplies positive 3s, 3p<sub>z</sub>, or 3d<sub>z²</sub>, as appropriate. A custom orbital remains normalized, but substituting it into the reference set would generally break orthogonality. The original complete sets remain available unchanged.
+
+Character remains a sum of squared coefficients. For example, an octahedral hybrid can contain both d<sub>z²</sub> and d<sub>x²−y²</sub>; their squared coefficients add to its total d character. For each reference preset, including all unused functions completes an orthonormal nine-function basis, and its unweighted sum of orbital densities equals that of the original nine functions. This does not assign nine electrons to the basis.
 
 These constructions illustrate symmetry and interference. **A molecular shape does not establish substantial d hybridization.** The historical sp³d and sp³d² descriptions of main-group molecules such as PF₅ and SF₆ should not be taken as their bonding mechanism; ab initio studies support much smaller d-orbital contributions and descriptions involving polar or multicenter bonding. See [Noury, Silvi, and Gillespie's study of hypervalent bonding](https://doi.org/10.1021/ic011003v). In transition-metal compounds, the metal–ligand interactions, orbital energies, and occupations must be considered together, for example in [molecular-orbital and ligand-field treatments](https://doi.org/10.1103/PhysRevB.85.165113).
 
@@ -73,7 +77,7 @@ The n = 3 basis also retains radial structure: 3s has two radial nodes, 3p has o
 
 ## What this model represents
 
-The slider and first complete-set section use normalized hydrogenic **2s, 2pₓ, 2pᵧ, and 2p<sub>z</sub> at Z = 1**; the d-containing section uses the separate n = 3 basis described above. Both use a fixed-nucleus, nonrelativistic one-electron model. Functions within a given n shell are degenerate in this model, which does not establish equal orbital energies in a many-electron atom or molecule. The slider scans coefficients; it is not a movie of an atom forming a bond, an excitation, or a chemical reaction. The display illustrates the mathematics of hybridization and does not calculate carbon bonding orbitals, molecular energies, or bond strengths.
+The s/p slider and first complete-set section use normalized hydrogenic **2s, 2pₓ, 2pᵧ, and 2p<sub>z</sub> at Z = 1**; the d-containing section uses the separate n = 3 basis described above. Both use a fixed-nucleus, nonrelativistic one-electron model. Functions within a given n shell are degenerate in this model, which does not establish equal orbital energies in a many-electron atom or molecule. The slider scans coefficients; it is not a movie of an atom forming a bond, an excitation, or a chemical reaction. The display illustrates the mathematics of hybridization and does not calculate carbon bonding orbitals, molecular energies, or bond strengths.
 
 The 2s basis function has a radial node at 2a₀, where a₀ is the Bohr radius. A hybrid's nodes change through interference and need not retain that spherical node. This radial structure is one reason these surfaces can look different from simplified textbook hybrid lobes. A cutaway and the analytic slices in the s/p comparison help reveal the interior structure.
 

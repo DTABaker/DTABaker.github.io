@@ -24,6 +24,14 @@
 @media(max-width:1000px){.d-workspace{grid-template-columns:265px minmax(0,1fr)}.d-sidebar{padding:21px}.d-toolbar{gap:10px;padding:16px}.d-viewport{height:420px}}
 @media(max-width:750px){.d-workspace{grid-template-columns:1fr}.d-sidebar{border-right:0;border-bottom:1px solid var(--line)}.d-explanation-grid{grid-template-columns:1fr;gap:0}.d-construction-note{padding:10px 0 25px}.d-viewport{height:360px}.d-context{padding:15px 17px}.d-toolbar{gap:10px}.d-coefficients,.d-model{font-size:12px}}
 
+/* Linked s/p/d controls edit one normalized orbital. */
+.d-mixer{padding:24px 28px;background:white;border:1px solid var(--line);border-radius:var(--radius);margin:0 0 22px}.d-mixer-heading{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:20px}.d-mixer-heading .eyebrow{margin-bottom:7px;font-size:9px}.d-mixer-heading h3{margin:0;font-size:23px}.d-mix-badge{padding:7px 10px;border:1px solid var(--line);border-radius:5px;font-size:11px;color:var(--accent);white-space:nowrap}.d-mix-badge.custom{background:#e7f1ed;border-color:#aecfc1}.d-mix-sliders{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}.d-mix-sliders label{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600;margin-bottom:12px}.d-mix-sliders output{font-size:23px;font-weight:500;font-variant-numeric:tabular-nums}.d-mix-sliders .range-ends{margin-bottom:4px}#d-p-character{accent-color:var(--density)}#d-d-character{accent-color:var(--amber)}.d-mix-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:14px;font-size:11px}.d-mix-actions>span:first-child{font-weight:650;color:var(--accent)}#d-mix-state{color:var(--muted)}.d-mix-details{margin-top:15px;padding-top:14px;border-top:1px solid var(--line);font-size:12px}.d-mix-details p{font-size:12px;color:var(--muted)}.d-mix-details .math-line{font-family:Cambria,Georgia,serif;font-size:16px;color:var(--ink)}.d-mix-sliders input:disabled{opacity:.45;cursor:default}button:disabled{cursor:default;opacity:.5}.d-coefficients tbody tr.custom-row{background:#d8ece1;color:var(--ink)}
+@media(max-width:650px){.d-mixer{padding:20px}.d-mixer-heading{align-items:start;gap:12px}.d-mixer-heading h3{font-size:21px}.d-mix-badge{font-size:9px;padding:6px}.d-mix-sliders{grid-template-columns:1fr;gap:14px}.d-mix-sliders label{margin-bottom:6px}.d-mix-sliders output{font-size:21px}.d-mix-actions{gap:10px}}
+
+/* Keep the character sliders beside the 3D view on a wide screen. */
+.d-sidebar .d-mixer{padding:0;border:0;border-radius:0;margin:22px 0 0}.d-sidebar .d-mixer-heading{display:block;margin-bottom:15px}.d-sidebar .d-mixer-heading .eyebrow{display:none}.d-sidebar .d-mixer-heading h3{font-size:18px;letter-spacing:-.3px;margin-bottom:9px}.d-sidebar .d-mix-badge{display:inline-block;padding:4px 7px;font-size:10px}.d-sidebar .d-mix-sliders{grid-template-columns:1fr;gap:10px}.d-sidebar .d-mix-sliders label{font-size:11px;margin-bottom:5px}.d-sidebar .d-mix-sliders output{font-size:19px}.d-sidebar .d-mix-sliders .range-ends{margin:0;font-size:9px}.d-sidebar .d-mix-actions{gap:8px;margin-top:12px}.d-sidebar .d-mix-actions #d-mix-state{display:block;width:100%;font-size:10px}.d-sidebar .d-mix-details{font-size:11px}.d-sidebar .d-mix-details p{font-size:11px;overflow-wrap:anywhere}.d-sidebar .d-mix-details .math-line{font-size:14px}.d-section[data-selection="single"] .d-character{display:none}.d-main .d-viewport{height:600px}
+@media(max-width:750px){.d-main .d-viewport{height:380px}.d-sidebar .d-mix-sliders{gap:13px}.d-sidebar .d-mixer-heading{display:flex;align-items:center}.d-sidebar .d-mixer-heading h3{margin:0}.d-sidebar .d-mix-badge{white-space:normal}.d-sidebar .d-mix-actions #d-mix-state{width:auto}}
+
 </style>
 <script id="three-license" type="text/plain">
 The MIT License
@@ -148,6 +156,17 @@ THE SOFTWARE.
           <h3 id="d-set-title">Square planar</h3><p id="d-set-description">Four hybrids and five unused basis orbitals.</p>
           <label for="d-selection">Inspect a d-section orbital</label><select id="d-selection"><option value="0">Preparing orbitals…</option></select>
           <label class="check set-unused"><input type="checkbox" id="d-unused">Include unused orbitals in overlay</label>
+      <div class="d-mixer" aria-labelledby="d-mixer-heading">
+        <div class="d-mixer-heading"><div><span class="eyebrow">CHANGE ONE ORBITAL</span><h3 id="d-mixer-heading">Vary the s, p, and d character</h3></div><span id="d-mix-badge" class="d-mix-badge">Preset orbital</span></div>
+        <div class="d-mix-sliders">
+          <div><label for="d-s-character">s character <output id="d-s-control-value" for="d-s-character">25%</output></label><input id="d-s-character" type="range" min="0" max="100" step="0.1" value="25" aria-describedby="d-mix-help"><div class="range-ends"><span>0%</span><span>100%</span></div></div>
+          <div><label for="d-p-character">p character <output id="d-p-control-value" for="d-p-character">50%</output></label><input id="d-p-character" type="range" min="0" max="100" step="0.1" value="50" aria-describedby="d-mix-help"><div class="range-ends"><span>0%</span><span>100%</span></div></div>
+          <div><label for="d-d-character">d character <output id="d-d-control-value" for="d-d-character">25%</output></label><input id="d-d-character" type="range" min="0" max="100" step="0.1" value="25" aria-describedby="d-mix-help"><div class="range-ends"><span>0%</span><span>100%</span></div></div>
+        </div>
+        <div class="d-mix-actions"><span id="d-mix-total">Total: 100%</span><button id="d-restore" class="quiet" disabled>Restore selected orbital</button><span id="d-mix-state">Choose an orbital below, then move a slider.</span></div>
+        <p id="d-mix-help" class="helper">The three percentages total 100%. Moving one rescales the other two proportionally; if both are zero, they share the remainder equally. Sliders vary one normalized orbital, not an entire orthonormal set. Displayed percentages are rounded.</p>
+        <details class="d-mix-details"><summary>Which s, p, and d components am I mixing?</summary><p id="d-component-source"></p><p id="d-component-formula" class="math-line"></p><p id="d-component-definitions"></p><p id="d-component-fallback"></p><p>The normalized component shapes and their signs stay fixed as character changes, even when a component reaches zero. The weights multiplying S, P, and D are square roots of their character fractions. This is a coefficient scan, not a time evolution or a molecular bonding calculation.</p></details>
+      </div>
           <div class="d-character"><span id="d-character-label">Selected orbital character</span><div class="d-character-bar" aria-hidden="true"><i id="d-s-bar"></i><i id="d-p-bar"></i><i id="d-d-bar"></i></div><dl><div><dt>s</dt><dd id="d-s-percent">25%</dd></div><div><dt>p</dt><dd id="d-p-percent">50%</dd></div><div><dt>d</dt><dd id="d-d-percent">25%</dd></div></dl></div>
           <p id="d-selected-description" class="helper"></p><p class="helper">Select one orbital to see its lobes clearly. An overlay shows separate orbitals; it does not add their wavefunctions or represent molecular electron density.</p>
         </div>
@@ -161,9 +180,9 @@ THE SOFTWARE.
       </div>
       <div class="d-explanation-grid">
         <div class="d-construction-note"><span class="eyebrow">READ THE CONSTRUCTION</span><h3 id="d-note-title">Four equivalent hybrids</h3><p id="d-note-body"></p><p id="d-angle-text"></p><p class="helper">Directions describe the symmetry of the coefficient construction. They are not predicted bond angles or guaranteed lobe maxima at every radius: the 3s and 3p radial factors change sign.</p></div>
-        <div class="set-invariant"><span class="eyebrow">KEEP THE WHOLE SPACE</span><h3>Nine in. Nine out.</h3><p id="d-count-note"></p><p>Including all unused orbitals gives an orthonormal nine-function basis. Its unweighted sum of squared amplitudes equals that of the original 3s, three 3p, and five 3d functions.</p><output id="d-orthogonality">Checking coefficients…</output><p class="helper">This identity describes a basis transformation, not nine electrons or a molecule’s occupied orbitals.</p></div>
+        <div class="set-invariant"><span class="eyebrow">KEEP THE WHOLE SPACE</span><h3 id="d-invariant-heading">Nine in. Nine out.</h3><p id="d-count-note"></p><p id="d-invariant-copy">Including all unused orbitals gives an orthonormal nine-function basis. Its unweighted sum of squared amplitudes equals that of the original 3s, three 3p, and five 3d functions.</p><output id="d-orthogonality">Checking coefficients…</output><p class="helper">This identity describes a basis transformation, not nine electrons or a molecule’s occupied orbitals.</p></div>
       </div>
-      <details class="d-coefficients"><summary>Inspect all nine coefficient rows</summary><p>Columns use normalized 3s, 3p, and real 3d functions. Character is the sum of squared coefficients within each s, p, or d group. Values here are rounded; calculations retain full precision.</p><div class="table-scroll"><table id="d-coefficient-table"><thead><tr><th scope="col">Orbital</th><th scope="col">3s</th><th scope="col">3pₓ</th><th scope="col">3pᵧ</th><th scope="col">3p_z</th><th scope="col">3dₓᵧ</th><th scope="col">3dₓz</th><th scope="col">3dᵧz</th><th scope="col">3dₓ²₋ᵧ²</th><th scope="col">3d_z²</th></tr></thead><tbody></tbody></table></div></details>
+      <details class="d-coefficients"><summary id="d-coefficient-summary">Inspect all nine coefficient rows</summary><p id="d-coefficient-scope">The nine rows belong to the selected reference set.</p><p>Columns use normalized 3s, 3p, and real 3d functions. Character is the sum of squared coefficients within each s, p, or d group. Values here are rounded; calculations retain full precision.</p><div class="table-scroll"><table id="d-coefficient-table"><thead><tr><th scope="col">Orbital</th><th scope="col">3s</th><th scope="col">3pₓ</th><th scope="col">3pᵧ</th><th scope="col">3p_z</th><th scope="col">3dₓᵧ</th><th scope="col">3dₓz</th><th scope="col">3dᵧz</th><th scope="col">3dₓ²₋ᵧ²</th><th scope="col">3d_z²</th></tr></thead><tbody></tbody></table></div></details>
       <details class="d-model"><summary>Model, radial nodes, and chemical interpretation</summary><p>The nine functions are real hydrogenic n = 3 states at Z = 1 in the nonrelativistic, fixed-nucleus model. They are mathematically degenerate in this model; that does not establish equal orbital energies in a many-electron atom or molecule. This section does not model the 3d/4s/4p shell ordering of a transition metal or distinguish inner- and outer-orbital bonding schemes.</p><p>The 3s basis function has two radial nodes, 3p has one at r = 6 a₀, and 3d has none. These radial factors are retained, so the full surfaces can differ markedly from textbook angular-lobe cartoons. Hybrid nodes change by interference. The finite triangle mesh can miss very small features near a node or cutoff.</p><p>The sp³d and sp³d² coefficients follow the constructions tabulated in <a href="https://wannier90.readthedocs.io/en/latest/user_guide/wannier90/projections/#hybrids" target="_blank" rel="noopener">Wannier90’s official documentation</a>. The display combines those coefficients with the hydrogenic n = 3 radial functions; it is not a Wannier-function calculation. The square-planar dsp² rows use the orthonormal combination of s, pₓ, pᵧ, and dₓ²₋ᵧ².</p><p>For the distinction between hypercoordination and d-hybrid bonding, see <a href="https://doi.org/10.1021/ic011003v" target="_blank" rel="noopener">Noury, Silvi, and Gillespie, “Chemical Bonding in Hypervalent Molecules: Is the Octet Rule Relevant?”</a>. Adding d-type basis functions in a calculation is also not, by itself, evidence for substantial occupied atomic d-orbital participation.</p></details>
     </section>
 
@@ -172,7 +191,7 @@ THE SOFTWARE.
       <div class="model-details"><details open><summary>2s/2p basis functions and units</summary><p>Fixed nucleus, one electron, Z = 1; nonrelativistic Coulomb model. In coordinates measured in a₀, with r = √(x² + y² + z²) and C = 1/(4√(2π)):</p><p class="math-line">φ₂ₛ = C(2 − r)e<sup>−r/2</sup><br>φ₂ₚₓ = Cxe<sup>−r/2</sup>, and likewise for y and z.</p><p>Wavefunctions have units a₀<sup>−3/2</sup>; densities have units a₀<sup>−3</sup>. The pure 2s radial node is at r = 2 a₀. Hybridization changes the zero set through interference.</p></details><details><summary>What the surfaces and colors mean</summary><p>The 3D surfaces use the selected density cutoff. They do not enclose a prescribed percentage of probability and are not hard orbital edges. The three comparison panels use the same cutoff and spatial scale. The larger complete-set view has its own visible scale bar. In A, the same boundary is split by positive and negative wavefunction sign. B and C show nonnegative densities. The finite triangle mesh approximates curved boundaries and can miss very small features. The slices and probe evaluate the analytic functions independently of the mesh.</p><p>Slice density colors use √ρ on one fixed scale. The signed-amplitude slice uses a fixed diverging scale. The cutaway affects only the 3D rendering, not the orbital or the full cross-sections.</p></details><details><summary>Single-orbital composition and complete sets</summary><p>The continuous slider changes one orbital’s coefficients. The complete-set presets construct orthonormal bases with fixed compositions. Four equivalent orthogonal s/p hybrids have 25% s character each; varying all four equally at fixed tetrahedral directions would generally break orthogonality.</p><p>The label sp² describes a hybrid constructed within an s-plus-two-p subspace. Its p component can be expressed as a single oriented p function. A single sp²-character orbital alone does not specify a trigonal set.</p></details><details><summary>Sources and browser use</summary><ul><li><a href="https://books.physics.oregonstate.edu/GMM/hydroform.html" target="_blank" rel="noopener">Oregon State: hydrogen radial functions and spherical harmonics</a></li><li><a href="https://www.pci.tu-bs.de/aggericke/PC4e/Kap_II/Hybride/Konstruktion.htm" target="_blank" rel="noopener">TU Braunschweig: normalized hybrid-orbital constructions</a></li><li><a href="https://www.falstad.com/qmatom/directions.html" target="_blank" rel="noopener">Related prior art: Falstad’s orbital viewer</a></li><li><a href="https://doi.org/10.1021/acs.jchemed.0c00847" target="_blank" rel="noopener">Related prior art: The Hybridization Explorer</a></li></ul><p>This display runs in your browser with bundled code. It sends no measurements, has no analytics, and does not save your settings. External reference links open only when selected. Three.js is distributed under its included MIT license.</p></details></div>
     </section>
   </main>
-  <footer><span>ORBITAL OBSERVATORY <b>/</b> HYBRID ORBITAL LAB</span><span>v1.1.0 · Idealized 2s/2p and 3s/3p/3d models</span></footer>
+  <footer><span>ORBITAL OBSERVATORY <b>/</b> HYBRID ORBITAL LAB</span><span>v1.2.0 · Idealized 2s/2p and 3s/3p/3d models</span></footer>
   <div id="status" class="sr-only" role="status" aria-live="polite">Preparing the orbital views.</div>
   <noscript><p class="noscript">JavaScript is required to operate this display. Enable it and reload.</p></noscript>
   <script>
@@ -985,6 +1004,115 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
 })(typeof window!=='undefined'?window:globalThis);
 
 </script><script>
+/*
+ * Continuous character of one normalized orbital in the orthonormal n=3 basis.
+ * Fractions are squared coefficient norms, not coefficient amplitudes.
+ * The three linked fractions have two independent degrees of freedom.
+ * Altering one orbital does not construct a new complete orthonormal set.
+ */
+(function(root, factory) {
+  'use strict';
+  var api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  if (root) root.HybridDCharacter = api;
+}(typeof globalThis !== 'undefined' ? globalThis : this, function() {
+  'use strict';
+  var keys = ['s', 'p', 'd'];
+  var ranges = {s:[0,1], p:[1,4], d:[4,9]};
+  var fallbackIndex = {s:0, p:3, d:8};
+  var fallbackLabels = {s:'3s', p:'3pz', d:'3dz2'};
+
+  function fractions(input) {
+    if (!input || typeof input !== 'object') throw new TypeError('Expected s, p, and d fractions.');
+    keys.forEach(function(key) {
+      if (!Number.isFinite(input[key]) || input[key] < 0) throw new RangeError('Character fractions must be finite and nonnegative.');
+    });
+    // Scale before summing so valid finite inputs cannot overflow.
+    var max = Math.max(input.s, input.p, input.d);
+    if (max === 0) throw new RangeError('At least one character fraction must be positive.');
+    var s = input.s / max, p = input.p / max, d = input.d / max;
+    var sum = s + p + d;
+    return {s:s/sum, p:p/sum, d:d/sum};
+  }
+
+  function redistribute(input, key, value) {
+    if (keys.indexOf(key) < 0) throw new RangeError('Character key must be s, p, or d.');
+    if (!Number.isFinite(value) || value < 0 || value > 1) throw new RangeError('Slider value must lie between zero and one.');
+    var next = fractions(input);
+    var other = keys.filter(function(item) { return item !== key; });
+    // Work from the original values: even subnormal nonzero groups should keep
+    // their ratio when the edited group previously dominated the normalization.
+    var max = Math.max(input[other[0]], input[other[1]]);
+    var ratio = .5, secondRatio = .5;
+    if (max > 0) {
+      var a = input[other[0]] / max, b = input[other[1]] / max;
+      ratio = a / (a + b);
+      secondRatio = b / (a + b);
+    }
+    var remainder = 1 - value;
+    next[key] = value;
+    next[other[0]] = remainder * ratio;
+    next[other[1]] = remainder * secondRatio;
+    return next;
+  }
+
+  function components(template) {
+    if ((!Array.isArray(template) && !ArrayBuffer.isView(template)) || template.length !== 9) throw new TypeError('Expected nine real coefficients.');
+    var maximum = 0;
+    for (var i = 0; i < 9; i++) {
+      if (!Number.isFinite(template[i])) throw new TypeError('Template coefficients must be finite real numbers.');
+      maximum = Math.max(maximum, Math.abs(template[i]));
+    }
+    if (maximum === 0) throw new RangeError('The template must contain a nonzero coefficient.');
+    var scaled = Array.from(template, function(value) { return value / maximum; });
+    var totalNorm = Math.hypot.apply(Math, scaled);
+    var vectors = {}, character = {}, fallback = {};
+    keys.forEach(function(key) {
+      var start = ranges[key][0], end = ranges[key][1];
+      var groupMax = 0, vector = new Array(9).fill(0);
+      for (var j = start; j < end; j++) groupMax = Math.max(groupMax, Math.abs(template[j]));
+      fallback[key] = groupMax === 0;
+      if (fallback[key]) {
+        vector[fallbackIndex[key]] = 1;
+        character[key] = 0;
+      } else {
+        // Normalize each subgroup on its own scale. This preserves its signed
+        // direction even when its weight is too small to survive squaring.
+        var groupScaled = [];
+        for (var k = start; k < end; k++) groupScaled.push(template[k] / groupMax);
+        var groupNorm = Math.hypot.apply(Math, groupScaled);
+        for (var m = start; m < end; m++) vector[m] = groupScaled[m-start] / groupNorm;
+        var weight = (groupMax / maximum) * groupNorm / totalNorm;
+        character[key] = weight * weight;
+      }
+      vectors[key] = vector;
+    });
+    return {
+      vectors:vectors,
+      character:fractions(character),
+      fallback:fallback,
+      fallbackLabels:{s:fallbackLabels.s, p:fallbackLabels.p, d:fallbackLabels.d}
+    };
+  }
+
+  function mix(template, input, options) {
+    var normalized = fractions(input), parts = components(template);
+    var pSign = options && options.pSign !== undefined ? options.pSign : 1;
+    var dSign = options && options.dSign !== undefined ? options.dSign : 1;
+    if ((pSign !== 1 && pSign !== -1) || (dSign !== 1 && dSign !== -1)) throw new RangeError('Relative signs must be +1 or -1.');
+    var coefficients = new Array(9).fill(0);
+    keys.forEach(function(key) {
+      var amplitude = Math.sqrt(normalized[key]) * (key === 'p' ? pSign : key === 'd' ? dSign : 1);
+      var start = ranges[key][0], end = ranges[key][1];
+      for (var i = start; i < end; i++) coefficients[i] = amplitude * parts.vectors[key][i];
+    });
+    return {coefficients:coefficients, character:normalized, components:parts, relativeSigns:{p:pSign,d:dSign}};
+  }
+
+  return Object.freeze({version:'1.0.0', redistribute:redistribute, components:components, mix:mix});
+}));
+
+</script><script>
 /* UI and cross-sections for the local Hybrid Orbital Lab. No network or persistence. */
 (() => {
   'use strict';
@@ -1124,37 +1252,75 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
 /* Independent controls for the nine-function hydrogenic n=3 illustration. */
 (function(){
   'use strict';
-  const P=window.HybridDPhysics, $=id=>document.getElementById(id);
+  const P=window.HybridDPhysics,C=window.HybridDCharacter, $=id=>document.getElementById(id);
   const section=$('d-hybrids');
-  const state={type:'dsp2',selection:'0',unused:false,mode:'phase',threshold:0.000025,cutaway:false};
+  const state={type:'dsp2',selection:'0',unused:false,mode:'phase',threshold:0.000025,cutaway:false,custom:false,fractions:null};
   const notes={
     dsp2:{title:'Four equivalent hybrids',body:'Each hybrid contains 25% s, 50% p, and 25% d character. The construction mixes s, pₓ, pᵧ, and dₓ²₋ᵧ²; the other five basis functions remain unused.',angles:'Reference directions: ±x and ±y in the xy plane. Adjacent directions are 90° apart; opposite directions are 180° apart.'},
     sp3d:{title:'Two kinds of hybrid in one set',body:'In this orthonormal convention, each equatorial hybrid has 33⅓% s, 66⅔% p, and 0% d character. Each axial hybrid has 0% s, 50% p, and 50% d character. The 20% s / 60% p / 20% d composition is only the average over all five hybrids.',angles:'Reference directions: three in the xy plane, 120° apart, and two along ±z. Axial–equatorial angles are 90°; the two axial directions are 180° apart.'},
     sp3d2:{title:'Six equivalent hybrids',body:'Each hybrid contains 16⅔% s, 50% p, and 33⅓% d character. The construction uses s, all three p functions, dₓ²₋ᵧ², and d_z². The dₓᵧ, dₓz, and dᵧz functions remain unused.',angles:'Reference directions: ±x, ±y, and ±z. Adjacent directions are 90° apart; opposite directions are 180° apart.'}
   };
-  let renderer,revision=0;
+  let renderer,revision=0,renderTimer;
   const percent=value=>(100*value).toFixed(1).replace(/\.0$/,'')+'%';
   const coefficient=value=>Math.abs(value)<1e-12?'0':value.toFixed(4).replace('-','−');
-  function displayed(set){return state.selection==='all'?(state.unused?set.orbitals:set.hybrids):[set.orbitals[Number(state.selection)]];}
+  function displayed(set){
+    if(state.selection==='all')return state.unused?set.orbitals:set.hybrids;
+    const reference=set.orbitals[Number(state.selection)];
+    if(!state.custom)return [reference];
+    const mixed=C.mix(reference.coefficients,state.fractions);
+    return [{label:'Custom orbital',coefficients:mixed.coefficients,character:mixed.character,group:'custom'}];
+  }
+  function componentText(vector){
+    return vector.map((value,index)=>({value,index})).filter(({value})=>Math.abs(value)>1e-12).map(({value,index},term)=>
+      (value<0?'−':term?' + ':'')+(value<0&&term?' ':'')+(Math.abs(Math.abs(value)-1)<1e-12?'':Math.abs(value).toFixed(4)+' · ')+P.basisLabels[index]).join(' ');
+  }
+  function mixControls(set,fractions){
+    const overlay=state.selection==='all';
+    section.dataset.selection=overlay?'overlay':'single';
+    for(const key of ['s','p','d']){
+      const slider=$('d-'+key+'-character');slider.disabled=overlay;slider.value=100*fractions[key];slider.setAttribute('aria-valuetext',percent(fractions[key])+' '+key+' character');
+      $('d-'+key+'-control-value').textContent=percent(fractions[key]);
+    }
+    $('d-mix-total').textContent='Total: 100%';
+    $('d-mix-badge').textContent=overlay?'Overlay mean':state.custom?'Custom orbital':'Preset orbital';
+    $('d-mix-badge').classList.toggle('custom',state.custom);
+    $('d-restore').disabled=!state.custom;
+    $('d-mix-state').textContent=overlay?'Select one orbital below to enable the sliders.':state.custom?'One normalized orbital; the reference set is unchanged.':'Move a slider to create a custom orbital.';
+    document.querySelector('.d-mix-details').hidden=overlay;
+    if(overlay)return;
+    const reference=set.orbitals[Number(state.selection)],components=C.components(reference.coefficients);
+    $('d-component-source').textContent='Reference: '+set.label+' · '+reference.label+'. S, P, and D below are normalized components in this reference frame.';
+    $('d-component-formula').textContent='h = '+Math.sqrt(fractions.s).toFixed(4)+' S + '+Math.sqrt(fractions.p).toFixed(4)+' P + '+Math.sqrt(fractions.d).toFixed(4)+' D';
+    $('d-component-definitions').textContent=['s','p','d'].map(key=>key.toUpperCase()+' = '+componentText(components.vectors[key])).join('; ')+'.';
+    const absent=['s','p','d'].filter(key=>components.fallback[key]);
+    $('d-component-fallback').textContent=absent.length?'Absent from the reference: '+absent.map(key=>key+' character').join(', ')+'. For these components, the editor uses '+absent.map(key=>({s:'+3s',p:'+3p_z',d:'+3d_z²'})[key]).join(', ')+', respectively. These shapes are held fixed when you add that character.':'All three component shapes come from the reference orbital. Their internal coefficient ratios and signs stay fixed.';
+  }
   function describe(){
     const set=P.sets(state.type),note=notes[state.type],items=displayed(set);
-    $('d-set-title').textContent=set.geometry;
-    $('d-set-description').textContent=set.hybrids.length+' hybrids and '+set.unused.length+' unused basis orbitals.';
+    $('d-set-title').textContent=state.custom?'Custom orbital':set.geometry;
+    $('d-set-description').textContent=state.custom?'Started from '+set.label+' · '+set.orbitals[Number(state.selection)].label+'.':set.hybrids.length+' hybrids and '+set.unused.length+' unused basis orbitals.';
     $('d-unused').disabled=state.selection!=='all';
     $('d-character-label').textContent=state.selection==='all'?'Mean character of displayed orbitals':'Selected orbital character';
     const fractions={s:0,p:0,d:0};
     for(const item of items)for(const key of ['s','p','d'])fractions[key]+=item.character[key]/items.length;
     for(const key of ['s','p','d']){$('d-'+key+'-percent').textContent=percent(fractions[key]);$('d-'+key+'-bar').style.width=(100*fractions[key])+'%';}
-    $('d-selected-description').textContent=state.selection==='all'?'Arithmetic mean over '+items.length+' separate orbitals; individual rows can have different compositions.':items[0].label+' · '+(items[0].group==='unused'?'unused original basis function':items[0].group+' hybrid')+'.';
-    $('d-note-title').textContent=note.title;$('d-note-body').textContent=note.body;$('d-angle-text').textContent=note.angles;
-    $('d-count-note').textContent=set.hybrids.length+' hybrids + '+set.unused.length+' unused orbitals = all nine dimensions of this n = 3 basis.';
+    mixControls(set,fractions);
+    $('d-selected-description').textContent=state.custom?'Custom normalized orbital. Its composition does not define a new molecular geometry.':state.selection==='all'?'Arithmetic mean over '+items.length+' separate orbitals; individual rows can have different compositions.':items[0].label+' · '+(items[0].group==='unused'?'unused original basis function':items[0].group+' hybrid')+'.';
+    $('d-note-title').textContent=(state.custom?'Reference set: ':'')+note.title;$('d-note-body').textContent=note.body;$('d-angle-text').textContent=(state.custom?'For the unchanged reference set only. ':'')+note.angles;
+    $('d-invariant-heading').textContent=state.custom?'One normalized orbital.':'Nine in. Nine out.';
+    $('d-count-note').textContent=state.custom?'The sliders change the displayed orbital. The '+set.label+' reference basis still contains '+set.hybrids.length+' hybrids and '+set.unused.length+' unused orbitals.':set.hybrids.length+' hybrids + '+set.unused.length+' unused orbitals = all nine dimensions of this n = 3 basis.';
+    $('d-invariant-copy').textContent=state.custom?'The custom orbital has unit norm. Substituting it for a reference orbital generally breaks the set’s orthogonality and summed-density identity. Restore the selected orbital to return to the preset.':'Including all unused orbitals gives an orthonormal nine-function basis. Its unweighted sum of squared amplitudes equals that of the original 3s, three 3p, and five 3d functions.';
     let error=0;for(let i=0;i<9;i++)for(let j=0;j<9;j++)error=Math.max(error,Math.abs(P.innerProduct(set.all[i],set.all[j])-(i===j?1:0)));
-    $('d-orthogonality').textContent='Largest coefficient overlap error: '+error.toExponential(1)+' (dimensionless).';
+    $('d-orthogonality').textContent=(state.custom?'Custom norm error: '+Math.abs(P.innerProduct(items[0].coefficients,items[0].coefficients)-1).toExponential(1)+'; reference overlap error: ':'Largest coefficient overlap error: ')+error.toExponential(1)+' (dimensionless).';
+    $('d-coefficient-summary').textContent=state.custom?'Inspect custom and reference coefficients':'Inspect all nine coefficient rows';
+    $('d-coefficient-scope').textContent=state.custom?'First row: the displayed custom orbital. Following nine rows: the unchanged reference basis; the ten rows together are not an orthonormal set.':'The nine rows belong to the selected reference set.';
     const body=$('d-coefficient-table').tBodies[0];body.replaceChildren();
-    set.orbitals.forEach((item,index)=>{
+    const tableItems=state.custom?items.concat(set.orbitals):set.orbitals;
+    tableItems.forEach((item,index)=>{
       const row=document.createElement('tr');
       if(item.group==='unused')row.classList.add('unused-row');
-      if(state.selection===String(index))row.classList.add('selected-row');
+      if(item.group==='custom')row.classList.add('custom-row');
+      if(!state.custom&&state.selection===String(index))row.classList.add('selected-row');
       const label=document.createElement('th');label.scope='row';label.textContent=item.label+(item.group==='unused'?' · unused':'');row.append(label);
       item.coefficients.forEach(value=>{const cell=document.createElement('td');cell.textContent=coefficient(value);row.append(cell);});body.append(row);
     });
@@ -1168,27 +1334,35 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
     for(const [value,label]of [['all','Overlay all '+set.hybrids.length+' hybrids'],...set.orbitals.map((o,i)=>[String(i),o.label+(o.group==='unused'?' · unused':'')])]){const option=document.createElement('option');option.value=value;option.textContent=label;select.append(option);}
     select.value=state.selection;
   }
-  function update(){
+  function update(delay=0){
     const {set,items}=describe(),current=++revision;
-    section.dataset.ready='rendering';$('d-render-status').textContent='Drawing '+set.label+' surfaces…';
+    clearTimeout(renderTimer);
+    const drawingLabel=state.custom?'custom orbital':set.label;
+    section.dataset.ready='rendering';$('d-render-status').textContent='Drawing '+drawingLabel+' surfaces…';
     // Let the status paint before generating new meshes; discard superseded jobs.
-    requestAnimationFrame(()=>setTimeout(async()=>{
+    renderTimer=setTimeout(()=>requestAnimationFrame(async()=>{
       if(current!==revision)return;
       try{
-        const prepared=await window.HybridDIsosurface.prepare(items,state.mode,state.threshold,{isCurrent:()=>current===revision,onProgress:({completed,total})=>{if(current===revision)$('d-render-status').textContent='Drawing '+set.label+' surfaces · '+completed+' / '+total+' ready…';}});
+        const prepared=await window.HybridDIsosurface.prepare(items,state.mode,state.threshold,{isCurrent:()=>current===revision,onProgress:({completed,total})=>{if(current===revision)$('d-render-status').textContent='Drawing '+drawingLabel+' surfaces · '+completed+' / '+total+' ready…';}});
         if(!prepared.completed||current!==revision)return;
         renderer.setOrbitals(items.map(item=>({coefficients:item.coefficients,label:item.label,unused:state.selection==='all'&&item.group==='unused'})),{threshold:state.threshold,mode:state.mode,cutaway:state.cutaway});
         if(renderer.failed)throw new Error('WebGL is unavailable.');
         section.dataset.ready='true';
         $('d-render-status').textContent=items.length+' orbital'+(items.length===1?'':'s')+' displayed · '+(state.mode==='phase'?'ψ = ±√τ':'ρ = τ')+' · τ = '+state.threshold.toFixed(6)+' a₀⁻³.';
       }catch(error){if(current!==revision)return;section.dataset.ready='error';$('d-render-status').textContent='The 3D view could not be drawn. Coefficients and character remain available. '+error.message;console.error(error);}
-    },0));
+    }),delay);
   }
   try{
     renderer=new window.HybridRenderer($('d-view'),{label:'d-containing hydrogenic orbital',mode:'phase',meshProvider:window.HybridDIsosurface.meshFor,coefficientCount:9,halfSpan:24,axisExtent:21,gridExtent:24,scaleLength:5});
     choices();
-    document.querySelectorAll('[data-d-set]').forEach(button=>button.addEventListener('click',()=>{state.type=button.dataset.dSet;state.selection='0';choices();update();}));
-    $('d-selection').addEventListener('change',event=>{state.selection=event.target.value;update();});
+    document.querySelectorAll('[data-d-set]').forEach(button=>button.addEventListener('click',()=>{state.type=button.dataset.dSet;state.selection='0';state.custom=false;state.fractions=null;choices();update();}));
+    $('d-selection').addEventListener('change',event=>{state.selection=event.target.value;state.custom=false;state.fractions=null;update();});
+    for(const key of ['s','p','d'])$('d-'+key+'-character').addEventListener('input',event=>{
+      if(state.selection==='all')return;
+      const reference=P.sets(state.type).orbitals[Number(state.selection)];
+      state.fractions=C.redistribute(state.custom?state.fractions:reference.character,key,Number(event.target.value)/100);state.custom=true;update(120);
+    });
+    $('d-restore').addEventListener('click',()=>{state.custom=false;state.fractions=null;update();});
     $('d-unused').addEventListener('change',event=>{state.unused=event.target.checked;update();});
     $('d-mode').addEventListener('change',event=>{state.mode=event.target.value;update();});
     $('d-threshold').addEventListener('change',event=>{state.threshold=Number(event.target.value);update();});
