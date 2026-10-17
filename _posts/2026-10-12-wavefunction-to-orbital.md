@@ -15,6 +15,8 @@ The model includes all **16 Observatory orbitals**—1s, three 2p, five 3d, and 
 
 For a direct size comparison, open [Orbital Observatory: A Sense of Scale]({{ '/orbital-scale/' | relative_url }}). It puts the original sixteen orbitals on one common physical ruler and explains why increasing nuclear charge contracts a one-electron orbital.
 
+For orbital mixing and interference, explore [Orbital Observatory: How Orbitals Mix]({{ '/hybrid-orbitals/' | relative_url }}), with an s/p-character slider and complete sp, sp², and sp³ sets.
+
 <p><a href="{{ '/assets/wavefunction-to-orbital.html' | relative_url }}" target="_blank" rel="noopener">Open From Wavefunction to Orbital in a full window ↗</a></p>
 
 <iframe

@@ -1,5 +1,8 @@
 # Asset provenance
 
+- `assets/hybrid-orbital-lab.html`: Orbital Observatory: How Orbitals Mix, version 1.0.1, independently reviewed on 2026-10-17. Normalized hydrogenic 2s/2p functions at Z=1 support a continuous single-orbital character scan, coherent/incoherent density comparison, and complete orthonormal sp/sp2/sp3 sets. The fixed-cutoff surfaces use analytic edge-root refinement on a finite mesh; they do not enclose prescribed probabilities. Standalone SHA-256: `13fd92ef202d1108cc8501fdc2eb6d09b09884af02553a24f6d771d016f704dc`. Three.js r170 and its MIT notice are embedded; the existing `assets/THREE-LICENSE.txt` is preserved.
+- `assets/hybrid-orbital-lab-source.zip`: editable sources, portable display, reproducible standalone builder, independent mathematical checks, mesh tests, and numerical review. SHA-256: `de623d09fe462692cfc5bed6cea291274d382a7c4311cef14bbaff409fc8a5de`. The earlier interactive display assets are unchanged.
+
 - `assets/orbitals-to-scale.html`: Orbital Observatory: A Sense of Scale, reviewed in the Orbital - Education project on 2026-10-14. Sixteen hydrogenic states use one common physical scale with 1/Z contraction for one-electron ions. The preserved 488,520-triangle dataset, radial functions, unit conversions, controls, and responsive rendering have independent checks. Standalone SHA-256: `dd52891fe66106e5ef7285c3f24ce595be382a766ff54be4b3a84336de4822d0`. Three.js r170 and its MIT notice are embedded; `assets/THREE-LICENSE.txt` is retained.
 - `assets/orbital-scale-blog-package.zip`: portable model, editable source, minimum mathematical inputs, validation scripts/reports, and licenses. SHA-256: `6bda7994bf3e35ebf47f610b0a4998dd80eb942170d48e52ac89e34b11d7dc44`.
 

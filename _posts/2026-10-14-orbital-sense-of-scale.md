@@ -13,6 +13,8 @@ Orbital drawings often make every shape about the same size. That helps us compa
 
 This is a companion to [the original Orbital Observatory]({{ '/2026/09/07/orbital-observatory.html' | relative_url }}) and [From Wavefunction to Orbital]({{ '/wavefunction-to-orbital/' | relative_url }}). The original viewer emphasizes shape; the wavefunction model connects mathematical factors to a spatial distribution. This page makes physical size the comparison.
 
+For orbital mixing and interference, explore [Orbital Observatory: How Orbitals Mix]({{ '/hybrid-orbitals/' | relative_url }}), with an s/p-character slider and complete sp, sp², and sp³ sets.
+
 <p><a href="{{ '/assets/orbitals-to-scale.html' | relative_url }}" target="_blank" rel="noopener">Open A Sense of Scale in a full window ↗</a></p>
 
 <iframe

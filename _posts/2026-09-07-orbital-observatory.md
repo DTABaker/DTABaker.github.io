@@ -24,6 +24,8 @@ To compare physical extent with one shared ruler, visit [Orbital Observatory: A 
 
 For the mathematics behind the shapes, explore [From Wavefunction to Orbital]({{ '/wavefunction-to-orbital/' | relative_url }}): four linked views of radial functions, angular functions, cross-sections, and probability surfaces, including all sixteen Observatory orbitals and three radial-node examples.
 
+For orbital mixing and interference, explore [Orbital Observatory: How Orbitals Mix]({{ '/hybrid-orbitals/' | relative_url }}), with an s/p-character slider and complete sp, sp², and sp³ sets.
+
 Drag to rotate the display, then use **Inspect** to look at one orbital at a time. You can scroll or use the zoom buttons to move closer. With the viewer focused, the arrow keys rotate and the + and − keys zoom.
 
 <div class="orbital-embed">
