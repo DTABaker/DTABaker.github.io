@@ -34,6 +34,12 @@
 @media(max-width:750px){.d-sidebar{grid-template-columns:1fr;gap:22px}.d-sidebar .d-mixer{border-left:0;border-top:1px solid var(--line);padding:22px 0 0}.d-mix-sliders label{display:flex}.d-mix-sliders output{margin:0}.d-comparison-note{grid-template-columns:1fr;gap:12px;padding:20px}.d-try{border-left:0;border-top:1px solid #c4d4ca;padding:18px 0 0}.d-comparison-note .math-line{font-size:15px}}
 @media(max-width:650px){.d-main .d-viewport{height:310px}.d-comparison-grid .card-heading{min-height:0;padding:17px 14px 12px}.d-comparison-grid .card-description{min-height:0}.d-sidebar .d-mixer-heading h3{font-size:21px}.d-toolbar .cutoff-note{line-height:1.5}.d-comparison-grid .card-heading h3{font-size:16px}.d-comparison-grid .card-heading p{font-size:13px}}
 
+/* Analytic n=3 slices and shared spatial probe. */
+.d-slice-controls{display:flex;align-items:center;gap:22px;padding:0 20px 18px}.d-slice-controls>div{display:flex;align-items:center;gap:10px;flex-shrink:0}.d-slice-controls label{font-size:11px;font-weight:600}.d-slice-controls select{font-size:11px;min-height:34px;padding:6px 25px 6px 9px}.d-slice-controls p{font-size:11px;color:var(--muted);margin:0;line-height:1.6}.d-slice-wrap{padding:10px 12px 29px}.d-slice{height:245px}.d-probe-panel{grid-template-columns:1fr 1.65fr;gap:32px}.d-probe-panel>*{min-width:0}.d-probe-coordinates{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:14px 0}.d-probe-coordinates>div{min-width:0;flex:1 1 70px}.d-probe-coordinates label{display:block;font-size:10px;font-weight:600;margin-bottom:6px}.d-probe-coordinates input{width:100%;min-width:0;border:1px solid #b9ccc2;background:#fff;border-radius:6px;padding:8px;color:var(--ink);font-size:12px}.d-probe-coordinates button{min-height:34px}.d-probe-intro output,#d-probe-location{overflow-wrap:anywhere}.d-probe-panel .d-probe-amplitude{margin-top:10px;font-size:11px}.d-probe-amplitude>span{white-space:nowrap}.d-probe-formula{font-size:13px;font-weight:650;margin-bottom:18px;color:var(--ink)}.d-probe-values,.d-probe-terms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.d-probe-values>div,.d-probe-terms>div{min-width:0}.d-probe-values span,.d-probe-terms span{display:block;font-size:10px;color:var(--muted);margin-bottom:8px}.d-probe-values output{font:16px Consolas,monospace;white-space:nowrap}.d-probe-results>p:not(.d-probe-formula){font-size:11px;color:var(--muted);line-height:1.6;margin:15px 0 0}.d-probe-terms{border-top:1px solid #c5d4cb;margin-top:16px;padding-top:16px}.d-probe-terms output{font:13px Consolas,monospace}.d-probe-results .helper{margin-bottom:0}
+@media(max-width:1000px){.d-slice{height:220px}.d-probe-panel{grid-template-columns:1fr 1.5fr;gap:24px}.d-probe-values,.d-probe-terms{gap:10px}.d-probe-values output{font-size:13px}.d-probe-terms output{font-size:12px}}
+@media(max-width:850px){.d-probe-panel{grid-template-columns:1fr;gap:20px}.d-probe-coordinates{max-width:440px}.d-probe-values output{font-size:16px}.d-probe-terms output{font-size:14px}.d-slice-controls{align-items:start;flex-direction:column;gap:9px}}
+@media(max-width:650px){.d-slice{height:250px}.d-slice-controls{padding:0 16px 16px}.d-slice-wrap{padding:10px 10px 28px}.d-probe-panel{padding:20px}.d-probe-values,.d-probe-terms{grid-template-columns:1fr;gap:12px}.d-probe-values>div,.d-probe-terms>div{display:flex;justify-content:space-between;gap:10px;align-items:baseline}.d-probe-values span,.d-probe-terms span{margin:0}.d-probe-values output{font-size:14px}.d-probe-terms output{font-size:13px}.d-probe-formula{font-size:12px;line-height:1.6}.d-probe-coordinates button{width:100%}}
+
 </style>
 <script id="three-license" type="text/plain">
 The MIT License
@@ -176,30 +182,39 @@ THE SOFTWARE.
         </div>
         <div class="set-main d-main">
           <div class="d-toolbar"><div><label for="d-threshold">Shared d-section density cutoff</label><select id="d-threshold"><option value="0.00001">0.000010 a₀⁻³</option><option value="0.000025" selected>0.000025 a₀⁻³</option><option value="0.00005">0.000050 a₀⁻³</option></select></div><label class="check"><input type="checkbox" id="d-cutaway">d-section cutaway</label><button id="d-reset" class="quiet">Reset linked camera</button><span class="cutoff-note">One spatial scale and cutoff across A, B, and C.</span></div>
+          <div class="d-slice-controls"><div><label for="d-slice-plane">Cross-section plane</label><select id="d-slice-plane" aria-describedby="d-slice-state"><option value="xy">xy · z = 0</option><option value="xz">xz · y = 0</option><option value="yz">yz · x = 0</option></select></div><p id="d-slice-state" role="status">Preparing analytic cross-sections for the selected orbital.</p></div>
           <div class="comparison-grid d-comparison-grid">
             <article class="orbital-card">
               <div class="card-heading"><span class="card-index">A</span><div><h3>Wavefunction</h3><p>h = √fₛ S + √fₚ P + √f<sub>d</sub> D</p></div><span class="card-tag">AMPLITUDE</span></div>
               <div id="d-wave-view" class="viewport d-viewport"></div>
               <div class="legend"><span><i class="positive"></i>Positive h</span><span><i class="negative"></i>Negative h</span></div>
               <p class="card-description">Combine signed amplitudes. Color shows wavefunction sign, not electric charge.</p>
+              <div class="slice-wrap d-slice-wrap"><canvas id="d-wave-slice" class="slice d-slice" tabindex="0" role="img" aria-label="SIGNED AMPLITUDE · h cross-section. Arrow keys move the shared probe." aria-describedby="d-slice-help"></canvas><span class="slice-label">SIGNED AMPLITUDE · h</span></div>
             </article>
             <article class="orbital-card">
               <div class="card-heading"><span class="card-index">B</span><div><h3>Hybrid density</h3><p>ρ = |√fₛ S + √fₚ P + √f<sub>d</sub> D|²</p></div><span class="card-tag">COHERENT</span></div>
               <div id="d-density-view" class="viewport d-viewport"></div>
               <div class="legend"><span><i class="density"></i>Nonnegative |h|²</span></div>
               <p class="card-description">Square the combined wavefunction. Interference changes the density. A and B share exactly the same boundary.</p>
+              <div class="slice-wrap d-slice-wrap"><canvas id="d-density-slice" class="slice d-slice" tabindex="0" role="img" aria-label="HYBRID DENSITY · |h|² cross-section. Arrow keys move the shared probe." aria-describedby="d-slice-help"></canvas><span class="slice-label">HYBRID DENSITY · |h|²</span></div>
             </article>
             <article class="orbital-card mixture-card">
               <div class="card-heading"><span class="card-index">C</span><div><h3>Density-only mixture</h3><p>ρₘᵢₓ = fₛ|S|² + fₚ|P|² + f<sub>d</sub>|D|²</p></div><span class="card-tag">INCOHERENT</span></div>
               <div id="d-mixture-view" class="viewport d-viewport"></div>
               <div class="legend"><span><i class="mixture"></i>Nonnegative ρₘᵢₓ</span></div>
               <p class="card-description">Add the s-, p-, and d-component densities. Remove interference between these groups; keep the chosen shape within each group.</p>
+              <div class="slice-wrap d-slice-wrap"><canvas id="d-mixture-slice" class="slice d-slice" tabindex="0" role="img" aria-label="DENSITY MIXTURE · ρₘᵢₓ cross-section. Arrow keys move the shared probe." aria-describedby="d-slice-help"></canvas><span class="slice-label">DENSITY MIXTURE · ρₘᵢₓ</span></div>
             </article>
           </div>
+          <p id="d-slice-help" class="helper">The slices sample the analytic functions, independently of the 3D mesh.</p>
           <p id="d-render-status" class="helper" role="status" aria-live="polite">Preparing the three d-section views.</p>
           <p id="d-overlay-note" class="helper" hidden>Each panel overlays separate orbital surfaces, not their summed density or wavefunction. Unused orbitals appear as wireframes.</p>
           <p class="helper">Drag any view or use its arrow keys to rotate all views; + / − zoom. Each d-section panel has the same 5 a₀ scale bar. A shows h = ±√τ; B and C show density = τ. This cutoff is not an enclosed-probability percentage.</p>
         </div>
+      </div>
+      <div id="d-probe-panel" class="probe-panel d-probe-panel" aria-labelledby="d-probe-heading">
+        <div class="probe-intro"><span class="eyebrow">CHECK THE SAME POINT</span><h3 id="d-probe-heading">Resolve the interference.</h3><p>Point to any slice or tap it. With a slice focused, arrow keys move 0.5 a₀; Shift + arrows move 2 a₀; Home returns to the nucleus. Changing the plane also returns the probe to the nucleus.</p><div class="d-probe-coordinates"><div><label id="d-probe-u-label" for="d-probe-u">x (a₀)</label><input id="d-probe-u" type="number" min="-24" max="24" step="any" value="6" inputmode="decimal"></div><div><label id="d-probe-v-label" for="d-probe-v">y (a₀)</label><input id="d-probe-v" type="number" min="-24" max="24" step="any" value="0" inputmode="decimal"></div><button id="d-probe-reset" class="quiet">Probe at nucleus</button></div><output id="d-probe-location">x = 6.0, y = 0.0, z = 0 a₀</output><p class="d-probe-amplitude">Signed h: <output id="d-probe-amplitude">—</output> <span>a₀<sup>−3/2</sup></span></p></div>
+        <div class="d-probe-results"><p class="d-probe-formula">Hybrid density = density mixture + interference</p><div class="d-probe-values"><div><span>Hybrid density · ρ</span><output id="d-probe-density">—</output></div><div><span>Density mixture · ρₘᵢₓ</span><output id="d-probe-mixture">—</output></div><div class="cross-value"><span>Interference · Δρ</span><output id="d-probe-cross">—</output></div></div><p id="d-probe-explanation"></p><div class="d-probe-terms"><div><span>s–p · 2AₛAₚ</span><output id="d-probe-sp">—</output></div><div><span>s–d · 2AₛA<sub>d</sub></span><output id="d-probe-sd">—</output></div><div><span>p–d · 2AₚA<sub>d</sub></span><output id="d-probe-pd">—</output></div></div><p class="helper">All density and interference values are in a₀⁻³. Aₛ, Aₚ, and A<sub>d</sub> are the coefficient-weighted component amplitudes: √fₛ S, √fₚ P, and √f<sub>d</sub> D. The three terms sum to Δρ before display rounding. Probe values evaluate the analytic functions at the marked point; color saturation does not clip these numbers.</p></div>
       </div>
       <div class="d-comparison-note"><div><span class="eyebrow">WHAT IS BEING MIXED?</span><h3>Three components. Three cross terms.</h3><p>S, P, and D are the fixed, normalized components shown in the character controls; fₛ + fₚ + f<sub>d</sub> = 1. The mixture represents an incoherent mixture of these component states. It is not another rendering of the same pure hybrid state.</p><p class="math-line">ρ − ρₘᵢₓ = 2√(fₛfₚ) SP + 2√(fₛf<sub>d</sub>) SD + 2√(fₚf<sub>d</sub>) PD</p><p>The functions here are real. The difference can be positive or negative locally; both densities stay nonnegative and integrate to one for a selected normalized orbital.</p></div><div class="d-try"><span class="small-index">TRY THIS</span><p>Choose an individual orbital and move any character slider to 100%. B and C now agree everywhere. This also holds for a pure p or d component that combines several basis functions.</p><p class="helper">Within P or D, the selected basis functions still interfere. C removes only the interference between s, p, and d components.</p></div></div>
       <div class="d-explanation-grid">
@@ -215,7 +230,7 @@ THE SOFTWARE.
       <div class="model-details"><details open><summary>2s/2p basis functions and units</summary><p>Fixed nucleus, one electron, Z = 1; nonrelativistic Coulomb model. In coordinates measured in a₀, with r = √(x² + y² + z²) and C = 1/(4√(2π)):</p><p class="math-line">φ₂ₛ = C(2 − r)e<sup>−r/2</sup><br>φ₂ₚₓ = Cxe<sup>−r/2</sup>, and likewise for y and z.</p><p>Wavefunctions have units a₀<sup>−3/2</sup>; densities have units a₀<sup>−3</sup>. The pure 2s radial node is at r = 2 a₀. Hybridization changes the zero set through interference.</p></details><details><summary>What the surfaces and colors mean</summary><p>The 3D surfaces use the selected density cutoff. They do not enclose a prescribed percentage of probability and are not hard orbital edges. The three comparison panels use the same cutoff and spatial scale. The larger complete-set view has its own visible scale bar. In A, the same boundary is split by positive and negative wavefunction sign. B and C show nonnegative densities. The finite triangle mesh approximates curved boundaries and can miss very small features. The slices and probe evaluate the analytic functions independently of the mesh.</p><p>Slice density colors use √ρ on one fixed scale. The signed-amplitude slice uses a fixed diverging scale. The cutaway affects only the 3D rendering, not the orbital or the full cross-sections.</p></details><details><summary>Single-orbital composition and complete sets</summary><p>The continuous slider changes one orbital’s coefficients. The complete-set presets construct orthonormal bases with fixed compositions. Four equivalent orthogonal s/p hybrids have 25% s character each; varying all four equally at fixed tetrahedral directions would generally break orthogonality.</p><p>The label sp² describes a hybrid constructed within an s-plus-two-p subspace. Its p component can be expressed as a single oriented p function. A single sp²-character orbital alone does not specify a trigonal set.</p></details><details><summary>Sources and browser use</summary><ul><li><a href="https://books.physics.oregonstate.edu/GMM/hydroform.html" target="_blank" rel="noopener">Oregon State: hydrogen radial functions and spherical harmonics</a></li><li><a href="https://www.pci.tu-bs.de/aggericke/PC4e/Kap_II/Hybride/Konstruktion.htm" target="_blank" rel="noopener">TU Braunschweig: normalized hybrid-orbital constructions</a></li><li><a href="https://www.falstad.com/qmatom/directions.html" target="_blank" rel="noopener">Related prior art: Falstad’s orbital viewer</a></li><li><a href="https://doi.org/10.1021/acs.jchemed.0c00847" target="_blank" rel="noopener">Related prior art: The Hybridization Explorer</a></li></ul><p>This display runs in your browser with bundled code. It sends no measurements, has no analytics, and does not save your settings. External reference links open only when selected. Three.js is distributed under its included MIT license.</p></details></div>
     </section>
   </main>
-  <footer><span>ORBITAL OBSERVATORY <b>/</b> HYBRID ORBITAL LAB</span><span>v1.3.0 · Idealized 2s/2p and 3s/3p/3d models</span></footer>
+  <footer><span>ORBITAL OBSERVATORY <b>/</b> HYBRID ORBITAL LAB</span><span>v1.4.0 · Idealized 2s/2p and 3s/3p/3d models</span></footer>
   <div id="status" class="sr-only" role="status" aria-live="polite">Preparing the orbital views.</div>
   <noscript><p class="noscript">JavaScript is required to operate this display. Enable it and reload.</p></noscript>
   <script>
@@ -1227,6 +1242,310 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
 }));
 
 </script><script>
+/* Analytic n=3 cross-sections and a shared probe. No mesh or network dependencies.
+ * The density-only mixture is incoherent between the s, p, and d groups;
+ * coherent sums within an oriented p or d component are retained.
+ */
+(function(root, factory) {
+  'use strict';
+  var api = factory(root, typeof module === 'object' && module.exports ? require('./d-physics.js') : root.HybridDPhysics);
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  if (root) root.HybridDSlices = api;
+}(typeof globalThis !== 'undefined' ? globalThis : this, function(root, P) {
+  'use strict';
+  var scales = Object.freeze({span: 24, amplitude: 0.02, density: 0.0004});
+  var kinds = ['wave', 'density', 'mixture'];
+  var names = ['Signed wavefunction', 'Hybrid density', 'Density-only mixture'];
+  var resolution = 256;
+
+  function coefficients(c) {
+    if ((!Array.isArray(c) && !ArrayBuffer.isView(c)) || c.length !== 9) throw new TypeError('Expected nine real coefficients.');
+    for (var i = 0; i < 9; i++) if (!Number.isFinite(c[i])) throw new TypeError('Coefficients must be finite real numbers.');
+    return c;
+  }
+
+  function axesFor(plane) {
+    if (plane === 'xy') return {h: 'x', v: 'y', fixed: 'z'};
+    if (plane === 'xz') return {h: 'x', v: 'z', fixed: 'y'};
+    if (plane === 'yz') return {h: 'y', v: 'z', fixed: 'x'};
+    throw new RangeError('The cross-section plane must be xy, xz, or yz.');
+  }
+
+  function pointFor(plane, u, v) {
+    axesFor(plane);
+    if (!Number.isFinite(u) || !Number.isFinite(v)) throw new TypeError('Probe coordinates must be finite.');
+    return plane === 'xy' ? [u, v, 0] : plane === 'xz' ? [u, 0, v] : [0, u, v];
+  }
+
+  function fromBasis(c, b) {
+    var s = c[0] * b[0], p = 0, d = 0;
+    for (var i = 1; i < 4; i++) p += c[i] * b[i];
+    for (var j = 4; j < 9; j++) d += c[j] * b[j];
+    var psi = s + p + d, density = psi * psi, mixture = s*s + p*p + d*d;
+    return {psi: psi, density: density, mixture: mixture, interference: density - mixture,
+      crossTerms: {sp: 2*s*p, sd: 2*s*d, pd: 2*p*d}, components: {s: s, p: p, d: d}};
+  }
+
+  function evaluate(c, x, y, z) {
+    coefficients(c);
+    return fromBasis(c, P.basis(x, y, z));
+  }
+
+  function shadeFor(value, kind) {
+    if (!Number.isFinite(value)) throw new TypeError('A slice color requires a finite field value.');
+    var base = [247, 250, 250], color, t;
+    if (kind === 'wave') {
+      color = value >= 0 ? [8, 127, 140] : [223, 116, 89];
+      t = Math.min(1, Math.abs(value) / scales.amplitude);
+    } else if (kind === 'density' || kind === 'mixture') {
+      color = kind === 'density' ? [98, 122, 176] : [183, 128, 49];
+      t = Math.min(1, Math.sqrt(Math.max(0, value)) / scales.amplitude);
+    } else throw new RangeError('Slice color kind must be wave, density, or mixture.');
+    return base.map(function(b, i) { return Math.round(b + (color[i] - b) * t); });
+  }
+
+  function create() {
+    if (!root.document || !P) throw new Error('The s/p/d cross-section display requires the page and its orbital model.');
+    var document = root.document;
+    var ids = ['d-slice-plane', 'd-slice-help', 'd-slice-state', 'd-probe-panel',
+      'd-probe-u', 'd-probe-v', 'd-probe-u-label', 'd-probe-v-label', 'd-probe-reset',
+      'd-probe-location', 'd-probe-amplitude', 'd-probe-density', 'd-probe-mixture',
+      'd-probe-cross', 'd-probe-sp', 'd-probe-sd', 'd-probe-pd', 'd-probe-explanation'];
+    var nodes = {};
+    ids.forEach(function(id) {
+      nodes[id] = document.getElementById(id);
+      if (!nodes[id]) throw new Error('Missing s/p/d cross-section element: ' + id);
+    });
+    var canvases = ['d-wave-slice', 'd-density-slice', 'd-mixture-slice'].map(function(id) {
+      var canvas = document.getElementById(id);
+      if (!canvas) throw new Error('Missing s/p/d cross-section canvas: ' + id);
+      return canvas;
+    });
+    var contexts = canvases.map(function(canvas) {
+      try { return canvas.getContext('2d'); } catch (_) { return null; }
+    });
+    var graphicsAvailable = contexts.every(function(context) { return !!context; });
+    var state = {plane: 'xy', probe: [6, 0], coefficients: null, label: ''};
+    var baseImages = new Map(), geometry = new Map(), fieldImages = null;
+    var frame = null, fieldsDirty = true, disposed = false, listeners = [];
+    var observer = null;
+    function on(element, type, handler) {
+      element.addEventListener(type, handler);
+      listeners.push([element, type, handler]);
+    }
+    function scientific(value) { return (value === 0 ? '0' : value.toExponential(3)).replace(/-/g, '−'); }
+    function clamp(value) { return Math.max(-scales.span, Math.min(scales.span, value)); }
+    function selected() { return state.coefficients !== null; }
+    function setText(id, value) { nodes[id].textContent = value; }
+
+    function labels() {
+      var axes = axesFor(state.plane), active = selected();
+      nodes['d-slice-plane'].value = state.plane;
+      nodes['d-slice-plane'].disabled = !active;
+      nodes['d-probe-u'].disabled = nodes['d-probe-v'].disabled = nodes['d-probe-reset'].disabled = !active;
+      setText('d-probe-u-label', axes.h + ' coordinate / a₀');
+      setText('d-probe-v-label', axes.v + ' coordinate / a₀');
+      setText('d-slice-help', 'Slices through the nucleus: horizontal ' + axes.h + ', vertical ' + axes.v + '; ' + axes.fixed + ' = 0. Each axis spans −24 to +24 a₀. Wavefunction color is linear in |h| and saturates at 0.020 a₀^(−3/2); both density colors share a fixed square-root scale and saturate at 4.00 × 10⁻⁴ a₀⁻³. Values above these limits share the darkest color; the probe retains their numerical values. These are cross-sections, not projections, and do not depend on the 3D camera, cutoff, or cutaway. A nodal plane can give a blank slice even when the orbital is nonzero elsewhere. Changing the plane resets the probe to the nucleus.');
+      setText('d-slice-state', active ? (graphicsAvailable ? 'Move across any slice, click, or drag to probe the same point in all three. Pointer positions snap to 0.01 a₀. Arrow keys move 0.5 a₀; Shift + arrows move 2 a₀; Home returns to the nucleus. After typing a coordinate, leave the field to apply it.' : 'Canvas graphics are unavailable. Use the coordinate fields below to compare the analytic values at the same point. After typing a coordinate, leave the field to apply it.') : 'Select an individual orbital to see its cross-sections and shared probe. A full-set overlay is not a single wavefunction or a summed density.');
+      nodes['d-probe-panel'].hidden = !active;
+      canvases.forEach(function(canvas, index) {
+        var wrap = canvas.closest ? canvas.closest('.d-slice-wrap') : null;
+        if (wrap) wrap.hidden = !active || !graphicsAvailable;
+        canvas.hidden = !active || !graphicsAvailable;
+        canvas.tabIndex = active && graphicsAvailable ? 0 : -1;
+        canvas.setAttribute('aria-label', names[index] + ' cross-section. Horizontal ' + axes.h + ', vertical ' + axes.v + '; ' + axes.fixed + ' equals zero. Arrow keys move the shared probe by 0.5 Bohr, Shift plus arrows by 2 Bohr; Home returns to the nucleus.');
+      });
+    }
+
+    function drawProbe(canvas, index) {
+      var g = geometry.get(canvas), base = baseImages.get(canvas), context = contexts[index];
+      if (!g || !base || !context || !selected()) return;
+      context.putImageData(base, 0, 0);
+      context.setTransform(g.dpr, 0, 0, g.dpr, 0, 0);
+      var x = g.left + (state.probe[0] + scales.span) * g.side / (2 * scales.span);
+      var y = g.top + (scales.span - state.probe[1]) * g.side / (2 * scales.span);
+      context.beginPath(); context.arc(x, y, 4, 0, 2*Math.PI);
+      context.strokeStyle = 'white'; context.lineWidth = 3; context.stroke();
+      context.strokeStyle = '#203c49'; context.lineWidth = 1.4; context.stroke();
+      context.beginPath(); context.moveTo(x-8, y); context.lineTo(x-4, y); context.moveTo(x+4, y); context.lineTo(x+8, y);
+      context.moveTo(x, y-8); context.lineTo(x, y-4); context.moveTo(x, y+4); context.lineTo(x, y+8); context.stroke();
+    }
+
+    function updateProbe() {
+      if (!selected()) return;
+      var point = pointFor(state.plane, state.probe[0], state.probe[1]);
+      var value = evaluate(state.coefficients, point[0], point[1], point[2]);
+      nodes['d-probe-u'].value = String(state.probe[0]);
+      nodes['d-probe-v'].value = String(state.probe[1]);
+      setText('d-probe-location', 'x = ' + String(point[0]) + ', y = ' + String(point[1]) + ', z = ' + String(point[2]) + ' a₀');
+      setText('d-probe-amplitude', scientific(value.psi));
+      setText('d-probe-density', scientific(value.density));
+      setText('d-probe-mixture', scientific(value.mixture));
+      setText('d-probe-cross', scientific(value.interference));
+      setText('d-probe-sp', scientific(value.crossTerms.sp));
+      setText('d-probe-sd', scientific(value.crossTerms.sd));
+      setText('d-probe-pd', scientific(value.crossTerms.pd));
+      var explanation = value.interference === 0 ? 'The computed net interference is zero here.' : Math.abs(value.interference) < 1e-14 ? 'The net interference has magnitude below 10⁻¹⁴ a₀⁻³ here.' : value.interference > 0 ? 'Net constructive interference increases the hybrid density here.' : 'Net destructive interference reduces the hybrid density here.';
+      setText('d-probe-explanation', explanation + ' The three pair terms add to the net interference (up to numerical rounding); they may have different signs or cancel. Density remains nonnegative.');
+      canvases.forEach(drawProbe);
+    }
+
+    function buildFields() {
+      if (!graphicsAvailable) return;
+      fieldImages = kinds.map(function() {
+        var off = document.createElement('canvas'); off.width = off.height = resolution;
+        var context = off.getContext('2d');
+        if (!context) throw new Error('Unable to create the analytic cross-section image.');
+        return {canvas: off, context: context, image: context.createImageData(resolution, resolution)};
+      });
+      var basis = new Float64Array(9);
+      for (var row = 0; row < resolution; row++) for (var column = 0; column < resolution; column++) {
+        var u = -scales.span + 2*scales.span*(column+0.5)/resolution;
+        var v = scales.span - 2*scales.span*(row+0.5)/resolution;
+        var point = pointFor(state.plane, u, v);
+        P.basis(point[0], point[1], point[2], basis);
+        var value = fromBasis(state.coefficients, basis), values = [value.psi, value.density, value.mixture];
+        var offset = 4*(row*resolution+column);
+        for (var panel = 0; panel < kinds.length; panel++) {
+          var color = shadeFor(values[panel], kinds[panel]), pixels = fieldImages[panel].image.data;
+          pixels[offset] = color[0]; pixels[offset+1] = color[1]; pixels[offset+2] = color[2]; pixels[offset+3] = 255;
+        }
+      }
+      fieldImages.forEach(function(field) { field.context.putImageData(field.image, 0, 0); });
+      fieldsDirty = false;
+    }
+
+    function drawSlice(canvas, index) {
+      var context = contexts[index];
+      if (!context || !fieldImages) return;
+      var rect = canvas.getBoundingClientRect();
+      if (rect.width <= 0 || rect.height <= 0) return;
+      var w = Math.round(rect.width), h = Math.round(rect.height), dpr = Math.min(root.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(w*dpr); canvas.height = Math.round(h*dpr);
+      var side = Math.max(1, Math.min(w-56, h-36)), left = (w-side)/2+4, top = 8;
+      var g = {left: left, top: top, side: side, w: w, h: h, dpr: dpr};
+      geometry.set(canvas, g);
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+      context.fillStyle = '#f5f8fa'; context.fillRect(0, 0, w, h);
+      context.drawImage(fieldImages[index].canvas, left, top, side, side);
+      context.strokeStyle = '#b8c9cc'; context.lineWidth = 0.6; context.strokeRect(left, top, side, side);
+      context.beginPath(); context.moveTo(left, top+side/2); context.lineTo(left+side, top+side/2);
+      context.moveTo(left+side/2, top); context.lineTo(left+side/2, top+side);
+      context.strokeStyle = 'rgba(110,140,150,.32)'; context.stroke();
+      var axes = axesFor(state.plane);
+      context.fillStyle = '#5c747b'; context.font = '10px Segoe UI, sans-serif'; context.textAlign = 'center';
+      context.fillText('−24', left, top+side+14); context.fillText('0', left+side/2, top+side+14); context.fillText('+24 ' + axes.h, left+side, top+side+14);
+      context.textAlign = 'right'; context.fillText('+24', left-5, top+8); context.fillText('−24', left-5, top+side); context.fillText(axes.v, left-7, top+side/2+4);
+      baseImages.set(canvas, context.getImageData(0, 0, canvas.width, canvas.height));
+      drawProbe(canvas, index);
+    }
+
+    function scheduleDraw() {
+      if (disposed || !selected() || frame !== null) return;
+      frame = root.requestAnimationFrame(function() {
+        frame = null;
+        if (disposed || !selected()) return;
+        if (fieldsDirty) buildFields();
+        canvases.forEach(drawSlice);
+      });
+    }
+
+    function pointer(canvas, event) {
+      if (!selected()) return;
+      var g = geometry.get(canvas); if (!g) return;
+      var rect = canvas.getBoundingClientRect();
+      var u = 2*scales.span*(event.clientX-rect.left-g.left)/g.side-scales.span;
+      var v = scales.span-2*scales.span*(event.clientY-rect.top-g.top)/g.side;
+      if (!Number.isFinite(u) || !Number.isFinite(v) || u < -scales.span || u > scales.span || v < -scales.span || v > scales.span) return;
+      state.probe = [Math.round(u*100)/100, Math.round(v*100)/100]; updateProbe();
+    }
+
+    canvases.forEach(function(canvas) {
+      canvas.style.touchAction = 'none';
+      on(canvas, 'pointermove', function(event) { pointer(canvas, event); });
+      on(canvas, 'pointerdown', function(event) {
+        if (!selected()) return;
+        pointer(canvas, event);
+        if (event.cancelable) event.preventDefault();
+        canvas.focus({preventScroll: true});
+        if (canvas.setPointerCapture && event.pointerId !== undefined) {
+          try { canvas.setPointerCapture(event.pointerId); } catch (_) { /* Hover and click remain available. */ }
+        }
+      });
+      on(canvas, 'keydown', function(event) {
+        if (!selected()) return;
+        var step = event.shiftKey ? 2 : 0.5;
+        // Remove binary-addition noise only from the coordinate being stepped;
+        // direct numeric entries and the untouched coordinate keep their precision.
+        function advance(index, amount) { state.probe[index] = clamp(Number((state.probe[index] + amount).toPrecision(15))); }
+        if (event.key === 'ArrowRight') advance(0, step);
+        else if (event.key === 'ArrowLeft') advance(0, -step);
+        else if (event.key === 'ArrowUp') advance(1, step);
+        else if (event.key === 'ArrowDown') advance(1, -step);
+        else if (event.key === 'Home') state.probe = [0, 0];
+        else return;
+        event.preventDefault(); updateProbe();
+      });
+    });
+    ['d-probe-u', 'd-probe-v'].forEach(function(id, index) {
+      on(nodes[id], 'change', function() {
+        if (!selected()) return;
+        var raw = nodes[id].value.trim(), value = Number(raw);
+        if (raw !== '' && Number.isFinite(value)) state.probe[index] = clamp(value);
+        updateProbe();
+      });
+    });
+    on(nodes['d-probe-reset'], 'click', function() { if (selected()) { state.probe = [0, 0]; updateProbe(); } });
+    on(nodes['d-slice-plane'], 'change', function() {
+      if (!selected()) return;
+      axesFor(nodes['d-slice-plane'].value);
+      state.plane = nodes['d-slice-plane'].value; state.probe = [0, 0]; fieldsDirty = true;
+      baseImages.clear(); geometry.clear(); labels(); updateProbe(); scheduleDraw();
+    });
+    if (typeof root.ResizeObserver === 'function') {
+      observer = new root.ResizeObserver(scheduleDraw);
+      canvases.forEach(function(canvas) { observer.observe(canvas); });
+    } else on(root, 'resize', scheduleDraw);
+
+    labels();
+    return Object.freeze({
+      update: function(item) {
+        if (disposed) return;
+        if (item === null) {
+          state.coefficients = null; state.label = '';
+          if (frame !== null) { root.cancelAnimationFrame(frame); frame = null; }
+          baseImages.clear(); geometry.clear(); labels();
+          return;
+        }
+        if (!item || !item.coefficients) throw new TypeError('A slice selection requires an orbital or null.');
+        coefficients(item.coefficients);
+        var changed = !state.coefficients || item.coefficients.some(function(value, index) { return value !== state.coefficients[index]; });
+        state.coefficients = Array.from(item.coefficients); state.label = String(item.label || 'Selected orbital');
+        if (changed) { fieldsDirty = true; baseImages.clear(); geometry.clear(); }
+        labels(); updateProbe(); scheduleDraw();
+      },
+      getState: function() {
+        return {plane: state.plane, probe: state.probe.slice(), coordinates: pointFor(state.plane, state.probe[0], state.probe[1]), selected: selected(), label: state.label};
+      },
+      getProbe: function() {
+        if (!selected()) return null;
+        var point = pointFor(state.plane, state.probe[0], state.probe[1]);
+        return Object.assign({coordinates: point}, evaluate(state.coefficients, point[0], point[1], point[2]));
+      },
+      destroy: function() {
+        disposed = true;
+        if (frame !== null) root.cancelAnimationFrame(frame);
+        if (observer) observer.disconnect();
+        listeners.forEach(function(listener) { listener[0].removeEventListener(listener[1], listener[2]); });
+        baseImages.clear(); geometry.clear(); fieldImages = null;
+      }
+    });
+  }
+
+  return Object.freeze({evaluate: evaluate, pointFor: pointFor, axesFor: axesFor, shadeFor: shadeFor, scales: scales, create: create});
+}));
+
+</script><script>
 /* UI and cross-sections for the local Hybrid Orbital Lab. No network or persistence. */
 (() => {
   'use strict';
@@ -1375,7 +1694,7 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
     sp3d2:{title:'Six equivalent hybrids',body:'Each hybrid contains 16⅔% s, 50% p, and 33⅓% d character. The construction uses s, all three p functions, dₓ²₋ᵧ², and d_z². The dₓᵧ, dₓz, and dᵧz functions remain unused.',angles:'Reference directions: ±x, ±y, and ±z. Adjacent directions are 90° apart; opposite directions are 180° apart.'}
   };
   const renderers={};
-  let revision=0,renderTimer;
+  let revision=0,renderTimer,slices;
   const percent=value=>(100*value).toFixed(1).replace(/\.0$/,'')+'%';
   const coefficient=value=>Math.abs(value)<1e-12?'0':value.toFixed(4).replace('-','−');
   function displayed(set){
@@ -1451,6 +1770,7 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
   }
   function update(delay=0){
     const {set,items}=describe(),current=++revision;
+    slices.update(state.selection==='all'?null:items[0]);
     clearTimeout(renderTimer);
     const drawingLabel=state.custom?'custom orbital':set.label;
     section.dataset.ready='rendering';$('d-render-status').textContent='Drawing '+drawingLabel+' surfaces…';
@@ -1471,6 +1791,7 @@ return {ACESFilmicToneMapping:et,AddEquation:y,AddOperation:J,AdditiveAnimationB
     }),delay);
   }
   try{
+    slices=window.HybridDSlices.create();
     for(const [mode,id] of [['phase','d-wave-view'],['density','d-density-view'],['mixture','d-mixture-view']]){
       renderers[mode]=new window.HybridRenderer($(id),{label:({phase:'s/p/d wavefunction',density:'s/p/d hybrid density',mixture:'s/p/d density-only mixture'})[mode],mode,
         meshProvider:(coefficients,requestedMode,sign,threshold)=>window.HybridDIsosurface.meshFor(coefficients,requestedMode==='mixture'?'group-mixture':requestedMode,sign,threshold),
